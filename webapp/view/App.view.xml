@@ -31,7 +31,7 @@
 		    font-weight: bold;    
       }      
    </html:style>
-	<Page title="Wetter Hilsbach" enableScrolling="false">
+	<Page title="{i18n>pageTitleWeather}" enableScrolling="false">
 		<content>
 			<VBox class="sapUiSmallMargin">
 				<HBox class="sapUiSmallMargin">
@@ -85,7 +85,7 @@
 								title=""
 								width="420px">
 								<f:content>
-									<Text text="Aktuelle Werte Innen"/>
+									<Text text="{i18n>currentValuesIndoor}"/>
 								</f:content>
 								<f:layoutData>
 									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
@@ -100,7 +100,7 @@
 								title=""
 								width="210px">
 								<f:content>
-									<Label text="Temperatur"/>
+									<Label text="{i18n>temperature}"/>
 									<Text id="temperatureIndoorId" text="{parts: [{path: '/temperatureIndoor'}, {path: '/temperatureIndoorId'}, {path: 'internalSettings>/temperatureThresholdIndoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold"/>
 								</f:content>
 								<f:layoutData>
@@ -115,7 +115,7 @@
 								title=""
 								width="210px">
 								<f:content>
-									<Label text="Feuchtigkeit"/>
+									<Label text="{i18n>humidity}"/>
 									<Text id="humidityIndoorId" text="{path: '/humidityIndoor', formatter: '.formatter.humidity'}" class="text sizeLargeBold"/>
 								</f:content>
 								<f:layoutData>
@@ -132,7 +132,7 @@
 								title=""
 								width="420px">
 								<f:content>
-									<Text text="Aktuelle Werte Außen"/>
+								    <Text text="{i18n>currentValuesOutdoor}"/>
 								</f:content>
 								<f:layoutData>
 									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
@@ -148,7 +148,7 @@
 								title=""
 								width="210px">
 								<f:content>
-									<Label text="Temperatur"/>
+									<Label text="{i18n>temperature}"/>
 									<Text id="temperatureOutdoorId" text="{parts: [{path: '/temperatureOutdoor'}, {path: '/temperatureOutdoorId'}, {path: 'internalSettings>/temperatureThresholdOutdoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold"/>
 								</f:content>
 								<f:layoutData>
@@ -162,7 +162,7 @@
 								title=""
 								width="210px">
 								<f:content>
-									<Label text="Feuchtigkeit"/>
+									<Label text="{i18n>humidity}"/>
 									<Text id="humidityOutdoorId" text="{path: '/humidityOutdoor', formatter: '.formatter.humidity'}" class="text sizeLargeBold"/>
 								</f:content>
 								<f:layoutData>

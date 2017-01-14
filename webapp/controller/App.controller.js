@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/demo/wt/model/formatter",
-	"sap/ui/commons/Image"
-], function (Controller, JSONModel, formatter, Image) {
+	"sap/ui/commons/Image",
+   "sap/ui/model/resource/ResourceModel"
+], function (Controller, JSONModel, formatter, Image, ResourceModel) {
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.wt.controller.App", {
@@ -15,15 +16,22 @@ sap.ui.define([
 		onInit: function(){
 				
 			var that = this;		
-
-			//load internal settings
+			
+			//create a resource bundle for language specific texts
+            var i18nModel = new ResourceModel({
+              bundleName: "sap.ui.demo.wt.i18n.i18n"
+            });
+            this.getView().setModel(i18nModel, "i18n");
+		
+			//create model for internal settings with initial values
 			var oModelInternalSettings = new JSONModel({
-				  showImageForNSeconds: "3",
+				  showImageForNSeconds: "30",
 				  temperatureThresholdIndoor: "22",
 				  temperatureThresholdOutdoor: "20",
 				  pathSensorData: "/Arexx/messung.json"
 			  });
-			this.getView().setModel(oModelInternalSettings, "internalSettings");
+			sap.ui.getCore().setModel(oModelInternalSettings, "internalSettings");
+			//this.getView().setModel(oModelInternalSettings, "internalSettings");
 			
 			oModelInternalSettings.attachRequestCompleted(function(oEvent){               			   
 			   

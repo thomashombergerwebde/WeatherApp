@@ -7,7 +7,7 @@ sap.ui.define([], function () {
 				//hasStyleClass, addStyleClass, removeStyleClass
 				if(sId){
 				  var field = this.byId(sId);
-				  if(field && sTemperature >= sThreshold){
+				  if(field && Number(sTemperature) >= Number(sThreshold)){
 					field.removeStyleClass("temperatureCold");  
 				    field.addStyleClass("temperatureWarm");
 				  } else {
@@ -15,7 +15,7 @@ sap.ui.define([], function () {
 				  	field.addStyleClass("temperatureCold");
 				  }
 				}
-				return sTemperature + "°";
+				return sTemperature.toLocaleString() + "°";
 			} else {
 				return "--";
 			}			
@@ -24,7 +24,7 @@ sap.ui.define([], function () {
 		humidity: function (sHumidity) {
 			
 			if(sHumidity && sHumidity != "--"){
-				return sHumidity + "%";
+				return sHumidity.toLocaleString() + "%";
 			} else {
 				return "--";
 			}
@@ -32,69 +32,71 @@ sap.ui.define([], function () {
 
 		date: function (sDate) {
 	
+	        var oBundle = this.getView().getModel("i18n").getResourceBundle();
+			
 			//get name of month
 			var month= "";
 			switch (sDate.getMonth()) {
 			    case 0:
-			        month = "Januar";
+			        month = oBundle.getText("january");
 			        break;
 			    case 1:
-			        month = "Februar";
+			        month = oBundle.getText("february");
 			        break;
 			    case 2:
-			        month = "März";
+			        month = oBundle.getText("march");
 			        break;
 			    case 3:
-			        month = "April";
+			        month = oBundle.getText("april");
 			        break;
 			    case 4:
-			        month = "Mai";
+			        month = oBundle.getText("may");
 			        break;
 			    case 5:
-			        month = "Juni";
+			        month = oBundle.getText("june");
 			        break;
 			    case 6:
-			        month = "Juli";
+			        month = oBundle.getText("july");
 			        break;
 			    case 7:
-			        month = "August";
+			        month = oBundle.getText("august");
 			        break;
 			    case 8:
-			        month = "September";
+			        month = oBundle.getText("september");
 			        break;
 			    case 9:
-			        month = "Oktober";
+			        month = oBundle.getText("october");
 			        break;
 			    case 10:
-			        month = "November";
+			        month = oBundle.getText("november");
 			        break;
 			    case 11:
-			        month = "Dezember";
+			        month = oBundle.getText("december");
 			} 	
 			
 			//get day of week
 			var day = "";
 			switch (sDate.getDay()) {
 			    case 0:
-			        day = "Sonntag";
+			        day = oBundle.getText("sunday");
 			        break;
 			    case 1:
-			        day = "Montag";
+			        day = oBundle.getText("monday");
 			        break;
 			    case 2:
-			        day = "Dienstag";
+			        day = oBundle.getText("tuesday");
 			        break;
 			    case 3:
-			        day = "Mittwoch";
+			        day = oBundle.getText("wednesday");
 			        break;
 			    case 4:
-			        day = "Donnerstag";
+			        day = oBundle.getText("thursday");
 			        break;
 			    case 5:
-			        day = "Freitag";
+			        day = oBundle.getText("friday");
 			        break;
 			    case 6:
-			        day = "Samstag";
+			        day = oBundle.getText("saturday");
 			} 
 			
 			return day + ", " + sDate.getDate() + ". " + month + " " + sDate.getFullYear();
