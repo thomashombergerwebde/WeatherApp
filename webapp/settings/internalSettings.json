@@ -1,6 +1,6 @@
 {
   "showImageForNSeconds": "10",
-  "temperatureThresholdIndoor": "23",
-  "temperatureThresholdOutdoor": "0",
+  "temperatureThresholdIndoor": "21",
+  "temperatureThresholdOutdoor": "19",
   "pathSensorData": "/Arexx/messung.json"
 }
