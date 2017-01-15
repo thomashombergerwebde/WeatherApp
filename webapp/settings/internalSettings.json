@@ -5,5 +5,6 @@
   "pathSensorData": "/Arexx/messung.json",
   "updateSensorDataAllNSeconds": "60",
   "sensorIdIndoor": "196862",
-  "sensorIdOutdoor": "196970"
+  "sensorIdOutdoor": "196970",
+  "updateForecastDataAllNHours": "2"
 }

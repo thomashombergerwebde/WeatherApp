@@ -30,8 +30,7 @@ sap.ui.define([
 					maxDate: new Date(2050, 11, 31),
 					currentDate: new Date(),
 					currentTime: new Date()
-			});			
-			//this.getView().setModel(oModelLocalWeather);
+			});
 		
 		    //Set initial values for the settings model 
 			var oModelInternalSettings = this.getOwnerComponent().getModel("internalSettings");
@@ -40,7 +39,8 @@ sap.ui.define([
 			  temperatureThresholdIndoor: "22",
 			  temperatureThresholdOutdoor: "20",
 			  pathSensorData: "/Arexx/messung.json",
-			  updateSensorDataAllNSeconds: "60"
+			  updateSensorDataAllNSeconds: "60",
+			  updateForecastDataAllNHours: "2"
 			});
 			
             //Transfer settings data to relevant controls			
@@ -57,7 +57,7 @@ sap.ui.define([
 			//Read settings data from file system
 			oModelInternalSettings.loadData("../webapp/settings/internalSettings.json");			
 		
-            //Create additional model for sensor data to be read from server		
+            //Define callback functions to transfer sensor data to default model  		
 			var oModelSensorData = this.getOwnerComponent().getModel("sensorData");
 			oModelSensorData.attachRequestCompleted(function(oEvent){
 				//Transfer sensor data to local weather model
@@ -121,10 +121,16 @@ sap.ui.define([
 					}
 			  }, 1000);
 			  			  
-			  //Sensor data - update every minute
+			  //Sensor data - update every n minutes
 			  var sensorData = setInterval(function(){
 				oModelSensorData.loadData(oModelInternalSettings.getData().pathSensorData);  
 			  }, (oModelInternalSettings.getData().updateSensorDataAllNSeconds * 1000));
+	
+	          //Forecast data dasWetter.de 
+			  //TODO
+			  var forecastData = setInterval(function(){
+				  var a = "a";
+			  }, (oModelInternalSettings.getData().updateForecastDataAllNHours * 3600000));
 	
 		}
 		

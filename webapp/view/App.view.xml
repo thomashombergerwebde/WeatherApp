@@ -33,18 +33,35 @@
    </html:style>
 	<Page title="{i18n>pageTitleWeather}" enableScrolling="false">
 		<content>
-			<VBox class="sapUiSmallMargin">
-				<HBox class="sapUiSmallMargin">
-					<VBox>	
-					  <!-- <Carousel id="carousel" width="960px" height="540px" loop="true"> --> <!-- arrowsPlacement="PageIndicator"> -->
-					  <Carousel id="carousel" width="777px" height="437px" loop="true">
-						  <!-- Add pictures dynamically in controller -->
-					  </Carousel>
-				  	  <!-- Include widget from dasWetter.com, size 777px x 437px -->
-					  <c:HTML content="&lt;div id=&quot;cont_abbd5cfc591d9b105ca08f4286926eb5&quot;&gt;&lt;script type=&quot;text/javascript&quot; async src=&quot;https://www.daswetter.com/wid_loader/abbd5cfc591d9b105ca08f4286926eb5&quot;&gt;&lt;/script&gt;&lt;/div&gt;">
-					  </c:HTML>					  
-					</VBox>
+		    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		    <!-- +++++ Two columns: Image/Widget <-> Date/Time/Sensor data  -->
+		    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->			
+			<HBox class="sapUiSmallMargin">
+				<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+				<!-- +++++ Left column: Image/Widget ++++++++++++++++++++++++++ -->
+				<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
+				<VBox>	
+					<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+					<!-- +++++ Upper part: Image ++++++++++++++++++++++++++++++++++ -->
+					<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->					
+					<!-- <Carousel id="carousel" width="960px" height="540px" loop="true"> --> <!-- arrowsPlacement="PageIndicator"> -->
+					<Carousel id="carousel" width="777px" height="437px" loop="true">
+						<!-- Add pictures dynamically in controller -->
+					</Carousel>
+					<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+					<!-- +++++ Lower part: Widget +++++++++++++++++++++++++++++++++ -->
+					<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->						
+					<!-- Include widget from dasWetter.com, size 777px x 437px -->
+					<c:HTML content="&lt;div id=&quot;cont_abbd5cfc591d9b105ca08f4286926eb5&quot;&gt;&lt;script type=&quot;text/javascript&quot; async src=&quot;https://www.daswetter.com/wid_loader/abbd5cfc591d9b105ca08f4286926eb5&quot;&gt;&lt;/script&gt;&lt;/div&gt;">
+					</c:HTML>					  
+				</VBox>
+					<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+					<!-- +++++ Right column: Date/Time/Sensor data ++++++++++++++++ -->
+					<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 					<VBox class="sapUiSmallMarginBegin">
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
+						<!-- +++++ 1. Date ++++++++++++++++++++++++++++++++++++++++++++ -->
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->					
 						<HBox class="sapUiSmallMarginBottom">
 							<f:SimpleForm id="SimpleFormDisplayDate"
 								maxContainerCols="2"
@@ -61,6 +78,9 @@
 								</f:layoutData>
 							</f:SimpleForm>
 						</HBox>
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
+						<!-- +++++ 2. Time ++++++++++++++++++++++++++++++++++++++++++++ -->
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->							
 						<HBox class="sapUiSmallMarginBottom">
 							<f:SimpleForm id="SimpleFormDisplayTime"
 								maxContainerCols="1"
@@ -76,7 +96,10 @@
 									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
 								</f:layoutData>
 							</f:SimpleForm>
-						</HBox>						
+						</HBox>				
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
+						<!-- +++++ 3a. Indoor values label ++++++++++++++++++++++++++++ -->
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->							
 						<HBox class="sapUiSmallMarginTopBottom">
 							<f:SimpleForm id="SimpleFormDisplayIndoorTitle"
 								maxContainerCols="2"
@@ -91,7 +114,10 @@
 									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
 								</f:layoutData>
 							</f:SimpleForm>			
-						</HBox>						
+						</HBox>					
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
+						<!-- +++++ 3b. Temperature/Humidity indoor ++++++++++++++++++++ -->
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->							
 						<HBox class="sapUiSmallMarginBottom">							
 							<f:SimpleForm id="SimpleFormDisplayIndoor"
 								maxContainerCols="2"
@@ -123,7 +149,9 @@
 								</f:layoutData>
 							</f:SimpleForm>						
 						</HBox>
-					
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
+						<!-- +++++ 4a. Outdoor values label +++++++++++++++++++++++++++ -->
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->						
 						<HBox class="sapUiSmallMarginTopBottom">
 							<f:SimpleForm id="SimpleFormDisplayOutdoorTitle"
 								maxContainerCols="2"
@@ -132,14 +160,16 @@
 								title=""
 								width="420px">
 								<f:content>
-								    <Text text="{i18n>currentValuesOutdoor}"/>
+									<Text text="{i18n>currentValuesOutdoor}"/>
 								</f:content>
 								<f:layoutData>
 									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
 								</f:layoutData>
 							</f:SimpleForm>			
 						</HBox>	
-						
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
+						<!-- +++++ 4b. Temperature/Humidity outdoor +++++++++++++++++++ -->
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->							
 						<HBox class="sapUiSmallMarginBottom">
 							<f:SimpleForm id="SimpleFormDisplayOutdoor"
 								maxContainerCols="2"
@@ -170,7 +200,7 @@
 								</f:layoutData>
 							</f:SimpleForm>
 						</HBox>
-					</VBox>
+
 					<!--
 					<VBox  class="sapUiSmallMargin">
 						<u:Calendar
@@ -183,9 +213,8 @@
 						</u:Calendar>
 					</VBox>
 					-->
-				</HBox>	
-		    </VBox>
-		
+				</VBox>	
+			</HBox>
 		</content>
 	</Page>
 </mvc:View>
