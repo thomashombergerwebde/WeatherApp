@@ -16,76 +16,71 @@ sap.ui.define([
 		onInit: function(){
 				
 			var that = this;		
-			
-			//create a resource bundle for language specific texts
-            var i18nModel = new ResourceModel({
-              bundleName: "sap.ui.demo.wt.i18n.i18n"
-            });
-            this.getView().setModel(i18nModel, "i18n");
 		
-			//create model for internal settings with initial values
-			var oModelInternalSettings = new JSONModel({
-				  showImageForNSeconds: "30",
-				  temperatureThresholdIndoor: "22",
-				  temperatureThresholdOutdoor: "20",
-				  pathSensorData: "/Arexx/messung.json"
-			  });
-			sap.ui.getCore().setModel(oModelInternalSettings, "internalSettings");
-			//this.getView().setModel(oModelInternalSettings, "internalSettings");
+            //Set initial values for the default model		
+		    var oModelLocalWeather = this.getOwnerComponent().getModel();
+		    oModelLocalWeather.setData({
+					temperatureIndoor: "--",
+					temperatureIndoorId: "temperatureIndoorId",
+					temperatureOutdoor: "--",
+					temperatureOutdoorId: "temperatureOutdoorId",
+					humidityIndoor: "--",
+					humidityOutdoor: "--",
+					minDate: new Date(2000, 0, 1),
+					maxDate: new Date(2050, 11, 31),
+					currentDate: new Date(),
+					currentTime: new Date()
+			});			
+			//this.getView().setModel(oModelLocalWeather);
+		
+		    //Set initial values for the settings model 
+			var oModelInternalSettings = this.getOwnerComponent().getModel("internalSettings");
+			oModelInternalSettings.setData({
+			  showImageForNSeconds: "10",
+			  temperatureThresholdIndoor: "22",
+			  temperatureThresholdOutdoor: "20",
+			  pathSensorData: "/Arexx/messung.json",
+			  updateSensorDataAllNSeconds: "60"
+			});
 			
-			oModelInternalSettings.attachRequestCompleted(function(oEvent){               			   
-			   
-			   var mod = oEvent.getSource();
-			   
+            //Transfer settings data to relevant controls			
+			oModelInternalSettings.attachRequestCompleted(function(oEvent){               			      
+			   			   
 			  //Update carousel interval
 			  clearInterval(this.carousel);
 			  this.carousel = setInterval(function(){ 
 				var car = that.getView().byId("carousel");
 				car.next();
 			  }, (oEvent.getSource().getData().showImageForNSeconds * 1000));
-         
 			}, this);
-			oModelInternalSettings.loadData("../webapp/settings/internalSettings.json");			
 			
-			var oModelLocalWeather = new JSONModel({
-						temperatureIndoor: "--",
-						temperatureIndoorId: "temperatureIndoorId",
-						temperatureOutdoor: "--",
-						temperatureOutdoorId: "temperatureOutdoorId",
-						humidityIndoor: "--",
-						humidityOutdoor: "--",
-						minDate: new Date(2000, 0, 1),
-						maxDate: new Date(2050, 11, 31),
-						currentDate: new Date(),
-						currentTime: new Date()
-			  });
-				  
-			var oModelSensorData = new JSONModel();			   
-			  oModelSensorData.attachRequestCompleted(function(oEvent){
+			//Read settings data from file system
+			oModelInternalSettings.loadData("../webapp/settings/internalSettings.json");			
+		
+            //Create additional model for sensor data to be read from server		
+			var oModelSensorData = this.getOwnerComponent().getModel("sensorData");
+			oModelSensorData.attachRequestCompleted(function(oEvent){
 				//Transfer sensor data to local weather model
 				var aSensorData = oModelSensorData.getData();
 				aSensorData.forEach(function(item){
 					var value = 0;
-					if(item.ID === "196862" && item.TYPE === "1"){
+					if(item.ID === this.getOwnerComponent().getModel("internalSettings").getData().sensorIdIndoor && item.TYPE === "1"){
 						oModelLocalWeather.setProperty("/temperatureIndoor", Number(item.VALUE).toFixed(1));
 					}  
-					if(item.ID === "196862" && item.TYPE === "3"){
+					if(item.ID === this.getOwnerComponent().getModel("internalSettings").getData().sensorIdIndoor && item.TYPE === "3"){
 						oModelLocalWeather.setProperty("/humidityIndoor", Number(item.VALUE).toFixed(1));	  		
 					} 
-					if(item.ID === "196970" && item.TYPE === "1"){
+					if(item.ID === this.getOwnerComponent().getModel("internalSettings").getData().sensorIdOutdoor && item.TYPE === "1"){
 						oModelLocalWeather.setProperty("/temperatureOutdoor", Number(item.VALUE).toFixed(1));
 					}
-					if(item.ID === "196970" && item.TYPE === "3"){
+					if(item.ID === this.getOwnerComponent().getModel("internalSettings").getData().sensorIdOutdoor && item.TYPE === "3"){
 						oModelLocalWeather.setProperty("/humidityOutdoor", Number(item.VALUE).toFixed(1));
 					}
-				});
-			  });
+				}, this);
+			  }, this);
 
-			  oModelSensorData.loadData(oModelInternalSettings.getData().pathSensorData);						  
-			  
-			  var oView = this.getView();
-			  oView.setModel(oModelLocalWeather);
-			  
+			  oModelSensorData.loadData(oModelInternalSettings.getData().pathSensorData);			  
+			  			  
 			  //Set images
 			  //TODO read image files from a selected directory
 			  var images = [];
@@ -113,9 +108,8 @@ sap.ui.define([
 				var car = that.getView().byId("carousel");
 				car.next();
 			  }, (oModelInternalSettings.getData().showImageForNSeconds * 1000));
-			  //}, 10000);
 			  
-			  //Clock
+			  //Clock - update every second
 			  var currentTime = setInterval(function(){ 
 					var date = new Date();
 					if(date.getSeconds() === 0){
@@ -126,13 +120,12 @@ sap.ui.define([
 						}	
 					}
 			  }, 1000);
-			  
-			  
-			  //Sensor data
+			  			  
+			  //Sensor data - update every minute
 			  var sensorData = setInterval(function(){
 				oModelSensorData.loadData(oModelInternalSettings.getData().pathSensorData);  
-			  }, 60000);						
-					  
+			  }, (oModelInternalSettings.getData().updateSensorDataAllNSeconds * 1000));
+	
 		}
 		
 	});

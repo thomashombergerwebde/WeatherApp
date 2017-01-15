@@ -101,7 +101,7 @@
 								width="210px">
 								<f:content>
 									<Label text="{i18n>temperature}"/>
-									<Text id="temperatureIndoorId" text="{parts: [{path: '/temperatureIndoor'}, {path: '/temperatureIndoorId'}, {path: 'internalSettings>/temperatureThresholdIndoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold"/>
+									<Text id="temperatureIndoorId" text="{parts: [{path: '/temperatureIndoor'}, {path: '/temperatureIndoorId'}, {path: 'internalSettings>/temperatureThresholdIndoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold text"/>
 								</f:content>
 								<f:layoutData>
 									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
@@ -149,7 +149,7 @@
 								width="210px">
 								<f:content>
 									<Label text="{i18n>temperature}"/>
-									<Text id="temperatureOutdoorId" text="{parts: [{path: '/temperatureOutdoor'}, {path: '/temperatureOutdoorId'}, {path: 'internalSettings>/temperatureThresholdOutdoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold"/>
+									<Text id="temperatureOutdoorId" text="{parts: [{path: '/temperatureOutdoor'}, {path: '/temperatureOutdoorId'}, {path: 'internalSettings>/temperatureThresholdOutdoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold text"/>
 								</f:content>
 								<f:layoutData>
 									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
