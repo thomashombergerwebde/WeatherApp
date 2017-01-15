@@ -3,36 +3,47 @@ sap.ui.define([], function () {
 	return {
 		temperature: function (sTemperature, sId, sThreshold) {
 			
-			if(sTemperature && sTemperature != "--"){
+			var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+			
+			if(sTemperature && sTemperature != oBundle.getText("nullValue")){
 				//hasStyleClass, addStyleClass, removeStyleClass
 				if(sId){
 				  var field = this.byId(sId);
 				  if(field && Number(sTemperature) >= Number(sThreshold)){
+					field.removeStyleClass("text");    
 					field.removeStyleClass("temperatureCold");  
 				    field.addStyleClass("temperatureWarm");
 				  } else {
+					field.removeStyleClass("text");  
 					field.removeStyleClass("temperatureWarm");  
 				  	field.addStyleClass("temperatureCold");
 				  }
 				}
-				return sTemperature.toLocaleString() + "°";
+				return sTemperature.toLocaleString() + oBundle.getText("temperatureDegree");
 			} else {
-				return "--";
+				return oBundle.getText("nullValue");
 			}			
 		},
 
 		humidity: function (sHumidity) {
+
+			var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+		
 			
-			if(sHumidity && sHumidity != "--"){
-				return sHumidity.toLocaleString() + "%";
+			if(sHumidity && sHumidity != oBundle.getText("nullValue")){
+				return sHumidity.toLocaleString() + oBundle.getText("humidityPercent");
 			} else {
-				return "--";
+				return oBundle.getText("nullValue");
 			}
 		},
 
 		date: function (sDate) {
 	
-	        var oBundle = this.getView().getModel("i18n").getResourceBundle();
+	        if(!sDate){
+				return;
+			}
+	
+			var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 			
 			//get name of month
 			var month= "";
@@ -99,11 +110,16 @@ sap.ui.define([], function () {
 			        day = oBundle.getText("saturday");
 			} 
 			
-			return day + ", " + sDate.getDate() + ". " + month + " " + sDate.getFullYear();
+			var date = day + ", " + sDate.getDate() + ". " + month + " " + sDate.getFullYear();
+			return date;
 		},		
 		
 		time: function (sDate) {
 
+		    if(!sDate){
+				return;
+			}
+		
 			//make hours always having two digits
 			var hours = "0" + sDate.getHours();
 			hours = hours.slice(-2);
@@ -112,7 +128,8 @@ sap.ui.define([], function () {
 			var minutes = "0" + sDate.getMinutes();
 			minutes = minutes.slice(-2);
 			
-			return hours + ":" + minutes;
+			var time = hours + ":" + minutes;
+			return time;
 		}		
 	};
 });
