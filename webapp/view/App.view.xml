@@ -98,108 +98,107 @@
 							</f:SimpleForm>
 						</HBox>				
 						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
-						<!-- +++++ 3a. Indoor values label ++++++++++++++++++++++++++++ -->
-						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->							
-						<HBox class="sapUiSmallMarginTopBottom">
-							<f:SimpleForm id="SimpleFormDisplayIndoorTitle"
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								title=""
-								width="420px">
-								<f:content>
-									<Text text="{i18n>currentValuesIndoor}"/>
-								</f:content>
-								<f:layoutData>
-									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-								</f:layoutData>
-							</f:SimpleForm>			
-						</HBox>					
+						<!-- +++++ 3. Temperature/Humidity indoor +++++++++++++++++++++ -->
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->		
+                        <VBox>						
+							<HBox>							
+								<f:SimpleForm id="SimpleFormDisplayIndoorLabel"
+									maxContainerCols="2"
+									editable="false"
+									layout="ResponsiveGridLayout"
+									title=""
+									width="420px">
+									<f:content>
+										<Text text="{i18n>currentValuesIndoor}" class="sizeMediumBold text"/>
+									</f:content>
+									<f:layoutData>
+										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
+									</f:layoutData>
+								</f:SimpleForm>
+							</HBox>
+
+							<HBox class="sapUiSmallMarginBottom">							
+								<f:SimpleForm id="SimpleFormDisplayIndoor"
+									maxContainerCols="2"
+									editable="false"
+									layout="ResponsiveGridLayout"
+									title=""
+									width="210px">
+									<f:content>
+										<Label text="{i18n>temperature}"/>
+										<Text id="temperatureIndoorId" text="{parts: [{path: '/temperatureIndoor'}, {path: '/temperatureIndoorId'}, {path: 'internalSettings>/temperatureThresholdIndoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold text"/>
+									</f:content>
+									<f:layoutData>
+										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
+									</f:layoutData>
+								</f:SimpleForm>
+								
+								<f:SimpleForm id="SimpleFormDisplayIndoor2"
+									maxContainerCols="2"
+									editable="false"
+									layout="ResponsiveGridLayout"
+									title=""
+									width="210px">
+									<f:content>
+										<Label text="{i18n>humidity}"/>
+										<Text id="humidityIndoorId" text="{path: '/humidityIndoor', formatter: '.formatter.humidity'}" class="text sizeLargeBold"/>
+									</f:content>
+									<f:layoutData>
+										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
+									</f:layoutData>
+								</f:SimpleForm>						
+							</HBox>
+						</VBox>
 						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
-						<!-- +++++ 3b. Temperature/Humidity indoor ++++++++++++++++++++ -->
-						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->							
-						<HBox class="sapUiSmallMarginBottom">							
-							<f:SimpleForm id="SimpleFormDisplayIndoor"
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								title=""
-								width="210px">
-								<f:content>
-									<Label text="{i18n>temperature}"/>
-									<Text id="temperatureIndoorId" text="{parts: [{path: '/temperatureIndoor'}, {path: '/temperatureIndoorId'}, {path: 'internalSettings>/temperatureThresholdIndoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold text"/>
-								</f:content>
-								<f:layoutData>
-									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-								</f:layoutData>
-							</f:SimpleForm>
-							
-							<f:SimpleForm id="SimpleFormDisplayIndoor2"
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								title=""
-								width="210px">
-								<f:content>
-									<Label text="{i18n>humidity}"/>
-									<Text id="humidityIndoorId" text="{path: '/humidityIndoor', formatter: '.formatter.humidity'}" class="text sizeLargeBold"/>
-								</f:content>
-								<f:layoutData>
-									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-								</f:layoutData>
-							</f:SimpleForm>						
-						</HBox>
-						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
-						<!-- +++++ 4a. Outdoor values label +++++++++++++++++++++++++++ -->
-						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->						
-						<HBox class="sapUiSmallMarginTopBottom">
-							<f:SimpleForm id="SimpleFormDisplayOutdoorTitle"
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								title=""
-								width="420px">
-								<f:content>
-									<Text text="{i18n>currentValuesOutdoor}"/>
-								</f:content>
-								<f:layoutData>
-									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-								</f:layoutData>
-							</f:SimpleForm>			
-						</HBox>	
-						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
-						<!-- +++++ 4b. Temperature/Humidity outdoor +++++++++++++++++++ -->
-						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->							
-						<HBox class="sapUiSmallMarginBottom">
-							<f:SimpleForm id="SimpleFormDisplayOutdoor"
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								title=""
-								width="210px">
-								<f:content>
-									<Label text="{i18n>temperature}"/>
-									<Text id="temperatureOutdoorId" text="{parts: [{path: '/temperatureOutdoor'}, {path: '/temperatureOutdoorId'}, {path: 'internalSettings>/temperatureThresholdOutdoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold text"/>
-								</f:content>
-								<f:layoutData>
-									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-								</f:layoutData>
-							</f:SimpleForm>							
-							<f:SimpleForm id="SimpleFormDisplayOutdoor2"
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								title=""
-								width="210px">
-								<f:content>
-									<Label text="{i18n>humidity}"/>
-									<Text id="humidityOutdoorId" text="{path: '/humidityOutdoor', formatter: '.formatter.humidity'}" class="text sizeLargeBold"/>
-								</f:content>
-								<f:layoutData>
-									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-								</f:layoutData>
-							</f:SimpleForm>
-						</HBox>
+						<!-- +++++ 4. Temperature/Humidity outdoor ++++++++++++++++++++ -->
+						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->			
+                        <VBox>						
+							<HBox>							
+								<f:SimpleForm id="SimpleFormDisplayOutdoorLabel"
+									maxContainerCols="2"
+									editable="false"
+									layout="ResponsiveGridLayout"
+									title=""
+									width="420px">
+									<f:content>
+										<Text text="{i18n>currentValuesOutdoor}" class="sizeMediumBold text"/>
+									</f:content>
+									<f:layoutData>
+										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
+									</f:layoutData>
+								</f:SimpleForm>
+							</HBox>						
+							<HBox>
+								<f:SimpleForm id="SimpleFormDisplayOutdoor"
+									maxContainerCols="2"
+									editable="false"
+									layout="ResponsiveGridLayout"
+									title=""
+									width="210px">
+									<f:content>
+										<Label text="{i18n>temperature}"/>
+										<Text id="temperatureOutdoorId" text="{parts: [{path: '/temperatureOutdoor'}, {path: '/temperatureOutdoorId'}, {path: 'internalSettings>/temperatureThresholdOutdoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold text"/>
+									</f:content>
+									<f:layoutData>
+										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
+									</f:layoutData>
+								</f:SimpleForm>							
+								<f:SimpleForm id="SimpleFormDisplayOutdoor2"
+									maxContainerCols="2"
+									editable="false"
+									layout="ResponsiveGridLayout"
+									title=""
+									width="210px">
+									<f:content>
+										<Label text="{i18n>humidity}"/>
+										<Text id="humidityOutdoorId" text="{path: '/humidityOutdoor', formatter: '.formatter.humidity'}" class="text sizeLargeBold"/>
+									</f:content>
+									<f:layoutData>
+										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
+									</f:layoutData>
+								</f:SimpleForm>
+							</HBox>
+						</VBox>
 
 					<!--
 					<VBox  class="sapUiSmallMargin">
