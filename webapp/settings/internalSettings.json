@@ -3,7 +3,7 @@
   "temperatureThresholdIndoor": "20",
   "temperatureThresholdOutdoor": "19",
   "pathSensorData": "/Arexx/messung.json",
-  "updateSensorDataAllNSeconds": "60",
+  "updateSensorDataAllNSeconds": "10",
   "sensorIdIndoor": "196862",
   "sensorIdOutdoor": "196970",
   "updateForecastDataAllNHours": "2"

@@ -13,8 +13,19 @@ sap.ui.define([
 		
 		carousel: null,
 		
+		_getCurrentDate: function(){			
+			var newDate = new Date();	
+			var year = newDate.getFullYear();
+			var month = newDate.getMonth() + 1;
+			var date = newDate.getDate();
+		    var dateString = year + "/" + month + "/" + date; 
+            return dateString;			
+		},
+		
 		onInit: function(){
-				
+			
+			var temperatureOutdoorHistory = [];
+			
 			var that = this;		
 		
             //Set initial values for the default model		
@@ -24,13 +35,18 @@ sap.ui.define([
 					temperatureIndoorId: "temperatureIndoorId",
 					temperatureOutdoor: "--",
 					temperatureOutdoorId: "temperatureOutdoorId",
+					temperatureOutdoorAverage: "--",
+					temperatureOutdoorDelta: "0",
+					temperatureOutdoorLastDelta: "0",
 					humidityIndoor: "--",
 					humidityOutdoor: "--",
 					minDate: new Date(2000, 0, 1),
 					maxDate: new Date(2050, 11, 31),
-					currentDate: new Date(),
-					currentTime: new Date()
+					currentTime: new Date(),
+					dateTimeDasWetterDe: new Date()
 			});
+		    //set current date in yyyy/mm/dd format for automatic conversion on UI
+		    oModelLocalWeather.setProperty("/currentDate", this._getCurrentDate()); 
 		
 		    //Set initial values for the settings model 
 			var oModelInternalSettings = this.getOwnerComponent().getModel("internalSettings");
@@ -63,7 +79,10 @@ sap.ui.define([
 				//Transfer sensor data to local weather model
 				var aSensorData = oModelSensorData.getData();
 				aSensorData.forEach(function(item){
-					var value = 0;
+					var average   = 0;
+					var delta     = 0;
+					var temperatureOutdoorAverage = 0;
+					
 					if(item.ID === this.getOwnerComponent().getModel("internalSettings").getData().sensorIdIndoor && item.TYPE === "1"){
 						oModelLocalWeather.setProperty("/temperatureIndoor", Number(item.VALUE).toFixed(1));
 					}  
@@ -71,6 +90,29 @@ sap.ui.define([
 						oModelLocalWeather.setProperty("/humidityIndoor", Number(item.VALUE).toFixed(1));	  		
 					} 
 					if(item.ID === this.getOwnerComponent().getModel("internalSettings").getData().sensorIdOutdoor && item.TYPE === "1"){
+						
+						if(oModelLocalWeather.getProperty("/temperatureOutdoor") != "--"){ 
+							temperatureOutdoorHistory.push(oModelLocalWeather.getProperty("/temperatureOutdoor"));
+						}
+						if(temperatureOutdoorHistory.length > 10){
+							temperatureOutdoorHistory.shift();
+						}
+						if(temperatureOutdoorHistory.length > 0){
+							for (var i = 0; i < temperatureOutdoorHistory.length; i++) { 
+								average += Number(temperatureOutdoorHistory[i]);
+							}
+							average = average / temperatureOutdoorHistory.length;
+							oModelLocalWeather.setProperty("/temperatureOutdoorAverage", Number(average).toFixed(1));
+							
+							delta = oModelLocalWeather.getData().temperatureOutdoorDelta;
+							oModelLocalWeather.setProperty("/temperatureOutdoorLastDelta", delta);
+							
+							delta = Number(item.VALUE).toFixed(1) - average;
+							delta = Math.abs(delta);
+							
+							oModelLocalWeather.setProperty("/temperatureOutdoorDelta", delta.toFixed(1));	
+							
+						}						
 						oModelLocalWeather.setProperty("/temperatureOutdoor", Number(item.VALUE).toFixed(1));
 					}
 					if(item.ID === this.getOwnerComponent().getModel("internalSettings").getData().sensorIdOutdoor && item.TYPE === "3"){
@@ -111,14 +153,23 @@ sap.ui.define([
 			  
 			  //Clock - update every second
 			  var currentTime = setInterval(function(){ 
-					var date = new Date();
-					if(date.getSeconds() === 0){
-						var oModel = that.getView().getModel();
-						oModel.setProperty("/currentTime", date);	  	    			
-						if(date.getHours() === 0 && date.getMinutes() === 0){  				
-							oModel.setProperty("/currentDate", date);				
-						}	
-					}
+				var date = new Date();					
+                var oModel = that.getView().getModel();
+						
+				//Update binding every 10 seconds for relative time of weather forecast
+				if(date.getSeconds()%10 === 0){
+					oModel.updateBindings(true);
+				}
+				
+				//Set clock time every minute
+				if(date.getSeconds() === 0){					
+					oModel.setProperty("/currentTime", date);	  	    
+					//Set date only at midnight
+					if(date.getHours() === 0 && date.getMinutes() === 0){  	
+						//set current date in yyyy/mm/dd format for automatic conversion on UI
+						oModel.setProperty("/currentDate", this._getCurrentDate()); 											
+					}	
+				}
 			  }, 1000);
 			  			  
 			  //Sensor data - update every n minutes
@@ -127,11 +178,13 @@ sap.ui.define([
 			  }, (oModelInternalSettings.getData().updateSensorDataAllNSeconds * 1000));
 	
 	          //Forecast data dasWetter.de 
-			  //TODO
-			  var forecastData = setInterval(function(){
-				  var a = "a";
-			  }, (oModelInternalSettings.getData().updateForecastDataAllNHours * 3600000));
-	
+			  var oHtml = this.getView().byId("dasWetterDe");			  
+			  oHtml.setContent('<div id="cont_abbd5cfc591d9b105ca08f4286926eb5"><script type="text/javascript" async src="https://www.daswetter.com/wid_loader/abbd5cfc591d9b105ca08f4286926eb5"></script></div>');
+			  var content = oHtml.getContent();
+			  var forecastData = setInterval(function(){			
+				oHtml.setContent(content);
+				oHtml.getModel().setProperty("/dateTimeDasWetterDe", new Date());
+			  }, (oModelInternalSettings.getData().updateForecastDataAllNHours * 3600000));	
 		}
 		
 	});
