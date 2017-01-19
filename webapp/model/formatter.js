@@ -36,100 +36,46 @@ sap.ui.define([], function () {
 				return oBundle.getText("nullValue");
 			}
 		},
-
-		date: function (sDate) {
-	
-	        if(!sDate){
-				return;
-			}
-	
-			var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
-			
-			//get name of month
-			var month= "";
-			switch (sDate.getMonth()) {
-			    case 0:
-			        month = oBundle.getText("january");
-			        break;
-			    case 1:
-			        month = oBundle.getText("february");
-			        break;
-			    case 2:
-			        month = oBundle.getText("march");
-			        break;
-			    case 3:
-			        month = oBundle.getText("april");
-			        break;
-			    case 4:
-			        month = oBundle.getText("may");
-			        break;
-			    case 5:
-			        month = oBundle.getText("june");
-			        break;
-			    case 6:
-			        month = oBundle.getText("july");
-			        break;
-			    case 7:
-			        month = oBundle.getText("august");
-			        break;
-			    case 8:
-			        month = oBundle.getText("september");
-			        break;
-			    case 9:
-			        month = oBundle.getText("october");
-			        break;
-			    case 10:
-			        month = oBundle.getText("november");
-			        break;
-			    case 11:
-			        month = oBundle.getText("december");
-			} 	
-			
-			//get day of week
-			var day = "";
-			switch (sDate.getDay()) {
-			    case 0:
-			        day = oBundle.getText("sunday");
-			        break;
-			    case 1:
-			        day = oBundle.getText("monday");
-			        break;
-			    case 2:
-			        day = oBundle.getText("tuesday");
-			        break;
-			    case 3:
-			        day = oBundle.getText("wednesday");
-			        break;
-			    case 4:
-			        day = oBundle.getText("thursday");
-			        break;
-			    case 5:
-			        day = oBundle.getText("friday");
-			        break;
-			    case 6:
-			        day = oBundle.getText("saturday");
-			} 
-			
-			var date = day + ", " + sDate.getDate() + ". " + month + " " + sDate.getFullYear();
-			return date;
-		},		
 		
-		time: function (sDate) {
-
-		    if(!sDate){
-				return;
-			}
-		
-			//make hours always having two digits
-			var hours = "0" + sDate.getHours();
-			hours = hours.slice(-2);
-
-			//make minutes always having two digits
-			var minutes = "0" + sDate.getMinutes();
-			minutes = minutes.slice(-2);
+		trend: function(sTemperature, sAverage){
 			
-			var time = hours + ":" + minutes;
-			return time;
-		}		
+		   /* if(!sTemperature || !sAverage){
+			  return;
+           }
+
+           if(sTemperature === "--"){
+			   return;
+		   }		 */   
+			
+		   var oIcon = this.getView().byId("iconTemperatureOutdoorTrend");
+		   
+		   var delta     = this.getView().getModel().getData().temperatureOutdoorDelta;
+		   var lastDelta = this.getView().getModel().getData().temperatureOutdoorLastDelta;
+		   var difference = Number(lastDelta) - Number(delta);
+		   
+		   if(delta === undefined || delta === "--"){
+			   oIcon.setSrc("sap-icon://arrow-right");	
+			   return;
+		   }
+		   
+		   if(difference < -1.2){
+		   oIcon.setSrc("sap-icon://arrow-bottom");	
+              return;			  
+		   } 
+		   if(difference < -0.15){
+			  oIcon.setSrc("sap-icon://trend-down");	
+			  return;
+		   } 		   
+		   if(difference < 0.15){
+			  oIcon.setSrc("sap-icon://arrow-right");	
+			  return;
+		   } 		   
+		   if(difference < 1.2){	
+			  oIcon.setSrc("sap-icon://trend-up");				  
+			  return;
+		   } 		   
+		   oIcon.setSrc("sap-icon://arrow-top");	
+		}
+	
 	};
 });
