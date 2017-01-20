@@ -177,13 +177,22 @@ sap.ui.define([
 				oModelSensorData.loadData(oModelInternalSettings.getData().pathSensorData);  
 			  }, (oModelInternalSettings.getData().updateSensorDataAllNSeconds * 1000));
 	
-	          //Forecast data dasWetter.de 
-			  var oHtml = this.getView().byId("dasWetterDe");			  
-			  oHtml.setContent('<div id="cont_abbd5cfc591d9b105ca08f4286926eb5"><script type="text/javascript" async src="https://www.daswetter.com/wid_loader/abbd5cfc591d9b105ca08f4286926eb5"></script></div>');
+	          //Forecast data dasWetter.com
+			  var oWidgetHBox = this.getView().byId("widget");
+			  var content = '<div id="cont_abbd5cfc591d9b105ca08f4286926eb5"><script type="text/javascript" async src="https://www.daswetter.com/wid_loader/abbd5cfc59	1d9b105ca08f4286926eb5"></script></div>';
+			  var oHtml = this.getView().byId("dasWetterCom");			  
+			  oHtml.setContent(content);
 			  var content = oHtml.getContent();
 			  var forecastData = setInterval(function(){			
-				oHtml.setContent(content);
-				oHtml.getModel().setProperty("/dateTimeDasWetterDe", new Date());
+				oHtml.getModel().setProperty("/dateTimeDasWetterCom", new Date());
+			    var oWidget = oHtml.getParent();
+				
+				//oWidget.removeItem(1);
+				var oNewHtml = new sap.ui.core.HTML();
+				oNewHtml.setContent(content);
+				oWidget.addItem(oNewHtml);								
+
+			  //}, 2000);					
 			  }, (oModelInternalSettings.getData().updateForecastDataAllNHours * 3600000));	
 		}
 		
