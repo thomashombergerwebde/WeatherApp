@@ -27,20 +27,26 @@
 	  }    
       .sizeLargeBold {
 			font-family: arial;
-    		font-size: 55px;
+    		font-size: 65px;
 		    font-weight: bold;    
-      }    	  
+      }
+      .sizeExtraLargeBold {
+			font-family: arial;
+    		font-size: 80px;
+		    font-weight: bold;    
+      }   	  
 	 .sizeIcon {
          font-size: 30px;
 		 font-weight: bold;
       }	  
    </html:style>
-	<Page title="{i18n>pageTitleWeather}" enableScrolling="false" showHeader="false" class="sapUiLargeMargin"> 
+	<Page title="{i18n>pageTitleWeather}" enableScrolling="false" showHeader="false" class="sapUiLargeMargin sapUiResponsiveContentPadding"> 
 		<content>
 		    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		    <!-- +++++ Two columns: Image/Widget <-> Date/Time/Sensor data  -->
 		    <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->			
-			<HBox class="sapUiSmallMargin">
+			<!-- <HBox class="sapUiSmallMargin" justifyContent="Center"> -->
+			<HBox class="sapUiTinyMargin" justifyContent="Center">
 				<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 				<!-- +++++ Left column: Image/Widget ++++++++++++++++++++++++++ -->
 				<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
@@ -85,208 +91,145 @@
 						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
 						<!-- +++++ 1. Date ++++++++++++++++++++++++++++++++++++++++++++ -->
 						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->					
-						<HBox class="sapUiSmallMarginBottom" width="auto">
-							<f:SimpleForm id="SimpleFormDisplayDate"
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								title=""
-								width="450px">
-								<f:content>
-									<!-- <Label text=""/> -->
-								    <Text text="{path: '/currentDate',												 
-												 type: 'sap.ui.model.type.Date',
-												 formatOptions: {
-												 	style: 'full',
-													source: {
-												 		pattern: 'yyyy/MM/dd'																										
-												} 													
-											}		
-										}" class="text sizeMediumBold"/>
-									
-								</f:content>
-								<f:layoutData>
-									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-								</f:layoutData>
-							</f:SimpleForm>
+						<HBox class="sapUiSmallMarginBottom" justifyContent="Center" alignItems="Center" height="auto" backgroundDesign="Solid">
+							<Text text="{path: '/currentDate',												 
+										 type: 'sap.ui.model.type.Date',
+										 formatOptions: {
+											style: 'full',
+											source: {
+												pattern: 'yyyy/MM/dd'																										
+										} 													
+									}		
+								}" class="text sizeMediumBold"/>						
 						</HBox>
 						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
 						<!-- +++++ 2. Time ++++++++++++++++++++++++++++++++++++++++++++ -->
 						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->							
-						<HBox class="sapUiSmallMarginBottom" justifyContent="Center" alignItems="End">
-							<f:SimpleForm id="SimpleFormDisplayTime"
-								maxContainerCols="1"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								title=""
-								width="450px">
-								<f:content>
-									<!-- <Label text=""/> -->
-									<Text text="{path: '/currentTime',
-												 type: 'sap.ui.model.type.DateTime',
-												 formatOptions: { 
-														pattern: 'HH:mm'
-													}
-												}" class="text sizeLargeBold"/>						
-								</f:content>
-								<f:layoutData>
-									<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-								</f:layoutData>
-							</f:SimpleForm>
+						<HBox class="sapUiSmallMarginBottom" justifyContent="Center" alignItems="Center" height="auto" backgroundDesign="Solid">
+							<Text text="{path: '/currentTime',
+										 type: 'sap.ui.model.type.DateTime',
+										 formatOptions: { 
+												pattern: 'HH:mm'
+											}
+										}" class="text sizeLargeBold"/>								
 						</HBox>				
 						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
 						<!-- +++++ 3. Temperature/Humidity indoor +++++++++++++++++++++ -->
 						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->		
-                        <VBox>						
-							<HBox class="sapUiTinyMarginEnd">							
-								<f:SimpleForm id="SimpleFormDisplayIndoorLabel"
-									maxContainerCols="2"
-									editable="false"
-									layout="ResponsiveGridLayout"
-									title=""
-									width="450px">
-									<f:content>
-										<Text text="{i18n>currentValuesIndoor}" class="sizeMediumBold text"/>
-									</f:content>
-									<f:layoutData>
-										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-									</f:layoutData>
-								</f:SimpleForm>
-							</HBox>
-
-							<HBox class="sapUiSmallMarginBottom">							
-								<f:SimpleForm id="SimpleFormDisplayIndoor"
-									maxContainerCols="2"
-									editable="false"
-									layout="ResponsiveGridLayout"
-									title=""
-									width="225px">
-									<f:content>
-										<Label text="{i18n>temperature}"/>
-										<Text id="temperatureIndoorId" text="{parts: [{path: '/temperatureIndoor'}, {path: '/temperatureIndoorId'}, {path: 'internalSettings>/temperatureThresholdIndoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold text"/>
-									</f:content>
-									<f:layoutData>
-										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-									</f:layoutData>
-								</f:SimpleForm>
-								
-								<f:SimpleForm id="SimpleFormDisplayIndoor2"
-									maxContainerCols="2"
-									editable="false"
-									layout="ResponsiveGridLayout"
-									title=""
-									width="225px">
-									<f:content>
-										<Label text="{i18n>humidity}"/>
-										<Text id="humidityIndoorId" text="{path: '/humidityIndoor', formatter: '.formatter.humidity'}" class="text sizeLargeBold"/>
-									</f:content>
-									<f:layoutData>
-										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-									</f:layoutData>
-								</f:SimpleForm>						
+						<VBox id="indoorValues" class="sapUiTinyMarginEnd sapUiMediumMarginBottom" backgroundDesign="Solid">		
+							<!-- ===== Indoor values ===== -->
+							<Text text="{i18n>currentValuesIndoor}" class="sizeMediumBold text"/>
+							<HBox>
+								<!-- ===== Temperature indoor ===== -->
+								<HBox id="temperatureIndoor" justifyContent="Center" alignItems="Center" class="sapUiMediumMarginStartEnd" width="240px">	
+									<VBox>
+										<Label for="temperatureIndoorId" text="{i18n>temperature}"/>
+										<Text id="temperatureIndoorId" text="{parts: [{path: '/temperatureIndoor'}, {path: '/temperatureIndoorId'}, {path: '/iconTemperatureTrendIndoorId'}, {path: 'internalSettings>/temperatureThresholdIndoor'	} ], formatter: '.formatter.temperature'}" class="sizeLargeBold text"/>
+									</VBox>
+									<VBox justifyContent="End">
+										<Text text=" " class="sizeExtraLargeBold"/>
+										<c:Icon
+											id="iconTemperatureTrendIndoorId"
+											src="sap-icon://arrow-right"
+											class="text sizeIcon">
+											<c:layoutData>
+												<FlexItemData growFactor="1" />
+											</c:layoutData>
+										</c:Icon>
+									</VBox>
+								</HBox>
+								<!-- ===== Humidity indoor ===== -->
+								<HBox id="humidityIndoor" justifyContent="Center" alignItems="Center" class="sapUiMediumMarginStartEnd">
+									<VBox>
+										<Label for="humidityIndoorId" text="{i18n>humidity}"/>
+										<Text id="humidityIndoorId" text="{parts: [{path: '/humidityIndoor'}, {path: '/iconHumidityTrendIndoorId'}], formatter: '.formatter.humidity'}" class="text sizeLargeBold"/>
+									</VBox>
+									<VBox justifyContent="End">
+										<Text text="  " class="sizeExtraLargeBold"/>
+										<c:Icon
+											id="iconHumidityTrendIndoorId"
+											src="sap-icon://arrow-right"
+											class="text sizeIcon">
+											<c:layoutData>
+												<FlexItemData growFactor="1" />
+											</c:layoutData>
+										</c:Icon>
+									</VBox>
+								</HBox>
 							</HBox>
 						</VBox>
 						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->	
 						<!-- +++++ 4. Temperature/Humidity outdoor ++++++++++++++++++++ -->
 						<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->			
-                        <VBox>						
-							<HBox>							
-								<f:SimpleForm id="SimpleFormDisplayOutdoorLabel"
-									maxContainerCols="2"
-									editable="false"
-									layout="ResponsiveGridLayout"
-									title=""
-									width="450px">
-									<f:content>
-										<Text text="{i18n>currentValuesOutdoor}" class="sizeMediumBold text"/>
-									</f:content>
-									<f:layoutData>
-										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-									</f:layoutData>
-								</f:SimpleForm>
-							</HBox>						
-							<HBox >
-								<f:SimpleForm id="SimpleFormDisplayOutdoor"
-									maxContainerCols="2"
-									editable="false"
-									layout="ResponsiveGridLayout"
-									title=""
-									width="225px">
-									<f:content>
-										<Label text="{i18n>temperature}"/>
-										<Text id="temperatureOutdoorId" text="{parts: [{path: '/temperatureOutdoor'}, {path: '/temperatureOutdoorId'}, {path: 'internalSettings>/temperatureThresholdOutdoor'} ], formatter: '.formatter.temperature'}" class="sizeLargeBold text"/>
-									</f:content>
-									<f:layoutData>
-										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-									</f:layoutData>
-								</f:SimpleForm>		
-								<!--
-								<VBox height="120px" justifyContent="End"> 
-									<c:Icon
-										id="iconTemperatureOutdoorTrend"
-										src="sap-icon://arrow-right"
-										class="sizeIcon text"
-										backgroundColor="#FFFFFF">
-										<c:layoutData>
-											<FlexItemData growFactor="1" />
-										</c:layoutData>
-									</c:Icon>								
-                                </VBox>
-								-->
-								<!--
-								<VBox>
-								<f:SimpleForm id="SimpleFormDisplayOutdoor1"
-									maxContainerCols="2"
-									editable="false"
-									layout="ResponsiveGridLayout"
-									title=""
-									width="225px">
-									<f:content>
-										<Label text="Mittelwert"/>
-										<Text id="temperatureOutdoorId1" text="{path: '/temperatureOutdoorAverage'}" class="sizeLargeBold text"/>
-										<Label text=""/>
-										<Text id="temperatureOutdoorId2" text="{parts: [{path: '/temperatureOutdoor'}, {path: '/temperatureOutdoorAverage'}], formatter: '.formatter.trend'}" />
-										<Label text="Delta"/>
-										<Text text="{path: '/temperatureOutdoorDelta'}" class="sizeLargeBold text"/>
-										<Label text="LastDelta"/>
-										<Text text="{path: '/temperatureOutdoorLastDelta'}" class="sizeLargeBold text"/>										
-									</f:content>
-									<f:layoutData>
-										<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-									</f:layoutData>
-								</f:SimpleForm>	
-								
+						<VBox id="OutdoorValues" class="sapUiTinyMarginEnd sapUiMediumMarginBottom" backgroundDesign="Solid">	
+							<!-- ===== Outdoor values ===== -->
+							<Text text="{i18n>currentValuesOutdoor}" class="sizeMediumBold text"/>
+							<HBox>
+								<!-- ===== Temperature outdoor ===== -->
+								<HBox alignItems="Center" class="sapUiMediumMarginStartEnd" width="240px">
+									<VBox>
+										<Label for="temperatureOutdoorId" text="{i18n>temperature}"/>
+										<Text id="temperatureOutdoorId" text="{parts: [{path: '/temperatureOutdoor'}, {path: '/temperatureOutdoorId'}, {path: '/iconTemperatureTrendOutdoorId'}, {path: 'internalSettings>/temperatureThresholdOutdoor'	} ], formatter: '.formatter.temperature'}" class="sizeLargeBold text"/>
+									</VBox>
+									<VBox justifyContent="End">
+										<Text text="" class="text sizeLargeBold"/>
+										<c:Icon
+											id="iconTemperatureTrendOutdoorId"
+											src="sap-icon://arrow-right"
+											class="text sizeIcon">
+											<c:layoutData>
+												<FlexItemData growFactor="1" />
+											</c:layoutData>
+										</c:Icon>
+									</VBox>
+								</HBox>
+								<!-- ===== Humidity outdoor ===== -->
+								<HBox alignItems="Center" class="sapUiMediumMarginStartEnd">
+									<VBox>
+										<Label for="humidityOutdoorId" text="{i18n>humidity}"/>
+										<Text id="humidityOutdoorId" text="{parts: [{path: '/humidityOutdoor'}, {path: '/iconHumidityTrendOutdoorId'}], formatter: '.formatter.humidity'}" class="text sizeLargeBold"/>
+									</VBox>
+									<VBox justifyContent="End">
+										<Text text="  " class="sizeExtraLargeBold"/>
+										<c:Icon
+											id="iconHumidityTrendOutdoorId"
+											src="sap-icon://arrow-right"
+											class="text sizeIcon">
+											<c:layoutData>
+												<FlexItemData growFactor="1" />
+											</c:layoutData>
+										</c:Icon>
+									</VBox>
+								</HBox>
+							</HBox>
+						</VBox> 
+						
+						
+						<!-- ===== Test ===== -->
+						<!--
+						<HBox justifyContent= "Start" alignItems="Center">
+							<VBox justifyContent= "Center" alignItems="Center">
+								<Text text="-6.4" class="text sizeLargeBold"/>
+							</VBox>
+							<VBox justifyContent= "Start" alignItems="End">
+						-->
+							<!-- <VBox justifyContent="End" alignItems="End"> -->
+								<!-- <Text text="°" class="text sizeLargeBold" height="10px"/> -->
+						<!--
 								<c:Icon
-								    id="iconTemperatureOutdoorTrend"
-									src="sap-icon://arrow-right"
-									class="sizeLargeBold temperatureWarm"
-									
-									press="handleStethoscopePress">
+									id="iconTest"
+									src="sap-icon://trend-up"
+									class="text sizeIcon"
+									height="10px">
 									<c:layoutData>
 										<FlexItemData growFactor="1" />
 									</c:layoutData>
-								</c:Icon>
-								</VBox>
-								-->
-								<HBox class="sapUiLargePaddingStart">
-									<f:SimpleForm id="SimpleFormDisplayOutdoor2"
-										maxContainerCols="2"
-										editable="false"
-										layout="ResponsiveGridLayout"
-										title=""
-										width="225px">
-										<f:content>
-											<Label text="{i18n>humidity}"/>
-											<Text id="humidityOutdoorId" text="{path: '/humidityOutdoor', formatter: '.formatter.humidity'}" class="text sizeLargeBold"/>
-										</f:content>
-										<f:layoutData>
-											<FlexItemData shrinkFactor="0" backgroundDesign="Solid" styleClass="sapContrastPlus"/>
-										</f:layoutData>
-									</f:SimpleForm>
-								</HBox>
-							</HBox>
-						</VBox>
-
+								</c:Icon> 
+							</VBox>
+						</HBox>
+						-->
+						<!-- ===== Test ===== -->
+						
 					<!--
 					<VBox  class="sapUiSmallMargin">
 						<u:Calendar
