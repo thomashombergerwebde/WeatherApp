@@ -550,6 +550,25 @@ sap.ui.define(
 
 				//write new reading
 				that.getView().getModel().setProperty(path, odata.value[0]);
+
+				//set info field
+				var infoId = path.split("/reading")[1] + "Info";
+				infoId = infoId[0].toLowerCase() + infoId.slice(1);
+				var info = that.getView().byId(infoId);
+
+				var iconId = path.split("/reading")[1] + "Icon";
+				iconId = iconId[0].toLowerCase() + iconId.slice(1);
+				var icon = that.getView().byId(iconId);
+
+				if(icon){
+					icon.setColor(sap.ui.core.IconColor.Critical); //Negative //sap.ui.core.IconColor.Critical
+					icon.setVisible(true);
+				}
+				if(info){
+					//info.setText("Wert veraltet");
+					info.setText("Signal schwach");
+				}
+
 			});
 		},
 

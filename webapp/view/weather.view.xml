@@ -423,6 +423,8 @@
 														<HBox>
 															<core:Icon src="sap-icon://temperature" class="sapUiTinyMarginEnd sizeSmall"/>
 															<Text text="{i18n>indoor}" class="sizeSmall sapUiTinyMarginEnd"/>
+															<core:Icon id="indoorTemperatureIcon" src="sap-icon://message-error" color="sap.ui.core.IconColor.Negative" visible="false" class="sapUiTinyMarginEnd sizeSmall"/>
+															<Text id="indoorTemperatureInfo" class="sizeSmall sapUiTinyMarginEnd"/>
 														</HBox>
 														<NumericContent
 															id="indoorTemperature"
