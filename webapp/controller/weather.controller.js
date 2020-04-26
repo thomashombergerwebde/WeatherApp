@@ -916,11 +916,11 @@ sap.ui.define(
 		},
 
 		sliderSetValueForTheme: function(theme){
-			if(theme==="sap_bluecrystal"){
+			if(theme==="sap_belize_plus"){
 				this.getView().byId("sliderThemeChange").setValue(0);
-			} else if(theme==="sap_belize"){
+			} else if(theme==="sap_bluecrystal"){
 				this.getView().byId("sliderThemeChange").setValue(1);
-			} else if(theme==="sap_hcb"){
+			} else if(theme==="sap_belize_hcb"){
 				this.getView().byId("sliderThemeChange").setValue(2);
 			}
 		},

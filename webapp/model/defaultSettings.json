@@ -53,7 +53,7 @@
 					"startTimeMinute": 30
 			},
 			"night": {
-					"theme": "sap_hcb",
+					"theme": "sap_belize_hcb",
 					"startTimeHour": 21,
 					"startTimeMinute": 30
 			}
