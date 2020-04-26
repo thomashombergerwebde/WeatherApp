@@ -1,1 +1,94 @@
-
+.sizeMediumBold {
+	font-family: arial;
+	font-size: 30px;
+	font-weight: bold;
+}
+.sizeLargeBold {
+	font-family: arial;
+	font-size: 65px;
+	font-weight: bold;
+}
+.noPointerEvents {
+	pointer-events:none;
+}
+.slider {
+	width: 50vw !important;
+}
+.iconSize {
+	font-size : 3vh;
+}
+/*----------------------------------------------------------------------------*/
+/*-- Suppress Branding Bar at the top ----------------------------------------*/
+/*----------------------------------------------------------------------------*/
+.sapMShellBrandingBar {
+    height: 0px !important;
+}
+.sapMPageHeader::before {
+    border-top-width: 0rem !important;
+}
+/*----------------------------------------------------------------------------*/
+/*-- ComparisonMicroChart ----------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+.sapSuiteCpMCSemanticColorGood{
+		color:#007833 !important;  /*-- original: 61a656 --*/
+}
+.sapSuiteCpMCChartBarValue.sapSuiteCpMCSemanticColorGood{
+	background-color: #007833 !important; /*-- original: #abe2ab --*/
+}
+.sapSuiteCpMCSemanticColorNeutral{
+		color:#5899da !important;  /*-- original: 61a656 --*/
+}
+.sapSuiteCpMCChartBarValue.sapSuiteCpMCSemanticColorNeutral{
+	background-color: #5899da !important; /*-- original: #abe2ab --*/
+}
+/*----------------------------------------------------------------------------*/
+/*-- Radial Micro Chart ------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+.sapSuiteRMCCircleBackground {
+	fill: transparent !important; /*-- original solid --*/
+	stroke: transparent !important; /*-- original solid --*/
+}
+.sapSuiteRMCSizeM{
+	height: 6.5rem !important; /*-- original 4.5rem --*/
+	width: 6.5rem !important; /*-- original 4.5rem --*/
+}
+/*----------------------------------------------------------------------------*/
+/*-- Numeric Content ---------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+.sapMNC{
+	width:11rem !important /*-- original 9rem --*/
+}
+.sapMNCValue{
+	font-size:4rem !important; /*-- original 2.5rem --*/
+	line-height:6.5rem !important; /*-- original 3rem --*/
+}
+.sapMNCIndScale{
+	height:6rem !important; /*-- original 2.875rem --*/
+}
+.sapMNCIndicator.Up{
+	margin-top: 1.1rem !important; /*-- added --*/
+	border-bottom:0.625rem solid !important /*-- original: 0.625rem --*/
+}
+.sapMNCIndicator.Down{
+	margin-top: 1.1rem !important; /*-- added --*/
+	border-top:0.625rem solid !important /*-- original: 0.625rem --*/
+}
+.sapMNCScale{
+	margin-top:2.2rem !important; /*-- original: 0.938rem --*/
+	font-size:2rem !important; /*-- original: 1rem --*/
+}
+/*-- Status colors --*/
+.sapMNCValue.Good,.sapMNCIndicator.Good,.sapMNCScale.Good{
+	color:#abe2ab !important; /*-- original: #abe2ab --*/
+}
+.sapMNCIndicator.Neutral,.sapMNCValue.Neutral,.sapMNCScale.Neutral,.sapMNCIconImage.Neutral{
+	color:#5899da !important; /*-- original: #000000 --*/
+	opacity:1 !important /*-- original: 0.25 --*/
+}
+/*
+.sapMNCValue.Neutral,.sapMNCIndicator.Neutral,.sapMNCScale.Neutral{color:#ffffff}
+.sapMNCValue.Error,.sapMNCIndicator.Error,.sapMNCScale.Error{color:#ff0000}
+.sapMNCValue.Critical,.sapMNCIndicator.Critical,.sapMNCScale.Critical{color:#e78c07}
+.sapMNCIndicator.Loading,.sapMNCValue.Loading,.sapMNCScale.Loading,.sapMNCIconImage.Loading,
+.sapMNCIndicator.Failed,.sapMNCValue.Failed,.sapMNCScale.Failed,.sapMNCIconImage.Failed{color:#000000;opacity:0.25}
+*/
