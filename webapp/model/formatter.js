@@ -1,81 +1,146 @@
 sap.ui.define([], function () {
 	"use strict";
 	return {
-		temperature: function (sTemperature, sId, sThreshold) {
-			
-			var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
-			
-			if(sTemperature && sTemperature != oBundle.getText("nullValue")){
-				//hasStyleClass, addStyleClass, removeStyleClass
-				if(sId){
-				  var field = this.byId(sId);
-				  if(field && Number(sTemperature) >= Number(sThreshold)){
-					field.removeStyleClass("text");    
-					field.removeStyleClass("temperatureCold");  
-				    field.addStyleClass("temperatureWarm");
-				  } else {
-					field.removeStyleClass("text");  
-					field.removeStyleClass("temperatureWarm");  
-				  	field.addStyleClass("temperatureCold");
-				  }
-				}
-				return sTemperature.toLocaleString() + oBundle.getText("temperatureDegree");
-			} else {
-				return oBundle.getText("nullValue");
-			}			
+
+		getNewFormattedDateString: function(sDummy){
+			//Current date, e.g."Tuesday, April 14, 2020 4:19 PM"
+			var date = moment().locale(navigator.language).format('LLLL');
+			var aDate = date.split(new Date().getFullYear());
+			//Only keep day of week and date/month
+			var formattedDate = aDate[0].trim().replace(/(^,)|(,$)/g, "");
+			return formattedDate;
 		},
 
-		humidity: function (sHumidity) {
+		getNewFormattedTimeString: function(sDummy){
+			//Current time, e.g. "4:22 PM"
+			var formattedTime = moment().locale(navigator.language).format('LT');
+			return formattedTime;
+		},
 
-			var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
-		
-			
-			if(sHumidity && sHumidity != oBundle.getText("nullValue")){
-				return sHumidity.toLocaleString() + oBundle.getText("humidityPercent");
+		getFormattedTimeString: function(sTimestamp){
+			//Current time, e.g. "4:22 PM"
+			var formattedTime = moment(sTimestamp).locale(navigator.language).format('LT');
+			return formattedTime;
+		},
+
+		temperatureValue: function (value){
+			var sampleNumber = 1.1;
+			var decimalSign = sampleNumber.toLocaleString()[1];
+
+			var returnValue = 0;
+			if(value){
+				returnValue = (Math.round(value*10)/10).toFixed(1);
+			}
+			returnValue = returnValue.replace(".", decimalSign);
+			return returnValue;
+		},
+
+		temperatureValueColor: function (sValue, sPosition, oModel){
+
+			//oModel is provided when formatter is called by controller in case the
+			//threshold was changed
+			if(!oModel){
+					 oModel = this.getView().getModel("settings");
+			}
+
+ 			if(!sValue||!sPosition){
+				return sap.m.ValueColor.Neutral;
+			}
+
+			//Indoor
+			if(sPosition=="Indoor"){
+
+				if(sValue<oModel.getProperty("/threshold/temperature/indoor/value")){
+					return sap.m.ValueColor.Neutral;
+				} else if(sValue>=oModel.getProperty("/threshold/temperature/indoor/value")){
+					return sap.m.ValueColor.Error;
+				}
+
+			//Outdoor
+			} else if(sPosition=="Outdoor"){
+
+				if(sValue<oModel.getProperty("/threshold/temperature/outdoor/value")){
+					return sap.m.ValueColor.Neutral;
+				} else if(sValue>=oModel.getProperty("/threshold/temperature/outdoor/value")){
+					return sap.m.ValueColor.Error;
+				}
+			}
+
+		},
+
+		humidityValue: function (sValue){
+			if(sValue){
+				var returnValue = parseFloat(sValue);
+				return Math.round(returnValue);
 			} else {
-				return oBundle.getText("nullValue");
+				return 0;
 			}
 		},
-		
-		trend: function(sTemperature, sAverage){
-			
-		   /* if(!sTemperature || !sAverage){
-			  return;
-           }
 
-           if(sTemperature === "--"){
-			   return;
-		   }		 */   
-			
-		   var oIcon = this.getView().byId("iconTemperatureOutdoorTrend");
-		   
-		   var delta     = this.getView().getModel().getData().temperatureOutdoorDelta;
-		   var lastDelta = this.getView().getModel().getData().temperatureOutdoorLastDelta;
-		   var difference = Number(lastDelta) - Number(delta);
-		   
-		   if(delta === undefined || delta === "--"){
-			   oIcon.setSrc("sap-icon://arrow-right");	
-			   return;
-		   }
-		   
-		   if(difference < -1.2){
-		   oIcon.setSrc("sap-icon://arrow-bottom");	
-              return;			  
-		   } 
-		   if(difference < -0.15){
-			  oIcon.setSrc("sap-icon://trend-down");	
-			  return;
-		   } 		   
-		   if(difference < 0.15){
-			  oIcon.setSrc("sap-icon://arrow-right");	
-			  return;
-		   } 		   
-		   if(difference < 1.2){	
-			  oIcon.setSrc("sap-icon://trend-up");				  
-			  return;
-		   } 		   
-		   oIcon.setSrc("sap-icon://arrow-top");	
+		humidityValueColor: function (sValue, sPosition, oModel){
+
+			//oModel is provided when formatter is called by controller in case the
+			//threshold was changed
+			if(!oModel){
+				 oModel = this.getView().getModel("settings");
+			}
+
+ 			if(!sValue||!sPosition){
+				return sap.m.ValueColor.Neutral;
+			}
+
+			//Indoor
+			if(sPosition=="Indoor"){
+
+				if(sValue<=0){
+					return sap.m.ValueColor.Neutral;
+				} else if(sValue < (oModel.getProperty("/threshold/humidity/indoor/range/0")-5)){
+					return sap.m.ValueColor.Error
+				} else if(sValue < oModel.getProperty("/threshold/humidity/indoor/range/0")){
+					return sap.m.ValueColor.Critical;
+				} else if(sValue < oModel.getProperty("/threshold/humidity/indoor/range/1")){
+					return sap.m.ValueColor.Good;
+				} else if(sValue < (oModel.getProperty("/threshold/humidity/indoor/range/1")+5)){
+					return sap.m.ValueColor.Critical;
+				} else if(sValue >= (oModel.getProperty("/threshold/humidity/indoor/range/1")+5)){
+					return sap.m.ValueColor.Error
+				}
+
+			//Outdoor
+			} else if(sPosition=="Outdoor"){
+
+				if(sValue<=0){
+					return sap.m.ValueColor.Neutral;
+				} else if(sValue < (oModel.getProperty("/threshold/humidity/outdoor/range/0")-5)){
+					return sap.m.ValueColor.Error
+				} else if(sValue < oModel.getProperty("/threshold/humidity/outdoor/range/0")){
+					return sap.m.ValueColor.Critical;
+				} else if(sValue < oModel.getProperty("/threshold/humidity/outdoor/range/1")){
+					return sap.m.ValueColor.Good;
+				} else if(sValue < (oModel.getProperty("/threshold/humidity/outdoor/range/1")+5)){
+					return sap.m.ValueColor.Critical;
+				} else if(sValue >= (oModel.getProperty("/threshold/humidity/outdoor/range/1")+5)){
+					return sap.m.ValueColor.Error
+				}
+			}
+
+		},
+
+		temperatureIndicator: function (sOldValue, sNewValue){
+
+			if(!sOldValue||!sNewValue){
+				return sap.m.DeviationIndicator.None;
+			}
+
+			if(sOldValue<sNewValue){
+				return sap.m.DeviationIndicator.Up;
+			} else if(sOldValue>sNewValue){
+				return sap.m.DeviationIndicator.Down;
+			} else if(sOldValue===sNewValue){
+				return sap.m.DeviationIndicator.None;
+			}
+
 		}
-	
+
 	};
 });

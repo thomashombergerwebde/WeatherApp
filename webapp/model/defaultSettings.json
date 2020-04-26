@@ -1,0 +1,61 @@
+{
+	"sensorId":{
+		"temperatureIndoor": 	"196862",
+		"humidityIndoor": 		"196863",
+		"temperatureOutdoor": "196970",
+		"humidityOutdoor": 		"196971"
+	},
+	"readingUpdateCurrentValuesInSeconds":	60,
+	"readingUpdateHistoryInSeconds":				300,
+	"threshold":{
+		"temperature": {
+			"indoor":{
+				"min": 		15,
+				"max": 		25,
+				"value": 	21
+			},
+			"outdoor": {
+				"min": 		15,
+				"max": 		25,
+				"value": 	19
+			}
+		},
+		"humidity": {
+			"indoor": {
+				"min": 		35,
+				"max": 		75,
+				"range": 	[40,60]
+			},
+			"outdoor": {
+				"min": 		35,
+				"max": 		75,
+				"range": 	[50,70]
+			}
+		}
+	},
+	"show": {
+		"picture":{
+			"min":		10,
+			"max":		60,
+			"value":	30
+		},
+		"chart": {
+			"min":		10,
+			"max":		60,
+			"value":	20
+		}
+	},
+	"themes": {
+			"autoApplyThemeSetting": true,
+			"day": {
+					"theme": "sap_bluecrystal",
+					"startTimeHour": 6,
+					"startTimeMinute": 30
+			},
+			"night": {
+					"theme": "sap_hcb",
+					"startTimeHour": 21,
+					"startTimeMinute": 30
+			}
+		}
+}

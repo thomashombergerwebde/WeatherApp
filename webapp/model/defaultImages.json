@@ -1,0 +1,13 @@
+{
+   "currentImage": "./images/defaultImages/focus-750-performance_613564.jpg",
+   "defaultImages":
+      [
+         "./images/defaultImages/focus-750-performance_613564.jpg",
+         "./images/defaultImages/focus-750-performance_613565.jpg"
+      ],
+    "selectedImages":
+      [
+         "./images/defaultImages/focus-750-performance_613564.jpg",
+         "./images/defaultImages/focus-750-performance_613565.jpg"
+      ]
+}

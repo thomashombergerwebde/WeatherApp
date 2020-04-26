@@ -1,0 +1,267 @@
+﻿{
+	"currentTime": null,
+	"readingIndoorTemperatureOld": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": "0"
+	},
+	"readingOutdoorTemperatureOld": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": "0"
+	},
+	"readingIndoorHumidityOld": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": "0"
+	},
+	"readingOutdoorHumidityOld": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": "0"
+	},
+	"readingIndoorTemperature": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": "0"
+	},
+	"readingOutdoorTemperature": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": "0"
+	},
+	"readingIndoorHumidity": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": 0
+	},
+	"readingOutdoorHumidity": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": 0
+	},
+	"readingIndoorTemperatureMax": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": "0"
+	},
+	"readingOutdoorTemperatureMax": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": "0"
+	},
+	"readingIndoorHumidityMax": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": 0
+	},
+	"readingOutdoorHumidityMax": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": 0
+	},
+	"readingIndoorTemperatureMin": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": "0"
+	},
+	"readingOutdoorTemperatureMin": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": "0"
+	},
+	"readingIndoorHumidityMin": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": 0
+	},
+	"readingOutdoorHumidityMin": {
+		"id": "0",
+		"sensorid": "0",
+		"signalquality": "0",
+		"timestamp": null,
+		"value": 0
+	},
+	"readingIndoorTemperatureAvg": {
+		"value": 0
+	},
+	"readingOutdoorTemperatureAvg": {
+		"value": 0
+	},
+	"readingIndoorHumidityAvg": {
+		"value": 0
+	},
+	"readingOutdoorHumidityAvg": {
+		"value": 0
+	},
+	"Position":{
+		"Indoor": "Indoor",
+		"Outdoor": "Outdoor"
+	},
+	"indoorTempPoints": [
+		{"x": 0, "y": 0.0, "show": true},
+		{"x": 1, "y": 0.0},
+		{"x": 2, "y": 0.0},
+		{"x": 3, "y": 0.0},
+		{"x": 4, "y": 0.0},
+		{"x": 5, "y": 0.0, "show": true}
+	],
+	"outdoorTempPoints": [
+		{"x": 0, "y": 0.0, "show": true},
+		{"x": 1, "y": 0.0},
+		{"x": 2, "y": 0.0},
+		{"x": 3, "y": 0.0},
+		{"x": 4, "y": 0.0},
+		{"x": 5, "y": 0.0, "show": true}
+	],
+	"indoorHumPoints": [
+		{"x": 0, "y": 0, "show": true},
+		{"x": 1, "y": 0},
+		{"x": 2, "y": 0},
+		{"x": 3, "y": 0},
+		{"x": 4, "y": 0},
+		{"x": 5, "y": 0, "show": true}
+	],
+	"outdoorHumPoints": [
+		{"x": 0, "y": 0, "show": true},
+		{"x": 1, "y": 0},
+		{"x": 2, "y": 0},
+		{"x": 3, "y": 0},
+		{"x": 4, "y": 0},
+		{"x": 5, "y": 0, "show": true}
+	],
+	"indoorTemp": [
+		{
+			"size": "responsive",
+			"description": "",
+			"leftTopLabel": "-",
+			"rightTopLabel": "-",
+			"leftBottomLabel": "-",
+			"rightBottomLabel": "-",
+			"threshold": 0,
+
+			"minXValue": 0,
+			"maxXValue": 7,
+			"minYValue": -2,
+			"maxYValue": 7,
+
+			"showPoints": false,
+			"color": {"above": "Error", "below": "Neutral"}
+		}
+	],
+	"outdoorTemp": [
+		{
+			"size": "responsive",
+			"description": "",
+			"leftTopLabel": "-",
+			"rightTopLabel": "-",
+			"leftBottomLabel": "-",
+			"rightBottomLabel": "-",
+			"threshold": 0,
+
+			"minXValue": 0,
+			"maxXValue": 7,
+			"minYValue": -2,
+			"maxYValue": 7,
+
+			"showPoints": false,
+			"color": {"above": "Error", "below": "Neutral"}
+		}
+	],
+	"indoorHum": [
+		{
+			"size": "responsive",
+			"description": "",
+			"leftTopLabel": "-",
+			"rightTopLabel": "-",
+			"leftBottomLabel": "-",
+			"rightBottomLabel": "-",
+			"threshold": 0,
+			"showPoints": false,
+			"color": {"above": "Error", "below": "Neutral"}
+		}
+	],
+	"outdoorHum": [
+		{
+			"size": "responsive",
+			"description": "",
+			"leftTopLabel": "-",
+			"rightTopLabel": "-",
+			"leftBottomLabel": "-",
+			"rightBottomLabel": "-",
+			"threshold": 0,
+			"showPoints": false,
+			"color": {"above": "Error", "below": "Neutral"}
+		}
+	],
+	"pages": [
+		{
+			"pageId": "",
+			"header": "",
+			"title": "",
+			"titleUrl": "",
+			"icon": "",
+			"groups": [
+				{
+					"heading": "",
+					"elements": [
+						{
+							"label": "",
+							"value": ""
+						},{
+							"label": "",
+							"value": ""
+						},{
+							"label": "",
+							"value": ""
+						},{
+							"label": "",
+							"value": ""
+						}
+					]
+				},{
+					"heading": "",
+					"elements": [
+						{
+							"label": "",
+							"value": ""
+						},{
+							"label": "",
+							"value": ""
+						}
+					]
+				}
+			]
+		}
+	]
+}
