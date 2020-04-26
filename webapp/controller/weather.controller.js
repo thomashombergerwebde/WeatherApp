@@ -684,7 +684,7 @@ sap.ui.define(
 					//set 1 digit for temperatures, 0 digits for humidity, and measure
 					var measure="";
 					if(path.indexOf("Temp")>0){
-						measure=that.getView().getModel("i18n").getResourceBundle().getText("temperatureDegree")
+						measure=that.getView().getModel("i18n").getResourceBundle().getText("temperatureDegree");
 						that.getView().getModel().setProperty(path+"/0/leftTopLabel", points[0].y.toFixed(1)+measure);
 						that.getView().getModel().setProperty(path+"/0/rightTopLabel", points[points.length-1].y.toFixed(1)+measure);
 					} else {
