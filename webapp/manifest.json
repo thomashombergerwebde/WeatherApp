@@ -44,6 +44,7 @@
 		"supportedThemes": [
 			"sap_belize",
 			"sap_belize_plus",
+			"sap_belize_hcb",
 			"sap_bluecrystal",
 			"sap_hcb"
 		]
