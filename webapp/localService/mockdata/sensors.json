@@ -1,0 +1,36 @@
+[{
+    "id":196862,
+    "type":"temperature",
+    "description":"Wohnzimmer",
+    "__metadata":{
+       "uri":"https://192.168.178.2:3000/odata/sensors(196862)",
+       "type":"NODATASERVER.sensor"
+    }
+ },
+ {
+    "id":196863,
+    "type":"humidity",
+    "description":"Wohnzimmer",
+    "__metadata":{
+       "uri":"https://192.168.178.2:3000/odata/sensors(196863)",
+       "type":"NODATASERVER.sensor"
+    }
+ },
+ {
+    "id":196970,
+    "type":"temperature",
+    "description":"Terrasse",
+    "__metadata":{
+       "uri":"https://192.168.178.2:3000/odata/sensors(196970)",
+       "type":"NODATASERVER.sensor"
+    }
+ },
+ {
+    "id":196971,
+    "type":"humidity",
+    "description":"Terrasse",
+    "__metadata":{
+       "uri":"https://192.168.178.2:3000/odata/sensors(196971)",
+       "type":"NODATASERVER.sensor"
+    }
+}]
