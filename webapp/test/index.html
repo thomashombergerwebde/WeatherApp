@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title>Wetterstation</title>
+	<script src="../js/odatajs-4.0.0.js"></script>
+  <script src="../js/moment.js"></script>
+
+	<script
+		id="sap-ui-bootstrap"
+		src="https://localhost:5443/sapui5/1.71.7/resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m"
+		data-sap-ui-compatVersion="edge"
+		data-sap-ui-preload=""
+		data-sap-ui-resourceroots='{
+			"homberger.weatherapp": "../"
+		}'>
+	</script>
+	<script>
+	 	/*
+	 	//Let app run on localhost, get SAPUI5 sources and pictures from localhost:5443,
+	 	//but read true sensor values from rpi2server
+	 	*/
+	 	var sPictureServer = "https://localhost:5443";
+	 	var sPictureRootFolder = "/weatherStationPictures/";
+	 	var sOdataServer = "https://192.168.178.56";
+		sap.ui.getCore().attachInit(function () {
+			var shell = new sap.m.Shell({
+				app: new sap.ui.core.ComponentContainer({
+					name: "homberger.weatherapp"
+				})
+			});
+			shell.placeAt("content");
+		});
+	</script>
+
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>
