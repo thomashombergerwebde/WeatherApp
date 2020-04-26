@@ -1,0 +1,8 @@
+<VBox xmlns="sap.m" class="sapUiTinyMargin" height="auto" backgroundDesign="Transparent" justifyContent="Center">
+    <HBox id="date" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin sapUiHideOnPhone" height="auto" backgroundDesign="Transparent">
+        <Text text="{path: '/currentTime', formatter: '.formatter.getNewFormattedDateString'}" class="sapMText sizeMediumBold"/>
+    </HBox>
+    <HBox id="time" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin sapUiHideOnPhone" height="auto" backgroundDesign="Transparent">
+        <Text text="{path: '/currentTime', formatter: '.formatter.getNewFormattedTimeString'}" class="sapMText sizeLargeBold"/>
+    </HBox>
+</VBox>
