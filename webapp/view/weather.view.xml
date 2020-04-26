@@ -407,88 +407,12 @@
 											<FlexItemData growFactor="3" />
 										</layoutData>
 										<items>
+											<!-- Date & Time -->
+											<core:Fragment fragmentName="homberger.weatherapp.view.fragment.DateTime" type="XML" />
+											<!-- Current values -->
 											<VBox class="sapUiTinyMargin" height="auto" backgroundDesign="Transparent" justifyContent="Center">
-												<HBox id="date" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin sapUiHideOnPhone" height="auto" backgroundDesign="Transparent">
-														<Text text="{path: '/currentTime', formatter: '.formatter.getNewFormattedDateString'}" class="sapMText sizeMediumBold"/>
-												</HBox>
-						 						<HBox id="time" justifyContent="Center" alignItems="Center" class="sapUiTinyMargin sapUiHideOnPhone" height="auto" backgroundDesign="Transparent">
-														<Text text="{path: '/currentTime', formatter: '.formatter.getNewFormattedTimeString'}" class="sapMText sizeLargeBold"/>
-												</HBox>
-											</VBox>
-		<!--							Current values -->
-											<VBox class="sapUiTinyMargin" height="auto" backgroundDesign="Transparent" justifyContent="Center">
-												<HBox class="sapUiTinyMargin" justifyContent="Stretch">
-		<!--                  Indoor temperature -->
-													<VBox class="sapUiTinyMargin sapUiMediumMarginEnd">
-														<HBox>
-															<core:Icon src="sap-icon://temperature" class="sapUiTinyMarginEnd sizeSmall"/>
-															<Text text="{i18n>indoor}" class="sizeSmall sapUiTinyMarginEnd"/>
-															<core:Icon id="indoorTemperatureIcon" src="sap-icon://message-error" color="sap.ui.core.IconColor.Negative" visible="false" class="sapUiTinyMarginEnd sizeSmall"/>
-															<Text id="indoorTemperatureInfo" class="sizeSmall sapUiTinyMarginEnd"/>
-														</HBox>
-														<NumericContent
-															id="indoorTemperature"
-															value="{path: '/readingIndoorTemperature/value', formatter: '.formatter.temperatureValue'}"
-															scale="{i18n>temperatureDegree}"
-															valueColor="{ parts:[{path: '/readingIndoorTemperature/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
-															indicator="{ parts:[{path: '/readingIndoorTemperatureOld/value'}, {path: '/readingIndoorTemperature/value'}], formatter: '.formatter.temperatureIndicator'}"
-															animateTextChange="false"
-															press="pressIndoorTemperature"
-														/>
-													</VBox>
-		<!--                  Indoor humidity -->
-													<VBox class="sapUiTinyMargin">
-														<HBox>
-															<core:Icon src="sap-icon://blur" class="sapUiTinyMarginEnd  sizeSmall"/>
-															<Text text="{i18n>indoor}" class="sizeSmall sapUiTinyMarginEnd"/>
-														</HBox>
-														<HBox class="sapUiLargeMarginBegin">
-															<mc:RadialMicroChart
-																id="indoorHumidity"
-																total="100"
-																percentage="{path: '/readingIndoorHumidity/value'}"
-																valueColor="{ parts:[{path: '/readingIndoorHumidity/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
-																press="pressIndoorHumidity"
-																size="M"
-														 />
-														</HBox>
-													</VBox>
-												</HBox>
-												<HBox class="sapUiTinyMargin" justifyContent="Stretch">
-		<!--                	Outdoor temperature -->
-													<VBox class="sapUiTinyMargin sapUiMediumMarginEnd">
-														<HBox>
-															<core:Icon src="sap-icon://temperature" class="sapUiTinyMarginEnd sizeSmall"/>
-															<Text text="{i18n>outdoor}" class="sizeSmall sapUiTinyMarginEnd"/>
-														</HBox>
-														<NumericContent
-															id="outdoorTemperature"
-															value="{path: '/readingOutdoorTemperature/value', formatter: '.formatter.temperatureValue'}"
-															scale="{i18n>temperatureDegree}"
-															valueColor="{ parts:[{path: '/readingOutdoorTemperature/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
-															indicator="{ parts:[{path: '/readingOutdoorTemperatureOld/value'}, {path: '/readingOutdoorTemperature/value'}], formatter: '.formatter.temperatureIndicator'}"
-															animateTextChange="false"
-															press="pressOutdoorTemperature"
-														/>
-													</VBox>
-		<!--                  Outdoor humidity -->
-													<VBox class="sapUiTinyMargin">
-														<HBox>
-															<core:Icon src="sap-icon://blur" class="sapUiTinyMarginEnd sizeSmall"/>
-															<Text text="{i18n>outdoor}" class="sizeSmall sapUiTinyMarginEnd"/>
-														</HBox>
-														<HBox class="sapUiLargeMarginBegin">
-															<mc:RadialMicroChart
-																id="outdoorHumidity"
-																total="100"
-																percentage="{path: '/readingOutdoorHumidity/value'}"
-																valueColor="{ parts:[{path: '/readingOutdoorHumidity/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
-																press="pressOutdoorHumidity"
-																size="M"
-															/>
-														</HBox>
-													</VBox>
-												</HBox>
+												<core:Fragment fragmentName="homberger.weatherapp.view.fragment.IndoorValues" type="XML" />
+												<core:Fragment fragmentName="homberger.weatherapp.view.fragment.OutdoorValues" type="XML" />
 											</VBox>
 
 		<!--								History of values, last 24h -->
