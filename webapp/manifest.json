@@ -34,7 +34,7 @@
 		}
 	},
 	"sap.ui": {
-		"_version": "1.52.2",
+		"_version": "1.71.7",
 		"technology": "UI5",
 		"deviceTypes": {
 			"desktop": true,
@@ -43,6 +43,7 @@
 		},
 		"supportedThemes": [
 			"sap_belize",
+			"sap_belize_plus",
 			"sap_bluecrystal",
 			"sap_hcb"
 		]

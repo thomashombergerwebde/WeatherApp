@@ -928,7 +928,7 @@ sap.ui.define(
 			if(oEvent.getSource().getValue()==0){
 				sap.ui.getCore().applyTheme("sap_bluecrystal");
 			} else if(oEvent.getSource().getValue()==1){
-				sap.ui.getCore().applyTheme("sap_belize");
+				sap.ui.getCore().applyTheme("sap_belize_plus");
 			} else if(oEvent.getSource().getValue()==2){
 				sap.ui.getCore().applyTheme("sap_hcb");
 			}

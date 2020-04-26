@@ -48,7 +48,7 @@
 	"themes": {
 			"autoApplyThemeSetting": true,
 			"day": {
-					"theme": "sap_bluecrystal",
+					"theme": "sap_belize_plus",
 					"startTimeHour": 6,
 					"startTimeMinute": 30
 			},
