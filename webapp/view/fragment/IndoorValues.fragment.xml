@@ -1,0 +1,37 @@
+<HBox xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mc="sap.suite.ui.microchart" class="sapUiTinyMargin" justifyContent="Stretch">
+    <!-- Indoor temperature -->
+    <VBox class="sapUiTinyMargin sapUiMediumMarginEnd">
+        <HBox>
+            <core:Icon src="sap-icon://temperature" class="sapUiTinyMarginEnd sizeSmall"/>
+            <Text text="{i18n>indoor}" class="sizeSmall sapUiTinyMarginEnd"/>
+            <core:Icon id="indoorTemperatureIcon" src="sap-icon://message-error" color="sap.ui.core.IconColor.Negative" visible="false" class="sapUiTinyMarginEnd sizeSmall"/>
+            <Text id="indoorTemperatureInfo" class="sizeSmall sapUiTinyMarginEnd"/>
+        </HBox>
+        <NumericContent
+                id="indoorTemperature"
+                value="{path: '/readingIndoorTemperature/value', formatter: '.formatter.temperatureValue'}"
+                scale="{i18n>temperatureDegree}"
+                valueColor="{ parts:[{path: '/readingIndoorTemperature/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
+                indicator="{ parts:[{path: '/readingIndoorTemperatureOld/value'}, {path: '/readingIndoorTemperature/value'}], formatter: '.formatter.temperatureIndicator'}"
+                animateTextChange="false"
+                press="pressIndoorTemperature"
+        />
+    </VBox>
+    <!-- Indoor humidity -->
+    <VBox class="sapUiTinyMargin">
+        <HBox>
+            <core:Icon src="sap-icon://blur" class="sapUiTinyMarginEnd  sizeSmall"/>
+            <Text text="{i18n>indoor}" class="sizeSmall sapUiTinyMarginEnd"/>
+        </HBox>
+        <HBox class="sapUiLargeMarginBegin">
+            <mc:RadialMicroChart
+                id="indoorHumidity"
+                total="100"
+                percentage="{path: '/readingIndoorHumidity/value'}"
+                valueColor="{ parts:[{path: '/readingIndoorHumidity/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
+                press="pressIndoorHumidity"
+                size="M"
+         />
+        </HBox>
+    </VBox>
+</HBox>
