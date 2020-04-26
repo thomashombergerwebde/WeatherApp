@@ -565,8 +565,9 @@ sap.ui.define(
 					icon.setVisible(true);
 				}
 				if(info){
-					//info.setText("Wert veraltet");
-					info.setText("Signal schwach");
+					var errorText = that.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
+					//var errorText = that.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
+					info.setText(errorText);
 				}
 
 			});
