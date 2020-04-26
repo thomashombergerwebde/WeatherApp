@@ -766,7 +766,7 @@ sap.ui.define(
 			});
 		},
 
-		setQuickViewProperties(oModel, path, valueUom, icon, title, label1){
+		setQuickViewProperties: function (oModel, path, valueUom, icon, title, label1) {
 
 			var timestamp = new Date(oModel.getProperty(path+"/timestamp"));
 			var timestampOld = new Date(oModel.getProperty(path+"Old/timestamp"));
