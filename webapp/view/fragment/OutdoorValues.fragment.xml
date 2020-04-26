@@ -1,0 +1,35 @@
+<HBox xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mc="sap.suite.ui.microchart" class="sapUiTinyMargin" justifyContent="Stretch">
+    <!-- Outdoor temperature -->
+    <VBox class="sapUiTinyMargin sapUiMediumMarginEnd">
+        <HBox>
+            <core:Icon src="sap-icon://temperature" class="sapUiTinyMarginEnd sizeSmall"/>
+            <Text text="{i18n>outdoor}" class="sizeSmall sapUiTinyMarginEnd"/>
+        </HBox>
+        <NumericContent
+                id="outdoorTemperature"
+                value="{path: '/readingOutdoorTemperature/value', formatter: '.formatter.temperatureValue'}"
+                scale="{i18n>temperatureDegree}"
+                valueColor="{ parts:[{path: '/readingOutdoorTemperature/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
+                indicator="{ parts:[{path: '/readingOutdoorTemperatureOld/value'}, {path: '/readingOutdoorTemperature/value'}], formatter: '.formatter.temperatureIndicator'}"
+                animateTextChange="false"
+                press="pressOutdoorTemperature"
+        />
+    </VBox>
+    <!-- Outdoor humidity -->
+    <VBox class="sapUiTinyMargin">
+        <HBox>
+            <core:Icon src="sap-icon://blur" class="sapUiTinyMarginEnd sizeSmall"/>
+            <Text text="{i18n>outdoor}" class="sizeSmall sapUiTinyMarginEnd"/>
+        </HBox>
+        <HBox class="sapUiLargeMarginBegin">
+            <mc:RadialMicroChart
+                    id="outdoorHumidity"
+                    total="100"
+                    percentage="{path: '/readingOutdoorHumidity/value'}"
+                    valueColor="{ parts:[{path: '/readingOutdoorHumidity/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
+                    press="pressOutdoorHumidity"
+                    size="M"
+            />
+        </HBox>
+    </VBox>
+</HBox>
