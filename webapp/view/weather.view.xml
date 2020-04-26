@@ -414,11 +414,6 @@
 												<core:Fragment fragmentName="homberger.weatherapp.view.fragment.IndoorValues" type="XML" />
 												<core:Fragment fragmentName="homberger.weatherapp.view.fragment.OutdoorValues" type="XML" />
 											</VBox>
-
-		<!--								History of values, last 24h -->
-											<VBox class="sapUiTinyMargin" height="auto" backgroundDesign="Transparent">
-
-											</VBox>
 										</items>
 									</VBox>
 								</items>
