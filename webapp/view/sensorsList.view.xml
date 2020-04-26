@@ -1,0 +1,17 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">	
+	<List
+		headerText="{i18n>sensorsListTitle}"
+		class="sapUiResponsiveMargin"
+		width="auto"
+		items="{ path: 'sensor>/readings', sorter: { path: 'timestamp', descending: true }}">
+		<items>
+			<ObjectListItem
+				title="{sensor>/sensors(196970)/description} {sensor>sensorid} / {sensor>timestamp} : { path:'sensor>value', type: 'sap.ui.model.type.Float',formatOptions: {minFractionDigits: 2,maxFractionDigits: 2}}"/>
+		</items>
+	</List>
+	<Text text="irgendein Sensor-Text"/>
+	<NumericContent value="54321123.45"/>
+	
+</mvc:View>

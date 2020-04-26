@@ -1,0 +1,12 @@
+<mvc:View
+	controllerName="homberger.weatherapp.controller.imageB"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page id="pageImageA" title="{i18n>pageTitleWeather}" enableScrolling="false" backgroundDesign="Solid" showHeader="false" showSubHeader="false">
+		<ScrollContainer horizontal="false">
+			<FlexBox justifyContent="Center" alignItems="Center">
+				<Image id="Image" decorative="true" press="onNavToWeather" load="onImageLoaded" height="100vh" />
+			</FlexBox>
+	</ScrollContainer>
+	</Page>
+</mvc:View>
