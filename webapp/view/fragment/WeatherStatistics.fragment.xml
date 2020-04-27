@@ -1,21 +1,18 @@
 <Carousel
-    xmlns:l="sap.ui.layout"
-    xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:core="sap.ui.core"
-    xmlns:mvc="sap.ui.core.mvc"
     xmlns:mc="sap.suite.ui.microchart"
     xmlns="sap.m"
     id="carouselHistory"  loop="true"  arrowsPlacement="Content" showPageIndicator="false" width="600px" class="sapUiHideOnPhone">
     <pages>
-        <!--											Page 0: weather forecast -->
+        <!-- Page 0: weather forecast -->
         <HBox id="widget" justifyContent="Center">
             <core:HTML  id="dasWetterCom" class="noPointerEvents"><!-- width="600px"> -->
             </core:HTML>
         </HBox>
-        <!--											Page 1: indoor and outdoor temperatures -->
+        <!-- Page 1: indoor and outdoor temperatures -->
         <FlexBox alignItems="Center" justifyContent="Center">
             <items>
-                <!--													Indoor temperature -->
+                <!-- Microchart indoor temperature -->
                 <HBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
                     <VBox>
                         <HBox>
@@ -23,26 +20,26 @@
                             <Text text="{i18n>indoor}"/>
                         </HBox>
                         <mc:LineMicroChart
-                                threshold="{/indoorTemp/0/threshold}"
-                                leftTopLabel="{/indoorTemp/0/leftTopLabel}"
-                                leftBottomLabel="{/indoorTemp/0/leftBottomLabel}"
-                                rightTopLabel="{/indoorTemp/0/rightTopLabel}"
-                                rightBottomLabel="{/indoorTemp/0/rightBottomLabel}"
+                            threshold="{/indoorTemp/0/threshold}"
+                            leftTopLabel="{/indoorTemp/0/leftTopLabel}"
+                            leftBottomLabel="{/indoorTemp/0/leftBottomLabel}"
+                            rightTopLabel="{/indoorTemp/0/rightTopLabel}"
+                            rightBottomLabel="{/indoorTemp/0/rightBottomLabel}"
+                            color="{/indoorTemp/0/color}"
+                            points="{
+                                path: '/indoorTempPoints',
+                                templateShareable: true
+                            }"
+                            class="sapUiTinyMarginTop">
+                            <mc:LineMicroChartEmphasizedPoint
+                                x="{x}"
+                                y="{y}"
                                 color="{/indoorTemp/0/color}"
-                                points="{
-																					path: '/indoorTempPoints',
-																					templateShareable: true
-																				}"
-                                class="sapUiTinyMarginTop">
-                            <mc:LineMicroChartEmphasizedPoint
-                                    x="{x}"
-                                    y="{y}"
-                                    color="{/indoorTemp/0/color}"
-                                    show="{show}" />
+                                show="{show}" />
                         </mc:LineMicroChart>
                     </VBox>
                 </HBox>
-                <!--													Outdoor temperature -->
+                <!-- Microchart outdoor temperature -->
                 <HBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
                     <VBox>
                         <HBox>
@@ -50,31 +47,31 @@
                             <Text text="{i18n>outdoor}"/>
                         </HBox>
                         <mc:LineMicroChart
-                                threshold="{/outdoorTemp/0/Tempthreshold}"
-                                leftTopLabel="{/outdoorTemp/0/leftTopLabel}"
-                                leftBottomLabel="{/outdoorTemp/0/leftBottomLabel}"
-                                rightTopLabel="{/outdoorTemp/0/rightTopLabel}"
-                                rightBottomLabel="{/outdoorTemp/0/rightBottomLabel}"
+                            threshold="{/outdoorTemp/0/Tempthreshold}"
+                            leftTopLabel="{/outdoorTemp/0/leftTopLabel}"
+                            leftBottomLabel="{/outdoorTemp/0/leftBottomLabel}"
+                            rightTopLabel="{/outdoorTemp/0/rightTopLabel}"
+                            rightBottomLabel="{/outdoorTemp/0/rightBottomLabel}"
+                            color="{/outdoorTemp/0/color}"
+                            points="{
+                                path: '/outdoorTempPoints',
+                                templateShareable: true
+                            }"
+                            class="sapUiTinyMarginTop">
+                            <mc:LineMicroChartEmphasizedPoint
+                                x="{x}"
+                                y="{y}"
                                 color="{/outdoorTemp/0/color}"
-                                points="{
-																					path: '/outdoorTempPoints',
-																					templateShareable: true
-																				}"
-                                class="sapUiTinyMarginTop">
-                            <mc:LineMicroChartEmphasizedPoint
-                                    x="{x}"
-                                    y="{y}"
-                                    color="{/outdoorTemp/0/color}"
-                                    show="{show}" />
+                                show="{show}" />
                         </mc:LineMicroChart>
                     </VBox>
                 </HBox>
             </items>
         </FlexBox>
-        <!--											Page 2: indoor and outdoor humidity -->
+        <!-- Page 2: indoor and outdoor humidity -->
         <FlexBox alignItems="Center" justifyContent="Center">
             <items>
-                <!--													Indoor humidity -->
+                <!-- Microchart indoor humidity -->
                 <HBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
                     <VBox>
                         <HBox>
@@ -82,26 +79,26 @@
                             <Text text="{i18n>indoor}"/>
                         </HBox>
                         <mc:LineMicroChart
-                                threshold="{/indoorHum/0/threshold}"
-                                leftTopLabel="{/indoorHum/0/leftTopLabel}"
-                                leftBottomLabel="{/indoorHum/0/leftBottomLabel}"
-                                rightTopLabel="{/indoorHum/0/rightTopLabel}"
-                                rightBottomLabel="{/indoorHum/0/rightBottomLabel}"
+                            threshold="{/indoorHum/0/threshold}"
+                            leftTopLabel="{/indoorHum/0/leftTopLabel}"
+                            leftBottomLabel="{/indoorHum/0/leftBottomLabel}"
+                            rightTopLabel="{/indoorHum/0/rightTopLabel}"
+                            rightBottomLabel="{/indoorHum/0/rightBottomLabel}"
+                            color="{/indoorHum/0/color}"
+                            points="{
+                                path: '/indoorHumPoints',
+                                templateShareable: true
+                            }"
+                            class="sapUiTinyMarginTop">
+                            <mc:LineMicroChartEmphasizedPoint
+                                x="{x}"
+                                y="{y}"
                                 color="{/indoorHum/0/color}"
-                                points="{
-																					path: '/indoorHumPoints',
-																					templateShareable: true
-																				}"
-                                class="sapUiTinyMarginTop">
-                            <mc:LineMicroChartEmphasizedPoint
-                                    x="{x}"
-                                    y="{y}"
-                                    color="{/indoorHum/0/color}"
-                                    show="{show}" />
+                                show="{show}" />
                         </mc:LineMicroChart>
                     </VBox>
                 </HBox>
-                <!--	 													Outdoor humidity -->
+                <!-- Microchart outdoor humidity -->
                 <HBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
                     <VBox>
                         <HBox>
@@ -109,30 +106,31 @@
                             <Text text="{i18n>outdoor}"/>
                         </HBox>
                         <mc:LineMicroChart
-                                threshold="{/outdoorHum/0/threshold}"
-                                leftTopLabel="{/outdoorHum/0/leftTopLabel}"
-                                leftBottomLabel="{/outdoorHum/0/leftBottomLabel}"
-                                rightTopLabel="{/outdoorHum/0/rightTopLabel}"
-                                rightBottomLabel="{/outdoorHum/0/rightBottomLabel}"
-                                color="{/outdoorHum/0/color}"
-                                points="{
-																					path: '/outdoorHumPoints',
-																					templateShareable: true
-																				}"
-                                class="sapUiTinyMarginTop">
+                            threshold="{/outdoorHum/0/threshold}"
+                            leftTopLabel="{/outdoorHum/0/leftTopLabel}"
+                            leftBottomLabel="{/outdoorHum/0/leftBottomLabel}"
+                            rightTopLabel="{/outdoorHum/0/rightTopLabel}"
+                            rightBottomLabel="{/outdoorHum/0/rightBottomLabel}"
+                            color="{/outdoorHum/0/color}"
+                            points="{
+                                path: '/outdoorHumPoints',
+                                templateShareable: true
+                            }"
+                            class="sapUiTinyMarginTop">
                             <mc:LineMicroChartEmphasizedPoint
-                                    x="{x}"
-                                    y="{y}"
-                                    color="{/outdoorHum/0/color}"
-                                    show="{show}" />
+                                x="{x}"
+                                y="{y}"
+                                color="{/outdoorHum/0/color}"
+                                show="{show}" />
                         </mc:LineMicroChart>
                     </VBox>
                 </HBox>
             </items>
         </FlexBox>
-        <!--										  Page 3: Temperature max/min values (indoor/outdoor) as ComparisonMicroChart	-->
+        <!-- Page 3: Temperature max/min values (indoor/outdoor) as ComparisonMicroChart	-->
         <FlexBox alignItems="Center" justifyContent="Center">
             <items>
+                <!-- Microchart indoor temperature -->
                 <HBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
                     <VBox>
                         <HBox>
@@ -140,110 +138,110 @@
                             <Text text="{i18n>indoor}"/>
                         </HBox>
                         <mc:ComparisonMicroChart
-                                view="Normal"
-                                scale=""
-                                class="sapUiSmallMargin"
-                                width="12rem"
-                                minValue="-15"
-                                maxValue="40"
+                            view="Normal"
+                            scale=""
+                            class="sapUiSmallMargin"
+                            width="12rem"
+                            minValue="-15"
+                            maxValue="40"
                         >
                             <mc:data>
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>minimum}
-																										 {
-																												path: '/readingIndoorTemperatureMin/timestamp',
-																												type: 'sap.ui.model.type.Date',
-																												formatOptions: {
-																													style: 'short'
-																												}
-																											}
-																										  {
-																												path: '/readingIndoorTemperatureMin/timestamp',
-																												formatter: '.formatter.getFormattedTimeString'
-																											}"
-                                        value="{/readingIndoorTemperatureMin/value}"
-                                        color="{ parts:[{path: '/readingIndoorTemperatureMin/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
-                                        displayValue="{/readingIndoorTemperatureMin/value}{i18n>temperatureDegree}"
+                                    title="{i18n>minimum}
+                                    {
+                                       path: '/readingIndoorTemperatureMin/timestamp',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {
+                                            style: 'short'
+                                        }
+                                    }
+                                    {
+                                        path: '/readingIndoorTemperatureMin/timestamp',
+                                        formatter: '.formatter.getFormattedTimeString'
+                                    }"
+                                    value="{/readingIndoorTemperatureMin/value}"
+                                    color="{ parts:[{path: '/readingIndoorTemperatureMin/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    displayValue="{/readingIndoorTemperatureMin/value}{i18n>temperatureDegree}"
                                 />
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>average}"
-                                        value="{/readingIndoorTemperatureAvg/value}"
-                                        color="{ parts:[{path: '/readingIndoorTemperatureAvg/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
-                                        displayValue="{/readingIndoorTemperatureAvg/value}{i18n>temperatureDegree}"
+                                    title="{i18n>average}"
+                                    value="{/readingIndoorTemperatureAvg/value}"
+                                    color="{ parts:[{path: '/readingIndoorTemperatureAvg/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    displayValue="{/readingIndoorTemperatureAvg/value}{i18n>temperatureDegree}"
                                 />
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>maximum}
-																										 {
-																											 path: '/readingIndoorTemperatureMax/timestamp',
-																											 type: 'sap.ui.model.type.Date',
-																											 formatOptions: {
-																												 style: 'short'
-																											 }
-																										 }
-																										 {
-																											 path: '/readingIndoorTemperatureMax/timestamp',
-																											 formatter: '.formatter.getFormattedTimeString'
-																					 	  		 	 }"
-                                        value="{/readingIndoorTemperatureMax/value}"
-                                        color="{ parts:[{path: '/readingIndoorTemperatureMax/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
-                                        displayValue="{/readingIndoorTemperatureMax/value}{i18n>temperatureDegree}"
+                                    title="{i18n>maximum}
+                                    {
+                                        path: '/readingIndoorTemperatureMax/timestamp',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {
+                                            style: 'short'
+                                        }
+                                    }
+                                    {
+                                        path: '/readingIndoorTemperatureMax/timestamp',
+                                        formatter: '.formatter.getFormattedTimeString'
+                                    }"
+                                    value="{/readingIndoorTemperatureMax/value}"
+                                    color="{ parts:[{path: '/readingIndoorTemperatureMax/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    displayValue="{/readingIndoorTemperatureMax/value}{i18n>temperatureDegree}"
                                 />
                             </mc:data>
                         </mc:ComparisonMicroChart>
                     </VBox>
+                    <!-- Microchart outdoor temperature -->
                     <VBox>
                         <HBox>
                             <core:Icon src="sap-icon://temperature" class="sapUiTinyMarginEnd text sizeSmall"/>
                             <Text text="{i18n>outdoor}"/>
                         </HBox>
                         <mc:ComparisonMicroChart
-                                view="Normal"
-                                scale=""
-                                class="sapUiSmallMargin"
-                                width="12rem"
-                                minValue="-15"
-                                maxValue="40"
-                        >
+                            view="Normal"
+                            scale=""
+                            class="sapUiSmallMargin"
+                            width="12rem"
+                            minValue="-15"
+                            maxValue="40">
                             <mc:data>
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>minimum}
-																										 {
-																										 		path: '/readingOutdoorTemperatureMin/timestamp',
-																												type: 'sap.ui.model.type.Date',
-																												formatOptions: {
-																											 		style: 'short'
-																												}
-																											}
-																											{
-																											 	path: '/readingOutdoorTemperatureMin/timestamp',
-																											 	formatter: '.formatter.getFormattedTimeString'
-																					 				 		}"
-                                        value="{/readingOutdoorTemperatureMin/value}"
-                                        color="{ parts:[{path: '/readingOutdoorTemperatureMin/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
-                                        displayValue="{/readingOutdoorTemperatureMin/value}{i18n>temperatureDegree}"
+                                    title="{i18n>minimum}
+                                    {
+                                        path: '/readingOutdoorTemperatureMin/timestamp',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {
+                                            style: 'short'
+                                        }
+                                    }
+                                    {
+                                        path: '/readingOutdoorTemperatureMin/timestamp',
+                                        formatter: '.formatter.getFormattedTimeString'
+                                    }"
+                                    value="{/readingOutdoorTemperatureMin/value}"
+                                    color="{ parts:[{path: '/readingOutdoorTemperatureMin/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    displayValue="{/readingOutdoorTemperatureMin/value}{i18n>temperatureDegree}"
                                 />
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>average}"
-                                        value="{/readingOutdoorTemperatureAvg/value}"
-                                        color="{ parts:[{path: '/readingOutdoorTemperatureAvg/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
-                                        displayValue="{/readingOutdoorTemperatureAvg/value}{i18n>temperatureDegree}"
+                                    title="{i18n>average}"
+                                    value="{/readingOutdoorTemperatureAvg/value}"
+                                    color="{ parts:[{path: '/readingOutdoorTemperatureAvg/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    displayValue="{/readingOutdoorTemperatureAvg/value}{i18n>temperatureDegree}"
                                 />
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>maximum}
-																											{
-																												 path: '/readingOutdoorTemperatureMax/timestamp',
-																												 type: 'sap.ui.model.type.Date',
-																												 formatOptions: {
-																													 style: 'short'
-																												 }
-																											 }
-																											 {
-																											 	path: '/readingOutdoorTemperatureMax/timestamp',
-																											 	formatter: '.formatter.getFormattedTimeString'
-																											 }"
-                                        value="{/readingOutdoorTemperatureMax/value}"
-                                        color="{ parts:[{path: '/readingOutdoorTemperatureMax/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
-                                        displayValue="{/readingOutdoorTemperatureMax/value}{i18n>temperatureDegree}"
+                                    title="{i18n>maximum}
+                                    {
+                                         path: '/readingOutdoorTemperatureMax/timestamp',
+                                         type: 'sap.ui.model.type.Date',
+                                         formatOptions: {
+                                             style: 'short'
+                                         }
+                                     }
+                                     {
+                                        path: '/readingOutdoorTemperatureMax/timestamp',
+                                        formatter: '.formatter.getFormattedTimeString'
+                                     }"
+                                    value="{/readingOutdoorTemperatureMax/value}"
+                                    color="{ parts:[{path: '/readingOutdoorTemperatureMax/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    displayValue="{/readingOutdoorTemperatureMax/value}{i18n>temperatureDegree}"
                                 />
                             </mc:data>
                         </mc:ComparisonMicroChart>
@@ -251,7 +249,7 @@
                 </HBox>
             </items>
         </FlexBox>
-        <!--										  Page 4: Humidity max/min values (indoor/outdoor) as ComparisonMicroChart	-->
+        <!-- Page 4: Humidity max/min values (indoor/outdoor) as ComparisonMicroChart	-->
         <FlexBox alignItems="Center" justifyContent="Center">
             <items>
                 <HBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
@@ -261,54 +259,52 @@
                             <Text text="{i18n>indoor}"/>
                         </HBox>
                         <mc:ComparisonMicroChart
-                                view="Normal"
-                                scale=""
-                                class="sapUiSmallMargin"
-                                width="12rem"
-                                minValue="20"
-                                maxValue="90"
-                        >
+                            view="Normal"
+                            scale=""
+                            class="sapUiSmallMargin"
+                            width="12rem"
+                            minValue="20"
+                            maxValue="90">
                             <mc:data>
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>minimum}
-																										 {
-																												path: '/readingIndoorHumidityMin/timestamp',
-																												type: 'sap.ui.model.type.Date',
-																												formatOptions: {
-																													style: 'short'
-																												}
-																											}
-																										  {
-																												path: '/readingIndoorHumidityMin/timestamp',
-		 																								 		formatter: '.formatter.getFormattedTimeString'
-																											}"
-
-                                        value="{/readingIndoorHumidityMin/value}"
-                                        color="{ parts:[{path: '/readingIndoorHumidityMin/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
-                                        displayValue="{/readingIndoorHumidityMin/value}{i18n>humidityPercent}"
+                                    title="{i18n>minimum}
+                                    {
+                                        path: '/readingIndoorHumidityMin/timestamp',
+                                        type: 'sap.ui.model.type.Date',
+                                        formatOptions: {
+                                            style: 'short'
+                                        }
+                                    }
+                                    {
+                                        path: '/readingIndoorHumidityMin/timestamp',
+                                        formatter: '.formatter.getFormattedTimeString'
+                                    }"
+                                    value="{/readingIndoorHumidityMin/value}"
+                                    color="{ parts:[{path: '/readingIndoorHumidityMin/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    displayValue="{/readingIndoorHumidityMin/value}{i18n>humidityPercent}"
                                 />
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>average}"
-                                        value="{/readingIndoorHumidityAvg/value}"
-                                        color="{ parts:[{path: '/readingIndoorHumidityAvg/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
-                                        displayValue="{/readingIndoorHumidityAvg/value}{i18n>humidityPercent}"
+                                    title="{i18n>average}"
+                                    value="{/readingIndoorHumidityAvg/value}"
+                                    color="{ parts:[{path: '/readingIndoorHumidityAvg/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    displayValue="{/readingIndoorHumidityAvg/value}{i18n>humidityPercent}"
                                 />
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>maximum}
-																											{
-																												 path: '/readingIndoorHumidityMax/timestamp',
-																												 type: 'sap.ui.model.type.Date',
-																												 formatOptions: {
-																													 style: 'short'
-																												 }
-																											 }
-																											 {
-																											 	path: '/readingIndoorHumidityMax/timestamp',
-																											 	formatter: '.formatter.getFormattedTimeString'
-																					 	 			 		}"
-                                        value="{/readingIndoorHumidityMax/value}"
-                                        color="{ parts:[{path: '/readingIndoorHumidityMax/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
-                                        displayValue="{/readingIndoorHumidityMax/value}{i18n>humidityPercent}"
+                                    title="{i18n>maximum}
+                                    {
+                                         path: '/readingIndoorHumidityMax/timestamp',
+                                         type: 'sap.ui.model.type.Date',
+                                         formatOptions: {
+                                             style: 'short'
+                                         }
+                                     }
+                                     {
+                                        path: '/readingIndoorHumidityMax/timestamp',
+                                        formatter: '.formatter.getFormattedTimeString'
+                                    }"
+                                    value="{/readingIndoorHumidityMax/value}"
+                                    color="{ parts:[{path: '/readingIndoorHumidityMax/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    displayValue="{/readingIndoorHumidityMax/value}{i18n>humidityPercent}"
                                 />
                             </mc:data>
                         </mc:ComparisonMicroChart>
@@ -319,53 +315,52 @@
                             <Text text="{i18n>outdoor}"/>
                         </HBox>
                         <mc:ComparisonMicroChart
-                                view="Normal"
-                                scale=""
-                                class="sapUiSmallMargin"
-                                width="12rem"
-                                minValue="20"
-                                maxValue="90"
-                        >
+                            view="Normal"
+                            scale=""
+                            class="sapUiSmallMargin"
+                            width="12rem"
+                            minValue="20"
+                            maxValue="90">
                             <mc:data>
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>minimum}
-																											{
-																												 path: '/readingOutdoorHumidityMin/timestamp',
-																												 type: 'sap.ui.model.type.Date',
-																												 formatOptions: {
-																													 style: 'short'
-																												 }
-																											 }
-																											 {
-																											 	path: '/readingOutdoorHumidityMin/timestamp',
-																											 	formatter: '.formatter.getFormattedTimeString'
-																						 				 	 }"
-                                        value="{/readingOutdoorHumidityMin/value}"
-                                        color="{ parts:[{path: '/readingOutdoorHumidityMin/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
-                                        displayValue="{/readingOutdoorHumidityMin/value}{i18n>humidityPercent}"
+                                    title="{i18n>minimum}
+                                    {
+                                         path: '/readingOutdoorHumidityMin/timestamp',
+                                         type: 'sap.ui.model.type.Date',
+                                         formatOptions: {
+                                             style: 'short'
+                                         }
+                                     }
+                                     {
+                                        path: '/readingOutdoorHumidityMin/timestamp',
+                                        formatter: '.formatter.getFormattedTimeString'
+                                     }"
+                                    value="{/readingOutdoorHumidityMin/value}"
+                                    color="{ parts:[{path: '/readingOutdoorHumidityMin/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    displayValue="{/readingOutdoorHumidityMin/value}{i18n>humidityPercent}"
                                 />
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>average}"
-                                        value="{/readingOutdoorHumidityAvg/value}"
-                                        color="{ parts:[{path: '/readingOutdoorHumidityAvg/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
-                                        displayValue="{/readingOutdoorHumidityAvg/value}{i18n>humidityPercent}"
+                                    title="{i18n>average}"
+                                    value="{/readingOutdoorHumidityAvg/value}"
+                                    color="{ parts:[{path: '/readingOutdoorHumidityAvg/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    displayValue="{/readingOutdoorHumidityAvg/value}{i18n>humidityPercent}"
                                 />
                                 <mc:ComparisonMicroChartData
-                                        title="{i18n>maximum}
-																											{
-																												 path: '/readingOutdoorHumidityMax/timestamp',
-																												 type: 'sap.ui.model.type.Date',
-																												 formatOptions: {
-																													 style: 'short'
-																												 }
-																											 }
-																											 {
-																											 	path: '/readingOutdoorHumidityMax/timestamp',
-																											 	formatter: '.formatter.getFormattedTimeString'
-																											 }"
-                                        value="{/readingOutdoorHumidityMax/value}"
-                                        color="{ parts:[{path: '/readingOutdoorHumidityMax/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
-                                        displayValue="{/readingOutdoorHumidityMax/value}{i18n>humidityPercent}"
+                                    title="{i18n>maximum}
+                                    {
+                                         path: '/readingOutdoorHumidityMax/timestamp',
+                                         type: 'sap.ui.model.type.Date',
+                                         formatOptions: {
+                                             style: 'short'
+                                         }
+                                     }
+                                     {
+                                        path: '/readingOutdoorHumidityMax/timestamp',
+                                        formatter: '.formatter.getFormattedTimeString'
+                                     }"
+                                    value="{/readingOutdoorHumidityMax/value}"
+                                    color="{ parts:[{path: '/readingOutdoorHumidityMax/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    displayValue="{/readingOutdoorHumidityMax/value}{i18n>humidityPercent}"
                                 />
                             </mc:data>
                         </mc:ComparisonMicroChart>
