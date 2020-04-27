@@ -523,7 +523,65 @@ sap.ui.define(
 		//Sensor update
 		//----------------------------------------------------------------------------------------//
 
-		readCurrentData : function(id, skip, top, success) {
+		readingWeakSignal: function() {
+			return true;
+		},
+
+		readingValueOutdated: function() {
+			return false;
+		},
+
+		validateReading: function(path) {
+
+			if(this.readingWeakSignal()){
+
+				//set info field
+				var infoId = path.split("/reading")[1] + "Info";
+				infoId = infoId[0].toLowerCase() + infoId.slice(1);
+				var info = this.getView().byId(infoId);
+
+				var iconId = path.split("/reading")[1] + "Icon";
+				iconId = iconId[0].toLowerCase() + iconId.slice(1);
+				var icon = this.getView().byId(iconId);
+
+				if(icon){
+					icon.setSrc("sap-icon://message-error");
+					icon.setColor(sap.ui.core.IconColor.Negative); //Negative //sap.ui.core.IconColor.Critical
+					icon.setVisible(true);
+				}
+				if(info){
+					var errorText = this.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
+					//var errorText = that.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
+					info.setText(errorText);
+				}
+
+			} else if (this.readingValueOutdated()){
+
+				//set info field
+				var infoId = path.split("/reading")[1] + "Info";
+				infoId = infoId[0].toLowerCase() + infoId.slice(1);
+				var info = this.getView().byId(infoId);
+
+				var iconId = path.split("/reading")[1] + "Icon";
+				iconId = iconId[0].toLowerCase() + iconId.slice(1);
+				var icon = this.getView().byId(iconId);
+
+				if(icon){
+					icon.setSrc("sap-icon://message-warning");
+					icon.setColor(sap.ui.core.IconColor.Critical); //Negative //sap.ui.core.IconColor.Critical
+					icon.setVisible(true);
+				}
+				if(info){
+					//var errorText = this.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
+					var errorText = this.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
+					info.setText(errorText);
+				}
+
+			}
+
+		},
+
+		readCurrentData: function(id, skip, top, success) {
 			var sUrl = sOdataServer + "/odata/readings?$orderby=timestamp desc&$filter=sensorid eq " + id + "&$skip=" + skip + "&$top=" + top;
 			odatajs.oData.read(sUrl, function(odata){
 				for (var i = 0; i < odata.value.length; i++) {
@@ -550,26 +608,7 @@ sap.ui.define(
 
 				//write new reading
 				that.getView().getModel().setProperty(path, odata.value[0]);
-
-				//set info field
-				var infoId = path.split("/reading")[1] + "Info";
-				infoId = infoId[0].toLowerCase() + infoId.slice(1);
-				var info = that.getView().byId(infoId);
-
-				var iconId = path.split("/reading")[1] + "Icon";
-				iconId = iconId[0].toLowerCase() + iconId.slice(1);
-				var icon = that.getView().byId(iconId);
-
-				if(icon){
-					icon.setColor(sap.ui.core.IconColor.Critical); //Negative //sap.ui.core.IconColor.Critical
-					icon.setVisible(true);
-				}
-				if(info){
-					var errorText = that.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
-					//var errorText = that.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
-					info.setText(errorText);
-				}
-
+				that.validateReading(path);
 			});
 		},
 
