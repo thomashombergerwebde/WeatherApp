@@ -550,6 +550,26 @@ sap.ui.define(
 
 				//write new reading
 				that.getView().getModel().setProperty(path, odata.value[0]);
+
+				//set info field
+				var infoId = path.split("/reading")[1] + "Info";
+				infoId = infoId[0].toLowerCase() + infoId.slice(1);
+				var info = that.getView().byId(infoId);
+
+				var iconId = path.split("/reading")[1] + "Icon";
+				iconId = iconId[0].toLowerCase() + iconId.slice(1);
+				var icon = that.getView().byId(iconId);
+
+				if(icon){
+					icon.setColor(sap.ui.core.IconColor.Critical); //Negative //sap.ui.core.IconColor.Critical
+					icon.setVisible(true);
+				}
+				if(info){
+					var errorText = that.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
+					//var errorText = that.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
+					info.setText(errorText);
+				}
+
 			});
 		},
 
@@ -665,7 +685,7 @@ sap.ui.define(
 					//set 1 digit for temperatures, 0 digits for humidity, and measure
 					var measure="";
 					if(path.indexOf("Temp")>0){
-						measure=that.getView().getModel("i18n").getResourceBundle().getText("temperatureDegree")
+						measure=that.getView().getModel("i18n").getResourceBundle().getText("temperatureDegree");
 						that.getView().getModel().setProperty(path+"/0/leftTopLabel", points[0].y.toFixed(1)+measure);
 						that.getView().getModel().setProperty(path+"/0/rightTopLabel", points[points.length-1].y.toFixed(1)+measure);
 					} else {
