@@ -1,0 +1,3 @@
+<Carousel xmlns="sap.m" id="carousel" loop="true" arrowsPlacement="Content" showPageIndicator="true" width="550px" height="309px" class="sapUiHideOnPhone">
+</Carousel>
+													
