@@ -523,17 +523,19 @@ sap.ui.define(
 		//Sensor update
 		//----------------------------------------------------------------------------------------//
 
-		readingWeakSignal: function() {
-			return true;
+		readingWeakSignal: function(reading) {
+			return reading.signalquality < 10 ? true : false;
 		},
 
-		readingValueOutdated: function() {
-			return false;
+		readingValueOutdated: function(reading) {
+		    var now = new Date();
+            now.setHours(now.getHours()-1);
+			return (now - reading.timestamp > 600000) ? true : false;
 		},
 
-		validateReading: function(path) {
+		validateReading: function(path, reading) {
 
-			if(this.readingWeakSignal()){
+			if(this.readingWeakSignal(reading)){
 
 				//set info field
 				var infoId = path.split("/reading")[1] + "Info";
@@ -555,7 +557,7 @@ sap.ui.define(
 					info.setText(errorText);
 				}
 
-			} else if (this.readingValueOutdated()){
+			} else if (this.readingValueOutdated(reading)){
 
 				//set info field
 				var infoId = path.split("/reading")[1] + "Info";
@@ -608,7 +610,7 @@ sap.ui.define(
 
 				//write new reading
 				that.getView().getModel().setProperty(path, odata.value[0]);
-				that.validateReading(path);
+				that.validateReading(path, odata.value[0]);
 			});
 		},
 
