@@ -2,17 +2,7 @@
 <html>
 <head>
 
-	<style>
-		html {
-			height: 100%;
-		}
-		body {
-			display: inline-block;
-			background-image: url('../resources/StartupPicture.jpg');
-			background-position: center;
-			background-repeat: no-repeat;
-		}
-	</style>
+	<meta name="viewport" content="minimal-ui, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta charset="utf-8">
@@ -56,8 +46,23 @@
 					})
 				}).placeAt("content");
 			});
+			$("#splash-screen").remove();
 		});
 	</script>
+
+	<div id="splash-screen">
+		<style>
+			html {
+				height: 100%;
+			}
+			body {
+				display: inline-block;
+				background-image: url('../resources/StartupPicture.jpg');
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		</style>
+	</div>
 
 </head>
 <body class="sapUiBody" id="content">
