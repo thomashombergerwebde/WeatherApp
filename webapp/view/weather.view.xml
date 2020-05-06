@@ -59,14 +59,14 @@
 		<footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
-				<Label text="Theme" labelFor="sliderThemeChange"/>
+				<Label text="{i18n>theme}" labelFor="sliderThemeChange"/>
 				<Slider id="sliderThemeChange"  value="{/theme}" change="onSelectTheme" min="0" max="2" enableTickmarks="false" width="8%">
 					<ResponsiveScale tickmarksBetweenLabels="3"/>
 				</Slider>
 				<Button
 					icon="sap-icon://picture"
 					press="onOpenSelectPicturesDialog"
-					tooltip="{i18n>settings}"
+					tooltip="{i18n>pictures}"
 					class="sapUiHideOnPhone"
 				/>
 				<Button
