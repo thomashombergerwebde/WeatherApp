@@ -58,6 +58,10 @@
  		</content>
 		<footer>
 			<OverflowToolbar>
+				<Button
+						icon="sap-icon://hint"
+						tooltip="Info"
+				/>
 				<ToolbarSpacer/>
 				<Label text="{i18n>theme}" labelFor="sliderThemeChange"/>
 				<Slider id="sliderThemeChange"  value="{/theme}" change="onSelectTheme" min="0" max="2" enableTickmarks="false" width="8%">
