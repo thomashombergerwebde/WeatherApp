@@ -24,6 +24,9 @@ sap.ui.define(
 
 			var that = this;
 
+			//Set app start timestamp for info popover
+			this.getOwnerComponent().getModel().setProperty("/appStartedAt", new Date());
+
 			//Get servers and root folder settings from index.html
 			this.sOdataServer = sOdataServer;
 			this.sPictureServer = sPictureServer;
@@ -771,31 +774,38 @@ sap.ui.define(
 			var timestamp = new Date(oModel.getProperty(path+"/timestamp"));
 			var timestampOld = new Date(oModel.getProperty(path+"Old/timestamp"));
 
-			oModel.setProperty("/pages/0/header", "");
-			oModel.setProperty("/pages/0/icon", icon);
-			oModel.setProperty("/pages/0/title", title);
+			var pages = [{
+					header: "",
+					icon: icon,
+					title: title,
+					groups: [{
+							heading: this.resourceBundle.getText("currentValue"),
+							elements: [{
+								label: label1,
+								value: oModel.getProperty(path + "/value") + valueUom
+							},{
+								label: this.resourceBundle.getText("recordedOn"),
+								value: timestamp.toLocaleString()
+							},{
+								label: this.resourceBundle.getText("sensorId"),
+								value: oModel.getProperty(path+"/sensorid")
+							},{
+								label: this.resourceBundle.getText("signalquality"),
+								value: oModel.getProperty(path+"/signalquality")
+							}]
+						},{
+							heading: this.resourceBundle.getText("lastValue"),
+							elements: [{
+								label: label1,
+								value: oModel.getProperty(path + "Old/value") + valueUom
+							},{
+								label: this.resourceBundle.getText("recordedOn"),
+								value: timestampOld.toLocaleString()
+							}]
+						}]
+					}];
 
-			oModel.setProperty("/pages/0/groups/0/heading", this.resourceBundle.getText("currentValue"));
-
-			oModel.setProperty("/pages/0/groups/0/elements/0/label", label1);
-			oModel.setProperty("/pages/0/groups/0/elements/0/value", oModel.getProperty(path+"/value")+valueUom);
-
-			oModel.setProperty("/pages/0/groups/0/elements/1/label", this.resourceBundle.getText("recordedOn"));
-			oModel.setProperty("/pages/0/groups/0/elements/1/value", timestamp.toLocaleString());
-
-			oModel.setProperty("/pages/0/groups/0/elements/2/label", this.resourceBundle.getText("sensorId"));
-			oModel.setProperty("/pages/0/groups/0/elements/2/value", oModel.getProperty(path+"/sensorid"));
-
-			oModel.setProperty("/pages/0/groups/0/elements/3/label", this.resourceBundle.getText("signalquality"));
-			oModel.setProperty("/pages/0/groups/0/elements/3/value", oModel.getProperty(path+"/signalquality"));
-
-			oModel.setProperty("/pages/0/groups/1/heading", this.resourceBundle.getText("lastValue"));
-
-			oModel.setProperty("/pages/0/groups/1/elements/0/label", label1);
-			oModel.setProperty("/pages/0/groups/1/elements/0/value", oModel.getProperty(path+"Old/value")+valueUom);
-
-			oModel.setProperty("/pages/0/groups/1/elements/1/label", this.resourceBundle.getText("recordedOn"));
-			oModel.setProperty("/pages/0/groups/1/elements/1/value", timestampOld.toLocaleString());
+			oModel.setProperty("/pages", pages);
 		},
 
 		pressIndoorTemperature: function (oEvent) {
@@ -815,6 +825,38 @@ sap.ui.define(
 
 		pressOutdoorHumidity: function (oEvent) {
 			this.setQuickViewProperties(this.getView().getModel(), "/readingOutdoorHumidity", this.resourceBundle.getText("humidityPercent"), "sap-icon://blur", this.resourceBundle.getText("humidityOutdoor"), this.resourceBundle.getText("humidity"));
+			this.openQuickView(oEvent, this.getView().getModel());
+		},
+
+		setInfoQuickViewProperties: function (oModel) {
+
+			//////
+			var appStartedAt = oModel.getProperty("/appStartedAt");
+			appStartedAt.setDate(appStartedAt.getDate()-2);
+			appStartedAt.setHours(appStartedAt.getHours()-3);
+			appStartedAt.setMinutes(appStartedAt.getMinutes()-12);
+			//////
+
+			var pages = [{
+					//header: "",
+					icon: "sap-icon://hint",
+					title: "information",
+					groups: [{
+						//heading: "App info",
+						elements: [{
+							label: "App started on",
+							value: appStartedAt.toLocaleString()
+						},{
+							label: "Running since",
+							value: moment().subtract(6, 'days').calendar()
+						}]
+					}]
+				}];
+			oModel.setProperty("/pages", pages);
+		},
+
+		onPressInfo: function (oEvent) {
+			this.setInfoQuickViewProperties(this.getView().getModel());
 			this.openQuickView(oEvent, this.getView().getModel());
 		},
 
@@ -889,7 +931,6 @@ sap.ui.define(
 		onSliderChangeTemperatureOutdoorColor: function (oEvent) {
 			this.getView().byId("outdoorTemperature").setValueColor(this.formatter.temperatureValueColor(parseFloat(this.getView().byId("outdoorTemperature").getValue()), "Outdoor", this.getView().getModel("settings")));
 		},
-
 
 		onSliderChangeHumidityIndoorColor: function (oEvent) {
 			this.getView().byId("indoorHumidity").setValueColor(this.formatter.humidityValueColor(parseFloat(this.getView().byId("indoorHumidity").getPercentage()), "Indoor", this.getView().getModel("settings")));
