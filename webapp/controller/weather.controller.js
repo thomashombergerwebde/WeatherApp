@@ -839,11 +839,11 @@ sap.ui.define(
 					title: this.resourceBundle.getText("information"),
 					groups: [{
 						elements: [{
+							label: this.resourceBundle.getText("appStarted"),
+							value: dateFormat.format(appStartedAt)
+						},{
 							label: this.resourceBundle.getText("appStartedAt"),
 							value: appStartedAt.toLocaleString()
-						},{
-							label: this.resourceBundle.getText("appRunningSince"),
-                            value: dateFormat.format(appStartedAt)
 						}]
 					}]
 				}];
