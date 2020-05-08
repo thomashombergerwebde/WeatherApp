@@ -59,8 +59,9 @@
 		<footer>
 			<OverflowToolbar>
 				<Button
-						icon="sap-icon://hint"
-						tooltip="Info"
+					icon="sap-icon://hint"
+					press="onPressInfo"
+					tooltip="Info"
 				/>
 				<ToolbarSpacer/>
 				<Label text="{i18n>theme}" labelFor="sliderThemeChange"/>
