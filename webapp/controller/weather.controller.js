@@ -3,9 +3,10 @@ sap.ui.define(
 		'sap/ui/core/mvc/Controller',
 		'sap/ui/core/format/NumberFormat',
 		'homberger/weatherapp/model/formatter',
-		'sap/m/Image'
+		'sap/m/Image',
+        'sap/ui/core/format/DateFormat'
 	],
-	function (Controller, NumberFormat, formatter, Image) {
+	function (Controller, NumberFormat, formatter, Image, DateFormat) {
 	"use strict";
 
 	return Controller.extend("homberger.weatherapp.controller.weather", {
@@ -830,12 +831,8 @@ sap.ui.define(
 
 		setInfoQuickViewProperties: function (oModel) {
 
-			//////
-			var appStartedAt = oModel.getProperty("/appStartedAt");
-			appStartedAt.setDate(appStartedAt.getDate()-2);
-			appStartedAt.setHours(appStartedAt.getHours()-3);
-			appStartedAt.setMinutes(appStartedAt.getMinutes()-12);
-			//////
+            var appStartedAt = oModel.getProperty("/appStartedAt");
+            var dateFormat = DateFormat.getDateTimeInstance({relative: true});
 
 			var pages = [{
 					//header: "",
@@ -848,7 +845,8 @@ sap.ui.define(
 							value: appStartedAt.toLocaleString()
 						},{
 							label: "Running since",
-							value: moment().subtract(6, 'days').calendar()
+							//value: moment(appStartedAt).calendar()
+                            value: dateFormat.format(appStartedAt)
 						}]
 					}]
 				}];
