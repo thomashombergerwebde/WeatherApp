@@ -835,17 +835,14 @@ sap.ui.define(
             var dateFormat = DateFormat.getDateTimeInstance({relative: true});
 
 			var pages = [{
-					//header: "",
 					icon: "sap-icon://hint",
-					title: "information",
+					title: this.resourceBundle.getText("information"),
 					groups: [{
-						//heading: "App info",
 						elements: [{
-							label: "App started on",
+							label: this.resourceBundle.getText("appStartedAt"),
 							value: appStartedAt.toLocaleString()
 						},{
-							label: "Running since",
-							//value: moment(appStartedAt).calendar()
+							label: this.resourceBundle.getText("appRunningSince"),
                             value: dateFormat.format(appStartedAt)
 						}]
 					}]
