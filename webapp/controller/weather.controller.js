@@ -832,18 +832,21 @@ sap.ui.define(
 		setInfoQuickViewProperties: function (oModel) {
 
             var appStartedAt = oModel.getProperty("/appStartedAt");
-            var dateFormat = DateFormat.getDateTimeInstance({relative: true});
 
 			var pages = [{
 					icon: "sap-icon://hint",
 					title: this.resourceBundle.getText("information"),
 					groups: [{
 						elements: [{
+						/*
+							//formatted with dateFormate
 							label: this.resourceBundle.getText("appStarted"),
-							value: dateFormat.format(appStartedAt)
+							value: DateFormat.getDateTimeInstance({relative: true}).format(appStartedAt)
 						},{
-							label: this.resourceBundle.getText("appStarted"),
-							value: moment(appStartedAt).locale(navigator.language).fromNow(false)
+					 	*/
+					 		//formatted with moment.js
+							label: this.resourceBundle.getText("appRunningSince"),
+							value: moment(appStartedAt).locale(navigator.language).fromNow(true)
 						},{
 							label: this.resourceBundle.getText("appStartedAt"),
 							value: appStartedAt.toLocaleString()
