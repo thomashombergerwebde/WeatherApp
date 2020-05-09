@@ -854,7 +854,8 @@ sap.ui.define(
 							value: moment(appStartedAt).locale(navigator.language).fromNow(true)
 						},{
 							label: this.resourceBundle.getText("appStartedAt"),
-							value: appStartedAt.toLocaleString()
+							//value: appStartedAt.toLocaleString()
+							value: moment(appStartedAt).locale(navigator.language).format('LLLL')
 						}]
 					}]
 				}];
