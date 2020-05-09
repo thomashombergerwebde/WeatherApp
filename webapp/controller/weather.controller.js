@@ -843,18 +843,10 @@ sap.ui.define(
 					title: this.resourceBundle.getText("information"),
 					groups: [{
 						elements: [{
-						/*
-							//formatted with dateFormate
-							label: this.resourceBundle.getText("appStarted"),
-							value: DateFormat.getDateTimeInstance({relative: true}).format(appStartedAt)
-						},{
-					 	*/
-					 		//formatted with moment.js
 							label: this.resourceBundle.getText("appRunningSince"),
 							value: moment(appStartedAt).locale(navigator.language).fromNow(true)
 						},{
 							label: this.resourceBundle.getText("appStartedAt"),
-							//value: appStartedAt.toLocaleString()
 							value: moment(appStartedAt).locale(navigator.language).format('LLLL')
 						}]
 					}]
