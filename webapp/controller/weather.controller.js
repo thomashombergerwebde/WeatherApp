@@ -758,8 +758,8 @@ sap.ui.define(
 			oButton.$().attr('aria-haspopup', true);
 		},
 
-		openQuickView: function (oEvent, oModel) {
-			this.createPopover();
+		openQuickView: function (oEvent, oModel, fragment) {
+			this.createPopover(fragment);
 
 			this._oQuickView.setModel(oModel);
 
@@ -811,22 +811,22 @@ sap.ui.define(
 
 		pressIndoorTemperature: function (oEvent) {
 		    this.setQuickViewProperties(this.getView().getModel(), "/readingIndoorTemperature", this.resourceBundle.getText("temperatureDegree"), "sap-icon://temperature", this.resourceBundle.getText("temperatureIndoor"), this.resourceBundle.getText("temperature"));
-			this.openQuickView(oEvent, this.getView().getModel());
+			this.openQuickView(oEvent, this.getView().getModel(), "QuickView");
 		},
 
 		pressOutdoorTemperature: function (oEvent) {
 			this.setQuickViewProperties(this.getView().getModel(), "/readingOutdoorTemperature", this.resourceBundle.getText("temperatureDegree"), "sap-icon://temperature", this.resourceBundle.getText("temperatureOutdoor"), this.resourceBundle.getText("temperature"));
-			this.openQuickView(oEvent, this.getView().getModel());
+			this.openQuickView(oEvent, this.getView().getModel(), "QuickView");
 		},
 
 		pressIndoorHumidity: function (oEvent) {
 			this.setQuickViewProperties(this.getView().getModel(), "/readingIndoorHumidity", this.resourceBundle.getText("humidityPercent"), "sap-icon://blur", this.resourceBundle.getText("humidityIndoor"), this.resourceBundle.getText("humidity"));
-			this.openQuickView(oEvent, this.getView().getModel());
+			this.openQuickView(oEvent, this.getView().getModel(), "QuickView");
 		},
 
 		pressOutdoorHumidity: function (oEvent) {
 			this.setQuickViewProperties(this.getView().getModel(), "/readingOutdoorHumidity", this.resourceBundle.getText("humidityPercent"), "sap-icon://blur", this.resourceBundle.getText("humidityOutdoor"), this.resourceBundle.getText("humidity"));
-			this.openQuickView(oEvent, this.getView().getModel());
+			this.openQuickView(oEvent, this.getView().getModel(), "QuickView");
 		},
 
 		setInfoQuickViewProperties: function (oModel) {
@@ -858,15 +858,15 @@ sap.ui.define(
 
 		onPressInfo: function (oEvent) {
 			this.setInfoQuickViewProperties(this.getView().getModel());
-			this.openQuickView(oEvent, this.getView().getModel());
+			this.openQuickView(oEvent, this.getView().getModel(), "InfoQuickView");
 		},
 
-		createPopover: function() {
+		createPopover: function(fragment) {
 			if (this._oQuickView) {
 				this._oQuickView.destroy();
 			}
 
-			this._oQuickView = sap.ui.xmlfragment("homberger.weatherapp.view.QuickView", this);
+			this._oQuickView = sap.ui.xmlfragment("homberger.weatherapp.view." + fragment, this);
 			this.getView().addDependent(this._oQuickView);
 		},
 
