@@ -1,7 +1,7 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<QuickView id="quickView" pages="{ path : '/pages', templateShareable : 'true'}" navigate=".onNavigate" placement="PreferredRightOrFlip" width="180px">
+	<QuickView id="quickView" pages="{ path : '/pages', templateShareable : 'true'}" navigate=".onNavigate" placement="{/quickViewPlacement}" width="{/quickViewWidth}">
 		<QuickViewPage
 				pageId="{pageId}"
 				header="{header}"
