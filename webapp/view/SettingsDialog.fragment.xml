@@ -15,7 +15,7 @@
 					title="{i18n>settingsNextPictureChart}"
 					singleContainerFullSize="true" >
 					<f:content>
-						<VBox>
+						<VBox height="110px">
 							<HBox>
 								<core:Icon
 									src="sap-icon://picture"
@@ -49,7 +49,7 @@
 					title="{i18n>settingsChangeTemperatureColor}"
 					singleContainerFullSize="true">
 					<f:content>
-						<VBox>
+						<VBox height="110px">
 							<FlexBox alignItems="Center" justifyContent="Start">
 								<core:Icon
 									src="sap-icon://home"
@@ -84,7 +84,7 @@
 					title="{i18n>settingsStatusChangeHumidity}"
 					singleContainerFullSize="true">
 					<f:content>
-						<VBox>
+						<VBox height="110px">
 							<FlexBox alignItems="Center" justifyContent="Start">
 								<core:Icon
 									src="sap-icon://home"
