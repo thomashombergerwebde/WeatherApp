@@ -4,6 +4,8 @@
         <HBox>
             <core:Icon src="sap-icon://temperature" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text text="{i18n>outdoor}" class="sizeSmall sapUiTinyMarginEnd"/>
+            <core:Icon id="outdoorTemperatureErrorIcon" visible="{/readingOutdoorTemperatureErrorShow}" src="{/readingOutdoorTemperatureErrorIcon}" color="{/readingOutdoorTemperatureErrorIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
+            <Text id="outdoorTemperatureErrorMessage" text="{/readingOutdoorTemperatureErrorMessage}" visible="{/readingOutdoorTemperatureErrorShow}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <NumericContent
                 id="outdoorTemperature"
@@ -20,6 +22,8 @@
         <HBox>
             <core:Icon src="sap-icon://blur" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text text="{i18n>outdoor}" class="sizeSmall sapUiTinyMarginEnd"/>
+            <core:Icon id="outdoorHumidityErrorIcon" visible="{/readingOutdoorHumidityErrorShow}" src="{/readingOutdoorHumidityErrorIcon}" color="{/readingOutdoorHumidityErrorIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
+            <Text id="outdoorHumidityErrorMessage" text="{/readingOutdoorHumidityErrorMessage}" visible="{/readingOutdoorHumidityErrorShow}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <HBox class="sapUiLargeMarginBegin">
             <mc:RadialMicroChart
