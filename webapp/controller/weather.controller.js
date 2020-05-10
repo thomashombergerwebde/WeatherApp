@@ -274,7 +274,7 @@ sap.ui.define(
 
 		onOpenSelectPicturesDialog: function (oEvent) {
 			if (!this._oSelectPicturesDialog) {
-				this._oSelectPicturesDialog = sap.ui.xmlfragment("homberger.weatherapp.view.SelectPicturesDialog", this);
+				this._oSelectPicturesDialog = sap.ui.xmlfragment("homberger.weatherapp.view.fragment.SelectPicturesDialog", this);
 				this.getView().addDependent(this._oSelectPicturesDialog);
 			}
 
@@ -314,11 +314,11 @@ sap.ui.define(
                   "content-type": "text/html"
             };
 
-      $.ajax({
-          type: "GET",
-          url: sUrl,
-          headers: oHeader,
-          success: function(sHtml){
+			$.ajax({
+				type: "GET",
+				url: sUrl,
+				headers: oHeader,
+				success: function(sHtml){
 
 											var oModel = this.getView().getModel("images");
 											var aPictureFolder = [];
@@ -527,6 +527,40 @@ sap.ui.define(
 		//Sensor update
 		//----------------------------------------------------------------------------------------//
 
+		isReadingOutdated: function (timestampReading) {
+			var timestampDiff = new Date() - timestampReading;
+			return timestampDiff > 1800000;  //30 mins are outdated
+		},
+
+		isSignalWeak: function (signalQuality) {
+			return signalQuality < 20;
+		},
+
+		setErrorMessage: function(path, value) {
+
+			var errorShow = false;
+			var errorIcon = "sap-icon://message-error";
+			var errorIconColor = sap.ui.core.IconColor.Negative;
+			var errorMessage = "";
+
+			if(this.isReadingOutdated(value.timestamp)){
+				errorShow = true;
+				errorIcon = "sap-icon://message-error";
+				errorIconColor = sap.ui.core.IconColor.Negative;
+				errorMessage = this.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
+			} else if(this.isSignalWeak(value.signalquality)) {
+				errorShow = true;
+				errorIcon = "sap-icon://message-warning";
+				errorIconColor = sap.ui.core.IconColor.Critical;
+				errorMessage = this.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
+			}
+
+			this.getView().getModel().setProperty(path + "ErrorShow", errorShow);
+			this.getView().getModel().setProperty(path + "ErrorIcon", errorIcon);
+			this.getView().getModel().setProperty(path + "ErrorIconColor", errorIconColor);
+			this.getView().getModel().setProperty(path + "ErrorMessage", errorMessage);
+		},
+
 		readCurrentData: function(id, skip, top, success) {
 			var sUrl = sOdataServer + "/odata/readings?$orderby=timestamp desc&$filter=sensorid eq " + id + "&$skip=" + skip + "&$top=" + top;
 			odatajs.oData.read(sUrl, function(odata){
@@ -554,6 +588,9 @@ sap.ui.define(
 
 				//write new reading
 				that.getView().getModel().setProperty(path, odata.value[0]);
+
+				//check for error
+				that.setErrorMessage(path, odata.value[0]);
 			});
 		},
 
@@ -570,6 +607,9 @@ sap.ui.define(
 
 				//write new reading
 				that.getView().getModel().setProperty(path, odata.value[0]);
+
+				//check for error
+				that.setErrorMessage(path, odata.value[0]);
 			});
 		},
 
@@ -867,7 +907,7 @@ sap.ui.define(
 				this._oQuickView.destroy();
 			}
 
-			this._oQuickView = sap.ui.xmlfragment("homberger.weatherapp.view.QuickView", this);
+			this._oQuickView = sap.ui.xmlfragment("homberger.weatherapp.view.fragment.QuickView", this);
 			this.getView().addDependent(this._oQuickView);
 		},
 
@@ -883,7 +923,7 @@ sap.ui.define(
 		//----------------------------------------------------------------------------------------//
 		onOpenSettingsDialog: function (oEvent) {
 			if (!this._oSettingsDialog) {
-				this._oSettingsDialog = sap.ui.xmlfragment("homberger.weatherapp.view.SettingsDialog", this);
+				this._oSettingsDialog = sap.ui.xmlfragment("homberger.weatherapp.view.fragment.SettingsDialog", this);
 				this.getView().addDependent(this._oSettingsDialog);
 			}
 

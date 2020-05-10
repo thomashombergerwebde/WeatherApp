@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog
+		title="{i18n>selectPictureFolder}"
+		class="sapUiContentPadding" >
+		<content>
+			<MultiComboBox
+					items="{
+						path: 'images>/pictureFolder',
+						sorter: { path: 'shortText' }
+					}"
+					selectedKeys="{images>/selectedPictureFolderKeys}"
+					selectionFinish="onPictureFolderFinish"
+					width="500px">
+					<core:ListItem key="{images>id}" text="{images>shortText}"/>
+				</MultiComboBox>
+		</content>
+		<beginButton>
+			<Button text="{i18n>close}" press="onCloseSelectPictureFolderDialog" />
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -4,8 +4,8 @@
         <HBox>
             <core:Icon src="sap-icon://temperature" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text text="{i18n>indoor}" class="sizeSmall sapUiTinyMarginEnd"/>
-            <core:Icon id="indoorTemperatureIcon" src="sap-icon://message-error" color="sap.ui.core.IconColor.Negative" visible="false" class="sapUiTinyMarginEnd sizeSmall"/>
-            <Text id="indoorTemperatureInfo" class="sizeSmall sapUiTinyMarginEnd"/>
+            <core:Icon id="indoorTemperatureErrorIcon" visible="{/readingIndoorTemperatureErrorShow}" src="{/readingIndoorTemperatureErrorIcon}" color="{/readingIndoorTemperatureErrorIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
+            <Text id="indoorTemperatureErrorMessage" text="{/readingIndoorTemperatureErrorMessage}" visible="{/readingIndoorTemperatureErrorShow}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <NumericContent
                 id="indoorTemperature"
@@ -22,6 +22,8 @@
         <HBox>
             <core:Icon src="sap-icon://blur" class="sapUiTinyMarginEnd  sizeSmall"/>
             <Text text="{i18n>indoor}" class="sizeSmall sapUiTinyMarginEnd"/>
+            <core:Icon id="indoorHumidityErrorIcon" visible="{/readingIndoorHumidityErrorShow}" src="{/readingIndoorHumidityErrorIcon}" color="{/readingIndoorHumidityErrorIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
+            <Text id="indoorHumidityErrorMessage" text="{/readingIndoorHumidityErrorMessage}" visible="{/readingIndoorHumidityErrorShow}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <HBox class="sapUiLargeMarginBegin">
             <mc:RadialMicroChart
