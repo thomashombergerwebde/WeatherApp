@@ -527,15 +527,38 @@ sap.ui.define(
 		//Sensor update
 		//----------------------------------------------------------------------------------------//
 
+		isReadingOutdated: function (timestampReading) {
+			var timestampDiff = new Date() - timestampReading;
+			return timestampDiff > 1800000;  //30 mins are outdated
+		},
+
+		isSignalWeak: function (signalQuality) {
+			return signalQuality < 20;
+		},
+
 		setErrorMessage: function(path, value) {
 
-			var showError = false;
+			var errorShow = false;
+			var errorIcon = "sap-icon://message-error";
+			var errorIconColor = sap.ui.core.IconColor.Negative;
+			var errorMessage = "";
 
-			this.getView().getModel().setProperty(path + "ErrorShow", showError);
-			this.getView().getModel().setProperty(path + "ErrorIcon", "sap-icon://message-error");
-			this.getView().getModel().setProperty(path + "ErrorIconColor", sap.ui.core.IconColor.Negative);
-			this.getView().getModel().setProperty(path + "ErrorMessage", "my error message");
+			if(this.isReadingOutdated(value.timestamp)){
+				errorShow = true;
+				errorIcon = "sap-icon://message-error";
+				errorIconColor = sap.ui.core.IconColor.Negative;
+				errorMessage = this.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
+			} else if(this.isSignalWeak(value.signalquality)) {
+				errorShow = true;
+				errorIcon = "sap-icon://message-warning";
+				errorIconColor = sap.ui.core.IconColor.Critical;
+				errorMessage = this.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
+			}
 
+			this.getView().getModel().setProperty(path + "ErrorShow", errorShow);
+			this.getView().getModel().setProperty(path + "ErrorIcon", errorIcon);
+			this.getView().getModel().setProperty(path + "ErrorIconColor", errorIconColor);
+			this.getView().getModel().setProperty(path + "ErrorMessage", errorMessage);
 		},
 
 		readCurrentData: function(id, skip, top, success) {
