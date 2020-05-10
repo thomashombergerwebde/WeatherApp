@@ -314,11 +314,11 @@ sap.ui.define(
                   "content-type": "text/html"
             };
 
-      $.ajax({
-          type: "GET",
-          url: sUrl,
-          headers: oHeader,
-          success: function(sHtml){
+			$.ajax({
+				type: "GET",
+				url: sUrl,
+				headers: oHeader,
+				success: function(sHtml){
 
 											var oModel = this.getView().getModel("images");
 											var aPictureFolder = [];
@@ -527,6 +527,17 @@ sap.ui.define(
 		//Sensor update
 		//----------------------------------------------------------------------------------------//
 
+		setErrorMessage: function(path, value) {
+
+			var showError = false;
+
+			this.getView().getModel().setProperty(path + "ErrorShow", showError);
+			this.getView().getModel().setProperty(path + "ErrorIcon", "sap-icon://message-error");
+			this.getView().getModel().setProperty(path + "ErrorIconColor", sap.ui.core.IconColor.Negative);
+			this.getView().getModel().setProperty(path + "ErrorMessage", "my error message");
+
+		},
+
 		readCurrentData: function(id, skip, top, success) {
 			var sUrl = sOdataServer + "/odata/readings?$orderby=timestamp desc&$filter=sensorid eq " + id + "&$skip=" + skip + "&$top=" + top;
 			odatajs.oData.read(sUrl, function(odata){
@@ -554,6 +565,9 @@ sap.ui.define(
 
 				//write new reading
 				that.getView().getModel().setProperty(path, odata.value[0]);
+
+				//check for error
+				that.setErrorMessage(path, odata.value[0]);
 			});
 		},
 
@@ -570,6 +584,9 @@ sap.ui.define(
 
 				//write new reading
 				that.getView().getModel().setProperty(path, odata.value[0]);
+
+				//check for error
+				that.setErrorMessage(path, odata.value[0]);
 			});
 		},
 
