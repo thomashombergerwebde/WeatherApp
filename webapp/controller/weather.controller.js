@@ -274,7 +274,7 @@ sap.ui.define(
 
 		onOpenSelectPicturesDialog: function (oEvent) {
 			if (!this._oSelectPicturesDialog) {
-				this._oSelectPicturesDialog = sap.ui.xmlfragment("homberger.weatherapp.view.SelectPicturesDialog", this);
+				this._oSelectPicturesDialog = sap.ui.xmlfragment("homberger.weatherapp.view.fragment.SelectPicturesDialog", this);
 				this.getView().addDependent(this._oSelectPicturesDialog);
 			}
 
@@ -867,7 +867,7 @@ sap.ui.define(
 				this._oQuickView.destroy();
 			}
 
-			this._oQuickView = sap.ui.xmlfragment("homberger.weatherapp.view.QuickView", this);
+			this._oQuickView = sap.ui.xmlfragment("homberger.weatherapp.view.fragment.QuickView", this);
 			this.getView().addDependent(this._oQuickView);
 		},
 
@@ -883,7 +883,7 @@ sap.ui.define(
 		//----------------------------------------------------------------------------------------//
 		onOpenSettingsDialog: function (oEvent) {
 			if (!this._oSettingsDialog) {
-				this._oSettingsDialog = sap.ui.xmlfragment("homberger.weatherapp.view.SettingsDialog", this);
+				this._oSettingsDialog = sap.ui.xmlfragment("homberger.weatherapp.view.fragment.SettingsDialog", this);
 				this.getView().addDependent(this._oSettingsDialog);
 			}
 
