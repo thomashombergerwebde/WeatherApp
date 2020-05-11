@@ -2,8 +2,6 @@
     <!-- Outdoor temperature -->
     <VBox class="sapUiTinyMargin sapUiMediumMarginEnd">
         <HBox>
-            <!--<core:Icon src="sap-icon://temperature" class="sapUiTinyMarginEnd sizeSmall"/>-->
-            <!--<Text text="{i18n>outdoor}" class="sizeSmall sapUiTinyMarginEnd"/>-->
             <core:Icon id="outdoorTemperatureIcon" visible="true" src="{/readingOutdoorTemperatureIcon}" color="{/readingOutdoorTemperatureIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text id="outdoorTemperatureText" visible="true" text="{/readingOutdoorTemperatureText}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
@@ -20,8 +18,6 @@
     <!-- Outdoor humidity -->
     <VBox class="sapUiTinyMargin">
         <HBox>
-            <!--<core:Icon src="sap-icon://blur" class="sapUiTinyMarginEnd sizeSmall"/>-->
-            <!--<Text text="{i18n>outdoor}" class="sizeSmall sapUiTinyMarginEnd"/>-->
             <core:Icon id="outdoorHumidityIcon" visible="true" src="{/readingOutdoorHumidityIcon}" color="{/readingOutdoorHumidityIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text id="outdoorHumidityText" visible="true" text="{/readingOutdoorHumidityText}"  class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>

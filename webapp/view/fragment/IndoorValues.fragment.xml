@@ -2,8 +2,6 @@
     <!-- Indoor temperature -->
     <VBox class="sapUiTinyMargin sapUiMediumMarginEnd">
         <HBox>
-            <!--<core:Icon src="sap-icon://temperature" class="sapUiTinyMarginEnd sizeSmall"/>-->
-            <!--<Text text="{i18n>indoor}" class="sizeSmall sapUiTinyMarginEnd"/>-->
             <core:Icon id="indoorTemperatureIcon" visible="true" src="{/readingIndoorTemperatureIcon}" color="{/readingIndoorTemperatureIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text id="indoorTemperatureText" visible="true" text="{/readingIndoorTemperatureText}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
@@ -20,8 +18,6 @@
     <!-- Indoor humidity -->
     <VBox class="sapUiTinyMargin">
         <HBox>
-            <!--<core:Icon src="sap-icon://blur" class="sapUiTinyMarginEnd  sizeSmall"/>-->
-            <!--<Text text="{i18n>indoor}" class="sizeSmall sapUiTinyMarginEnd"/>-->
             <core:Icon id="indoorHumidityIcon" visible="true" src="{/readingIndoorHumidityIcon}" color="{/readingIndoorHumidityIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text id="indoorHumidityText" visible="true" text="{/readingIndoorHumidityText}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
