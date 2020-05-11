@@ -2,8 +2,8 @@
     <!-- Outdoor temperature -->
     <VBox class="sapUiTinyMargin sapUiMediumMarginEnd">
         <HBox>
-            <core:Icon id="outdoorTemperatureIcon" visible="true" src="{/readingOutdoorTemperatureIcon}" color="{/readingOutdoorTemperatureIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
-            <Text id="outdoorTemperatureText" visible="true" text="{/readingOutdoorTemperatureText}" class="sizeSmall sapUiTinyMarginEnd"/>
+            <core:Icon id="outdoorTemperatureIcon" src="{/readingOutdoorTemperatureIcon}" color="{/readingOutdoorTemperatureIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
+            <Text id="outdoorTemperatureText" text="{/readingOutdoorTemperatureText}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <NumericContent
                 id="outdoorTemperature"
@@ -18,8 +18,8 @@
     <!-- Outdoor humidity -->
     <VBox class="sapUiTinyMargin">
         <HBox>
-            <core:Icon id="outdoorHumidityIcon" visible="true" src="{/readingOutdoorHumidityIcon}" color="{/readingOutdoorHumidityIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
-            <Text id="outdoorHumidityText" visible="true" text="{/readingOutdoorHumidityText}"  class="sizeSmall sapUiTinyMarginEnd"/>
+            <core:Icon id="outdoorHumidityIcon" src="{/readingOutdoorHumidityIcon}" color="{/readingOutdoorHumidityIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
+            <Text id="outdoorHumidityText" text="{/readingOutdoorHumidityText}"  class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <HBox class="sapUiLargeMarginBegin">
             <mc:RadialMicroChart
