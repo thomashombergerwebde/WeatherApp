@@ -15,7 +15,7 @@
 								  title="{i18n>settingsNextPictureChart}"
 								  singleContainerFullSize="true" >
 						<f:content>
-							<VBox height="110px">
+							<VBox height="120px">
 								<HBox>
 									<core:Icon
 											src="sap-icon://picture"
@@ -43,15 +43,13 @@
 							</VBox>
 						</f:content>
 					</f:SimpleForm>
-				</IconTabFilter>
-				<IconTabFilter text="{i18n>temperature}">
 					<f:SimpleForm id="SimpleForm2"
 								  editable="true"
 								  layout="ResponsiveGridLayout"
 								  title="{i18n>settingsChangeTemperatureColor}"
 								  singleContainerFullSize="true">
 						<f:content>
-							<VBox height="110px">
+							<VBox height="120px">
 								<FlexBox alignItems="Center" justifyContent="Start">
 									<core:Icon
 											src="sap-icon://home"
@@ -79,15 +77,13 @@
 							</VBox>
 						</f:content>
 					</f:SimpleForm>
-				</IconTabFilter>
-				<IconTabFilter text="{i18n>humidity}">
 					<f:SimpleForm id="SimpleForm3"
 								  editable="true"
 								  layout="ResponsiveGridLayout"
 								  title="{i18n>settingsStatusChangeHumidity}"
 								  singleContainerFullSize="true">
 						<f:content>
-							<VBox>
+							<VBox height="120px">
 								<FlexBox alignItems="Center" justifyContent="Start">
 									<core:Icon
 											src="sap-icon://home"
@@ -112,6 +108,61 @@
 										<ResponsiveScale tickmarksBetweenLabels="10"/>
 									</RangeSlider>
 								</FlexBox>
+							</VBox>
+						</f:content>
+					</f:SimpleForm>
+				</IconTabFilter>
+				<IconTabFilter text="{i18n>errorMessages}">
+					<f:SimpleForm id="SimpleForm4"
+								  editable="true"
+								  layout="ResponsiveGridLayout"
+								  title="{i18n>showErrorMessage}"
+								  singleContainerFullSize="true">
+						<f:content>
+							<VBox>
+								<!--<Text text="Show error message in case of ..."/>-->
+								<FlexBox alignItems="Center" justifyContent="Center">
+									<Label labelFor="switch1" text="{i18n>inCaseOfOutdatedValues}" class="sapUiTinyMarginEnd"/>
+									<Switch id="switch1"  state="true" customTextOn="{i18n>yes}" customTextOff="{i18n>no}">
+										<layoutData>
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									</Switch>
+								</FlexBox>
+								<FlexBox alignItems="Center" justifyContent="Start">
+									<Slider id="sliderOutdatedReadings" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+										<ResponsiveScale tickmarksBetweenLabels="2"/>
+									</Slider>
+								</FlexBox>
+								<VBox height="50px"/>
+								<FlexBox alignItems="Center" justifyContent="Start">
+									<Label labelFor="switch2" text="{i18n>inCaseOfWeakSignal}" class="sapUiTinyMarginEnd"/>
+									<Switch id="switch2"  state="true" customTextOn="{i18n>yes}" customTextOff="{i18n>no}">
+										<layoutData>
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									</Switch>
+								</FlexBox>
+								<FlexBox alignItems="Center" justifyContent="Start">
+									<Slider id="sliderWeakSignal" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+										<ResponsiveScale tickmarksBetweenLabels="2"/>
+									</Slider>
+								</FlexBox>
+								<VBox height="50px"/>
+								<FlexBox alignItems="Center" justifyContent="Start">
+									<Label labelFor="switch3" text="{i18n>inCaseOfImplausibleTemperatureValues}" class="sapUiTinyMarginEnd"/>
+									<Switch id="switch3"  state="true" customTextOn="{i18n>yes}" customTextOff="{i18n>no}">
+										<layoutData>
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									</Switch>
+								</FlexBox>
+								<FlexBox alignItems="Center" justifyContent="Start">
+									<Slider id="sliderImplausibleTemperatureValues" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+										<ResponsiveScale tickmarksBetweenLabels="2"/>
+									</Slider>
+								</FlexBox>
+								<VBox height="50px"/>
 							</VBox>
 						</f:content>
 					</f:SimpleForm>
