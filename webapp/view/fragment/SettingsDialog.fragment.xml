@@ -1,119 +1,123 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core"
+	xmlns:uxap="sap.uxap."
 	xmlns:l="sap.ui.layout"
 	xmlns:u="sap.ui.unified"
 	xmlns:f="sap.ui.layout.form">
-	<Dialog
-		title="{i18n>settings}"
-		class="sapUiContentPadding" >
-		<content>
-			<VBox class="sapUiSmallMargin">
-				<f:SimpleForm id="SimpleForm1"
-					editable="true"
-					layout="ResponsiveGridLayout"
-					title="{i18n>settingsNextPictureChart}"
-					singleContainerFullSize="true" >
-					<f:content>
-						<VBox height="110px">
-							<HBox>
-								<core:Icon
-									src="sap-icon://picture"
-									class="iconSize">
-									<core:layoutData>
-										<FlexItemData growFactor="1" />
-									</core:layoutData>
-								</core:Icon>
-								<Slider id="sliderMovePictureCarousel" change="onSliderMovePictureCarousel" value="{settings>/show/picture/value}" min="{settings>/show/picture/min}" max="{settings>/show/picture/max}" enableTickmarks="true" class="slider" width="100%">
-									<ResponsiveScale tickmarksBetweenLabels="10"/>
-								</Slider>
-							</HBox>
-							<HBox>
-								<core:Icon
-									src="sap-icon://line-chart"
-									class="iconSize">
-									<core:layoutData>
-										<FlexItemData growFactor="1" />
-									</core:layoutData>
-								</core:Icon>
-								<Slider id="sliderMoveChartCarousel" change="onSliderMoveChartCarousel" value="{settings>/show/chart/value}" min="{settings>/show/chart/min}" max="{settings>/show/chart/max}" enableTickmarks="true" class="slider" width="100%">
-									<ResponsiveScale tickmarksBetweenLabels="10"/>
-								</Slider>
-							</HBox>
-						</VBox>
-					</f:content>
-				</f:SimpleForm>
-				<f:SimpleForm id="SimpleForm2"
-					editable="true"
-					layout="ResponsiveGridLayout"
-					title="{i18n>settingsChangeTemperatureColor}"
-					singleContainerFullSize="true">
-					<f:content>
-						<VBox height="110px">
-							<FlexBox alignItems="Center" justifyContent="Start">
-								<core:Icon
-									src="sap-icon://home"
-									class="iconSize sapUiSmallMarginEnd">
-									<core:layoutData>
-										<FlexItemData growFactor="1" />
-									</core:layoutData>
-								</core:Icon>
-								<Slider id="sliderIndoorTempChange" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
-									<ResponsiveScale tickmarksBetweenLabels="2"/>
-								</Slider>
-							</FlexBox>
-							<FlexBox alignItems="Center" justifyContent="Start">
-								<core:Icon
-									src="sap-icon://card"
-									class="iconSize sapUiSmallMarginEnd">
-									<core:layoutData>
-										<FlexItemData growFactor="1" />
-									</core:layoutData>
-								</core:Icon>
-								<Slider id="sliderOutdoorTempChange" change="onSliderChangeTemperatureOutdoorColor" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">
-									<ResponsiveScale tickmarksBetweenLabels="2"/>
-								</Slider>
-
-							</FlexBox>
-						</VBox>
-					</f:content>
-				</f:SimpleForm>
-				<f:SimpleForm id="SimpleForm3"
-					editable="true"
-					layout="ResponsiveGridLayout"
-					title="{i18n>settingsStatusChangeHumidity}"
-					singleContainerFullSize="true">
-					<f:content>
-						<VBox height="110px">
-							<FlexBox alignItems="Center" justifyContent="Start">
-								<core:Icon
-									src="sap-icon://home"
-									class="iconSize sapUiSmallMarginEnd">
-									<core:layoutData>
-										<FlexItemData growFactor="1" />
-									</core:layoutData>
-								</core:Icon>
-								<RangeSlider  id="rangeSliderIndoorHumidityStatusChange" liveChange="onSliderChangeHumidityIndoorColor" min="{settings>/threshold/humidity/indoor/min}" max="{settings>/threshold/humidity/indoor/max}" range="{settings>/threshold/humidity/indoor/range}" enableTickmarks="true" class="slider">
-									<ResponsiveScale tickmarksBetweenLabels="10"/>
-								</RangeSlider>
-							</FlexBox>
-							<FlexBox alignItems="Center" justifyContent="Start">
-								<core:Icon
-									src="sap-icon://card"
-									class="iconSize sapUiSmallMarginEnd">
-									<core:layoutData>
-										<FlexItemData growFactor="1" />
-									</core:layoutData>
-								</core:Icon>
-								<RangeSlider  id="rangeSliderOutdoorHumidityStatusChange" liveChange="onSliderChangeHumidityOutdoorColor" min="{settings>/threshold/humidity/outdoor/min}" max="{settings>/threshold/humidity/outdoor/max}" range="{settings>/threshold/humidity/outdoor/range}" enableTickmarks="true" class="slider">
-									<ResponsiveScale tickmarksBetweenLabels="10"/>
-								</RangeSlider>
-							</FlexBox>
-						</VBox>
-					</f:content>
-				</f:SimpleForm>
-			</VBox>
-		</content>
+	<Dialog title="{i18n>settings}" class="sapUiContentPadding">
+		<IconTabBar id="idIconTabBar" upperCase="false" expandable="false" class="sapUiResponsiveContentPadding">
+			<items>
+				<IconTabFilter text="{i18n>picturesAndCharts}">
+					<f:SimpleForm id="SimpleForm1"
+								  editable="true"
+								  layout="ResponsiveGridLayout"
+								  title="{i18n>settingsNextPictureChart}"
+								  singleContainerFullSize="true" >
+						<f:content>
+							<VBox height="110px">
+								<HBox>
+									<core:Icon
+											src="sap-icon://picture"
+											class="iconSize">
+										<core:layoutData>
+											<FlexItemData growFactor="1" />
+										</core:layoutData>
+									</core:Icon>
+									<Slider id="sliderMovePictureCarousel" change="onSliderMovePictureCarousel" value="{settings>/show/picture/value}" min="{settings>/show/picture/min}" max="{settings>/show/picture/max}" enableTickmarks="true" class="slider" width="100%">
+										<ResponsiveScale tickmarksBetweenLabels="10"/>
+									</Slider>
+								</HBox>
+								<HBox>
+									<core:Icon
+											src="sap-icon://line-chart"
+											class="iconSize">
+										<core:layoutData>
+											<FlexItemData growFactor="1" />
+										</core:layoutData>
+									</core:Icon>
+									<Slider id="sliderMoveChartCarousel" change="onSliderMoveChartCarousel" value="{settings>/show/chart/value}" min="{settings>/show/chart/min}" max="{settings>/show/chart/max}" enableTickmarks="true" class="slider" width="100%">
+										<ResponsiveScale tickmarksBetweenLabels="10"/>
+									</Slider>
+								</HBox>
+							</VBox>
+						</f:content>
+					</f:SimpleForm>
+				</IconTabFilter>
+				<IconTabFilter text="{i18n>temperature}">
+					<f:SimpleForm id="SimpleForm2"
+								  editable="true"
+								  layout="ResponsiveGridLayout"
+								  title="{i18n>settingsChangeTemperatureColor}"
+								  singleContainerFullSize="true">
+						<f:content>
+							<VBox height="110px">
+								<FlexBox alignItems="Center" justifyContent="Start">
+									<core:Icon
+											src="sap-icon://home"
+											class="iconSize sapUiSmallMarginEnd">
+										<core:layoutData>
+											<FlexItemData growFactor="1" />
+										</core:layoutData>
+									</core:Icon>
+									<Slider id="sliderIndoorTempChange" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+										<ResponsiveScale tickmarksBetweenLabels="2"/>
+									</Slider>
+								</FlexBox>
+								<FlexBox alignItems="Center" justifyContent="Start">
+									<core:Icon
+											src="sap-icon://card"
+											class="iconSize sapUiSmallMarginEnd">
+										<core:layoutData>
+											<FlexItemData growFactor="1" />
+										</core:layoutData>
+									</core:Icon>
+									<Slider id="sliderOutdoorTempChange" change="onSliderChangeTemperatureOutdoorColor" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">
+										<ResponsiveScale tickmarksBetweenLabels="2"/>
+									</Slider>
+								</FlexBox>
+							</VBox>
+						</f:content>
+					</f:SimpleForm>
+				</IconTabFilter>
+				<IconTabFilter text="{i18n>humidity}">
+					<f:SimpleForm id="SimpleForm3"
+								  editable="true"
+								  layout="ResponsiveGridLayout"
+								  title="{i18n>settingsStatusChangeHumidity}"
+								  singleContainerFullSize="true">
+						<f:content>
+							<VBox>
+								<FlexBox alignItems="Center" justifyContent="Start">
+									<core:Icon
+											src="sap-icon://home"
+											class="iconSize sapUiSmallMarginEnd">
+										<core:layoutData>
+											<FlexItemData growFactor="1" />
+										</core:layoutData>
+									</core:Icon>
+									<RangeSlider  id="rangeSliderIndoorHumidityStatusChange" liveChange="onSliderChangeHumidityIndoorColor" min="{settings>/threshold/humidity/indoor/min}" max="{settings>/threshold/humidity/indoor/max}" range="{settings>/threshold/humidity/indoor/range}" enableTickmarks="true" class="slider">
+										<ResponsiveScale tickmarksBetweenLabels="10"/>
+									</RangeSlider>
+								</FlexBox>
+								<FlexBox alignItems="Center" justifyContent="Start">
+									<core:Icon
+											src="sap-icon://card"
+											class="iconSize sapUiSmallMarginEnd">
+										<core:layoutData>
+											<FlexItemData growFactor="1" />
+										</core:layoutData>
+									</core:Icon>
+									<RangeSlider  id="rangeSliderOutdoorHumidityStatusChange" liveChange="onSliderChangeHumidityOutdoorColor" min="{settings>/threshold/humidity/outdoor/min}" max="{settings>/threshold/humidity/outdoor/max}" range="{settings>/threshold/humidity/outdoor/range}" enableTickmarks="true" class="slider">
+										<ResponsiveScale tickmarksBetweenLabels="10"/>
+									</RangeSlider>
+								</FlexBox>
+							</VBox>
+						</f:content>
+					</f:SimpleForm>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
 		<beginButton>
 			<Button text="{i18n>close}" press="onCloseSettingsDialog" />
 		</beginButton>
