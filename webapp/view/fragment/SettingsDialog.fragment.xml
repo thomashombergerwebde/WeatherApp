@@ -122,12 +122,12 @@
 							<VBox>
 								<!--<Text text="Show error message in case of ..."/>-->
 								<FlexBox alignItems="Center" justifyContent="Center">
-									<Label labelFor="switch1" text="{i18n>inCaseOfOutdatedValues}" class="sapUiTinyMarginEnd"/>
 									<Switch id="switch1"  state="true" customTextOn="{i18n>yes}" customTextOff="{i18n>no}">
 										<layoutData>
 											<FlexItemData growFactor="1" />
 										</layoutData>
 									</Switch>
+                                    <Label labelFor="switch1" text="{i18n>inCaseOfOutdatedValues}" textAlign="Left" class="sapUiTinyMarginEnd"/>
 								</FlexBox>
 								<FlexBox alignItems="Center" justifyContent="Start">
 									<Slider id="sliderOutdatedReadings" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
