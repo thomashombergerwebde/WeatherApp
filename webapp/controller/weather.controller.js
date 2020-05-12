@@ -1027,6 +1027,15 @@ sap.ui.define(
 					source: "weather"
 				});
 			}
+		},
+
+		onNavToSettings: function(){
+			if(this.oRouter){
+				//Update JSON model
+				this.oRouter.navTo("settings",  {
+					source: "weather"
+				});
+			}
 		}
 
 	});
