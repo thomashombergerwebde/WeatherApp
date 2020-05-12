@@ -74,9 +74,10 @@
 					tooltip="{i18n>pictures}"
 					class="sapUiHideOnPhone"
 				/>
+				<!--press="onOpenSettingsDialog"-->
 				<Button
 					icon="sap-icon://customize"
-					press="onOpenSettingsDialog"
+					press="onNavToSettings"
 					tooltip="{i18n>settings}"
 					class="sapUiHideOnPhone"
 				/>
