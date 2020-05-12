@@ -107,7 +107,12 @@
 			  "pattern": "imageB/{source}",
 			  "name": "imageB",
 			  "target": "imageB"
-		  	}
+		  	},
+  		    {
+				  "pattern": "settings/{source}",
+				  "name": "settings",
+				  "target": "settings"
+			  }
 		  ],
 		  "targets": {
 			"weather": {
@@ -124,7 +129,12 @@
 			  "viewId": "imageB",
 			  "viewName": "imageB",
 			  "transition": "flip"
-			}
+			},
+			  "settings": {
+				  "viewId": "settings",
+				  "viewName": "settings",
+				  "transition": "flip"
+			  }
 		  }
 	  },
 		"resources": {
