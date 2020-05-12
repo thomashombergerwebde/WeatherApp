@@ -1,0 +1,154 @@
+<mvc:View
+	controllerName="homberger.weatherapp.controller.settings"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:uxap="sap.uxap"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form">
+	<Page id="pageSettings" title="{i18n>settings}" enableScrolling="false" backgroundDesign="Solid" showHeader="false" showSubHeader="false">
+		<uxap:ObjectPageLayout id="ObjectPageLayout" showFooter="true" upperCaseAnchorBar="false">
+			<uxap:headerTitle>
+				<uxap:ObjectPageDynamicHeaderTitle>
+					<uxap:expandedHeading>
+						<Title text="{i18n>settings}"/>
+					</uxap:expandedHeading>
+				</uxap:ObjectPageDynamicHeaderTitle>
+			</uxap:headerTitle>
+			<uxap:sections>
+				<uxap:ObjectPageSection title="">
+					<uxap:subSections>
+						<uxap:ObjectPageSubSection title="{i18n>picturesCharts}" mode="Expanded" id="Section2">
+							<uxap:blocks>
+								<f:SimpleForm id="SimpleForm1"
+											  editable="true"
+											  layout="ResponsiveGridLayout"
+											  title="{i18n>settingsNextPictureChart}"
+											  singleContainerFullSize="true" >
+									<f:content>
+										<VBox height="110px">
+											<HBox>
+												<core:Icon
+														src="sap-icon://picture"
+														class="iconSize">
+													<core:layoutData>
+														<FlexItemData growFactor="1" />
+													</core:layoutData>
+												</core:Icon>
+												<Slider id="sliderMovePictureCarousel" change="onSliderMovePictureCarousel" value="{settings>/show/picture/value}" min="{settings>/show/picture/min}" max="{settings>/show/picture/max}" enableTickmarks="true" class="slider" width="100%">
+													<ResponsiveScale tickmarksBetweenLabels="10"/>
+												</Slider>
+											</HBox>
+											<HBox>
+												<core:Icon
+														src="sap-icon://line-chart"
+														class="iconSize">
+													<core:layoutData>
+														<FlexItemData growFactor="1" />
+													</core:layoutData>
+												</core:Icon>
+												<Slider id="sliderMoveChartCarousel" change="onSliderMoveChartCarousel" value="{settings>/show/chart/value}" min="{settings>/show/chart/min}" max="{settings>/show/chart/max}" enableTickmarks="true" class="slider" width="100%">
+													<ResponsiveScale tickmarksBetweenLabels="10"/>
+												</Slider>
+											</HBox>
+										</VBox>
+									</f:content>
+								</f:SimpleForm>
+							</uxap:blocks>
+						</uxap:ObjectPageSubSection>
+					</uxap:subSections>
+				</uxap:ObjectPageSection>
+				<uxap:ObjectPageSection title="my section 3">
+					<uxap:subSections>
+						<uxap:ObjectPageSubSection title="{i18n>temperatureColor}" mode="Expanded" id="Section3">
+							<uxap:blocks>
+								<f:SimpleForm id="SimpleForm2"
+											  editable="true"
+											  layout="ResponsiveGridLayout"
+											  title="{i18n>settingsChangeTemperatureColor}"
+											  singleContainerFullSize="true">
+									<f:content>
+										<VBox height="110px">
+											<FlexBox alignItems="Center" justifyContent="Start">
+												<core:Icon
+														src="sap-icon://home"
+														class="iconSize sapUiSmallMarginEnd">
+													<core:layoutData>
+														<FlexItemData growFactor="1" />
+													</core:layoutData>
+												</core:Icon>
+												<Slider id="sliderIndoorTempChange" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+													<ResponsiveScale tickmarksBetweenLabels="2"/>
+												</Slider>
+											</FlexBox>
+											<FlexBox alignItems="Center" justifyContent="Start">
+												<core:Icon
+														src="sap-icon://card"
+														class="iconSize sapUiSmallMarginEnd">
+													<core:layoutData>
+														<FlexItemData growFactor="1" />
+													</core:layoutData>
+												</core:Icon>
+												<Slider id="sliderOutdoorTempChange" change="onSliderChangeTemperatureOutdoorColor" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">
+													<ResponsiveScale tickmarksBetweenLabels="2"/>
+												</Slider>
+
+											</FlexBox>
+										</VBox>
+									</f:content>
+								</f:SimpleForm>
+							</uxap:blocks>
+						</uxap:ObjectPageSubSection>
+					</uxap:subSections>
+				</uxap:ObjectPageSection>
+				<uxap:ObjectPageSection title="my section 4">
+					<uxap:subSections>
+						<uxap:ObjectPageSubSection title="{i18n>humidityColor}" mode="Expanded" id="Section4">
+							<uxap:blocks>
+								<f:SimpleForm id="SimpleForm3"
+											  editable="true"
+											  layout="ResponsiveGridLayout"
+											  title="{i18n>settingsStatusChangeHumidity}"
+											  singleContainerFullSize="true">
+									<f:content>
+										<VBox height="110px">
+											<FlexBox alignItems="Center" justifyContent="Start">
+												<core:Icon
+														src="sap-icon://home"
+														class="iconSize sapUiSmallMarginEnd">
+													<core:layoutData>
+														<FlexItemData growFactor="1" />
+													</core:layoutData>
+												</core:Icon>
+												<RangeSlider  id="rangeSliderIndoorHumidityStatusChange" liveChange="onSliderChangeHumidityIndoorColor" min="{settings>/threshold/humidity/indoor/min}" max="{settings>/threshold/humidity/indoor/max}" range="{settings>/threshold/humidity/indoor/range}" enableTickmarks="true" class="slider">
+													<ResponsiveScale tickmarksBetweenLabels="10"/>
+												</RangeSlider>
+											</FlexBox>
+											<FlexBox alignItems="Center" justifyContent="Start">
+												<core:Icon
+														src="sap-icon://card"
+														class="iconSize sapUiSmallMarginEnd">
+													<core:layoutData>
+														<FlexItemData growFactor="1" />
+													</core:layoutData>
+												</core:Icon>
+												<RangeSlider  id="rangeSliderOutdoorHumidityStatusChange" liveChange="onSliderChangeHumidityOutdoorColor" min="{settings>/threshold/humidity/outdoor/min}" max="{settings>/threshold/humidity/outdoor/max}" range="{settings>/threshold/humidity/outdoor/range}" enableTickmarks="true" class="slider">
+													<ResponsiveScale tickmarksBetweenLabels="10"/>
+												</RangeSlider>
+											</FlexBox>
+										</VBox>
+									</f:content>
+								</f:SimpleForm>
+							</uxap:blocks>
+						</uxap:ObjectPageSubSection>
+					</uxap:subSections>
+				</uxap:ObjectPageSection>
+			</uxap:sections>
+			<uxap:footer>
+				<OverflowToolbar>
+					<ToolbarSpacer />
+					<Button text="Close" press="onNavToWeather"/>
+				</OverflowToolbar>
+			</uxap:footer>
+		</uxap:ObjectPageLayout>
+	</Page>
+</mvc:View>
