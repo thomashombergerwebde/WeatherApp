@@ -929,6 +929,8 @@ sap.ui.define(
 		//----------------------------------------------------------------------------------------//
 		//Settings Dialog
 		//----------------------------------------------------------------------------------------//
+
+		/*
 		onOpenSettingsDialog: function (oEvent) {
 			if (!this._oSettingsDialog) {
 				this._oSettingsDialog = sap.ui.xmlfragment("homberger.weatherapp.view.fragment.SettingsDialog", this);
@@ -947,6 +949,7 @@ sap.ui.define(
 
 			this._oSettingsDialog.close();
 		},
+		*/
 
 		onSliderMovePictureCarousel: function (oEvent) {
 
@@ -1032,6 +1035,15 @@ sap.ui.define(
 				clearInterval(this.movePictureCarousel);
 				clearInterval(this.moveChartCarousel);
 				this.oRouter.navTo("imageA",  {
+					source: "weather"
+				});
+			}
+		},
+
+		onNavToSettings: function(){
+			if(this.oRouter){
+				//Update JSON model
+				this.oRouter.navTo("settings",  {
 					source: "weather"
 				});
 			}
