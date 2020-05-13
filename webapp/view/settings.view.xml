@@ -91,7 +91,6 @@
 												<Slider id="sliderOutdoorTempChange" change="onSliderChangeTemperatureOutdoorColor" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">
 													<ResponsiveScale tickmarksBetweenLabels="2"/>
 												</Slider>
-
 											</FlexBox>
 										</VBox>
 									</f:content>
