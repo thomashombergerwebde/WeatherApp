@@ -80,12 +80,22 @@ sap.ui.define(
 				settings = JSON.parse(settings);
 				defaultSettings.show.chart.value = settings.show.chart.value;
 				defaultSettings.show.picture.value = settings.show.picture.value;
+				defaultSettings.threshold.temperature.indoor.min = settings.threshold.temperature.indoor.min;
+				defaultSettings.threshold.temperature.indoor.max = settings.threshold.temperature.indoor.max;
 				defaultSettings.threshold.temperature.indoor.value = settings.threshold.temperature.indoor.value;
+				defaultSettings.threshold.temperature.outdoor.min = settings.threshold.temperature.outdoor.min;
+				defaultSettings.threshold.temperature.outdoor.max = settings.threshold.temperature.outdoor.max;
 				defaultSettings.threshold.temperature.outdoor.value = settings.threshold.temperature.outdoor.value;
+
 				defaultSettings.threshold.humidity.indoor.min = settings.threshold.humidity.indoor.min;
 				defaultSettings.threshold.humidity.indoor.max = settings.threshold.humidity.indoor.max;
+				defaultSettings.threshold.humidity.indoor.range[0] = settings.threshold.humidity.indoor.range[0];
+				defaultSettings.threshold.humidity.indoor.range[1] = settings.threshold.humidity.indoor.range[1];
+
 				defaultSettings.threshold.humidity.outdoor.min = settings.threshold.humidity.outdoor.min;
 				defaultSettings.threshold.humidity.outdoor.max = settings.threshold.humidity.outdoor.max;
+				defaultSettings.threshold.humidity.outdoor.range[0] = settings.threshold.humidity.outdoor.range[0];
+				defaultSettings.threshold.humidity.outdoor.range[1] = settings.threshold.humidity.outdoor.range[1];
 
 			}
 
