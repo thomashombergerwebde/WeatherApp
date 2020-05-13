@@ -68,7 +68,7 @@
 											  singleContainerFullSize="true">
 									<f:content>
 										<VBox height="110px">
-											<FlexBox alignItems="Center" justifyContent="Start">
+											<FlexBox alignItems="Start" justifyContent="Start">
 												<core:Icon
 														src="sap-icon://home"
 														class="iconSize sapUiSmallMarginEnd">
@@ -76,11 +76,11 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<Slider id="sliderIndoorTempChange" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+												<Slider id="sliderIndoorTempChange" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
 													<ResponsiveScale tickmarksBetweenLabels="2"/>
 												</Slider>
 											</FlexBox>
-											<FlexBox alignItems="Center" justifyContent="Start">
+											<FlexBox alignItems="Start" justifyContent="Start">
 												<core:Icon
 														src="sap-icon://card"
 														class="iconSize sapUiSmallMarginEnd">
@@ -88,7 +88,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<Slider id="sliderOutdoorTempChange" change="onSliderChangeTemperatureOutdoorColor" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">
+												<Slider id="sliderOutdoorTempChange" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">
 													<ResponsiveScale tickmarksBetweenLabels="2"/>
 												</Slider>
 
@@ -119,7 +119,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<RangeSlider  id="rangeSliderIndoorHumidityStatusChange" liveChange="onSliderChangeHumidityIndoorColor" min="{settings>/threshold/humidity/indoor/min}" max="{settings>/threshold/humidity/indoor/max}" range="{settings>/threshold/humidity/indoor/range}" enableTickmarks="true" class="slider">
+												<RangeSlider  id="rangeSliderIndoorHumidityStatusChange" min="{settings>/threshold/humidity/indoor/min}" max="{settings>/threshold/humidity/indoor/max}" range="{settings>/threshold/humidity/indoor/range}" enableTickmarks="true" class="slider">
 													<ResponsiveScale tickmarksBetweenLabels="10"/>
 												</RangeSlider>
 											</FlexBox>
@@ -131,7 +131,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<RangeSlider  id="rangeSliderOutdoorHumidityStatusChange" liveChange="onSliderChangeHumidityOutdoorColor" min="{settings>/threshold/humidity/outdoor/min}" max="{settings>/threshold/humidity/outdoor/max}" range="{settings>/threshold/humidity/outdoor/range}" enableTickmarks="true" class="slider">
+												<RangeSlider  id="rangeSliderOutdoorHumidityStatusChange" min="{settings>/threshold/humidity/outdoor/min}" max="{settings>/threshold/humidity/outdoor/max}" range="{settings>/threshold/humidity/outdoor/range}" enableTickmarks="true" class="slider">
 													<ResponsiveScale tickmarksBetweenLabels="10"/>
 												</RangeSlider>
 											</FlexBox>
