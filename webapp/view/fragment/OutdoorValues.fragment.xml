@@ -9,7 +9,7 @@
                 id="outdoorTemperature"
                 value="{path: '/readingOutdoorTemperature/value', formatter: '.formatter.temperatureValue'}"
                 scale="{i18n>temperatureDegree}"
-                valueColor="{ parts:[{path: '/readingOutdoorTemperature/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
+                valueColor="{ parts:[{path: '/readingOutdoorTemperature/value'}, {path: 'settings>/threshold/temperature/outdoor/value'}], formatter: '.formatter.temperatureValueColor'}"
                 indicator="{ parts:[{path: '/readingOutdoorTemperatureOld/value'}, {path: '/readingOutdoorTemperature/value'}], formatter: '.formatter.temperatureIndicator'}"
                 animateTextChange="false"
                 press="pressOutdoorTemperature"
@@ -26,7 +26,7 @@
                     id="outdoorHumidity"
                     total="100"
                     percentage="{path: '/readingOutdoorHumidity/value'}"
-                    valueColor="{ parts:[{path: '/readingOutdoorHumidity/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
+                    valueColor="{ parts:[{path: '/readingOutdoorHumidity/value'}, {path: 'settings>/threshold/humidity/outdoor/range/0'}, {path: 'settings>/threshold/humidity/outdoor/range/1'}], formatter: '.formatter.humidityValueColor'}"
                     press="pressOutdoorHumidity"
                     size="M"
             />

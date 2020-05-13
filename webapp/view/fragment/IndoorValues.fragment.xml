@@ -9,7 +9,7 @@
                 id="indoorTemperature"
                 value="{path: '/readingIndoorTemperature/value', formatter: '.formatter.temperatureValue'}"
                 scale="{i18n>temperatureDegree}"
-                valueColor="{ parts:[{path: '/readingIndoorTemperature/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
+                valueColor="{ parts:[{path: '/readingIndoorTemperature/value'}, {path: 'settings>/threshold/temperature/indoor/value'}], formatter: '.formatter.temperatureValueColor'}"
                 indicator="{ parts:[{path: '/readingIndoorTemperatureOld/value'}, {path: '/readingIndoorTemperature/value'}], formatter: '.formatter.temperatureIndicator'}"
                 animateTextChange="false"
                 press="pressIndoorTemperature"
@@ -26,7 +26,7 @@
                 id="indoorHumidity"
                 total="100"
                 percentage="{path: '/readingIndoorHumidity/value'}"
-                valueColor="{ parts:[{path: '/readingIndoorHumidity/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
+                valueColor="{ parts:[{path: '/readingIndoorHumidity/value'}, {path: 'settings>/threshold/humidity/indoor/range/0'}, {path: 'settings>/threshold/humidity/indoor/range/1'}], formatter: '.formatter.humidityValueColor'}"
                 press="pressIndoorHumidity"
                 size="M"
          />
