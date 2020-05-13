@@ -58,7 +58,8 @@
 											<FlexItemData growFactor="1" />
 										</core:layoutData>
 									</core:Icon>
-									<Slider id="sliderIndoorTempChange" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+									<!--<Slider id="sliderIndoorTempChange" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">-->
+									<Slider id="sliderIndoorTempChange" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
 										<ResponsiveScale tickmarksBetweenLabels="2"/>
 									</Slider>
 								</FlexBox>
@@ -70,7 +71,8 @@
 											<FlexItemData growFactor="1" />
 										</core:layoutData>
 									</core:Icon>
-									<Slider id="sliderOutdoorTempChange" change="onSliderChangeTemperatureOutdoorColor" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">
+									<!--<Slider id="sliderOutdoorTempChange" change="onSliderChangeTemperatureOutdoorColor" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">-->
+									<Slider id="sliderOutdoorTempChange" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">
 										<ResponsiveScale tickmarksBetweenLabels="2"/>
 									</Slider>
 								</FlexBox>
@@ -130,7 +132,8 @@
                                     <Label labelFor="switch1" text="{i18n>inCaseOfOutdatedValues}" textAlign="Left" class="sapUiTinyMarginEnd"/>
 								</FlexBox>
 								<FlexBox alignItems="Center" justifyContent="Start">
-									<Slider id="sliderOutdatedReadings" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+									<!--<Slider id="sliderOutdatedReadings" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">-->
+									<Slider id="sliderOutdatedReadings" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
 										<ResponsiveScale tickmarksBetweenLabels="2"/>
 									</Slider>
 								</FlexBox>
@@ -144,7 +147,8 @@
 									</Switch>
 								</FlexBox>
 								<FlexBox alignItems="Center" justifyContent="Start">
-									<Slider id="sliderWeakSignal" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+									<!--<Slider id="sliderWeakSignal" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">-->
+									<Slider id="sliderWeakSignal" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
 										<ResponsiveScale tickmarksBetweenLabels="2"/>
 									</Slider>
 								</FlexBox>
@@ -158,7 +162,8 @@
 									</Switch>
 								</FlexBox>
 								<FlexBox alignItems="Center" justifyContent="Start">
-									<Slider id="sliderImplausibleTemperatureValues" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+									<!--<Slider id="sliderImplausibleTemperatureValues" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">-->
+									<Slider id="sliderImplausibleTemperatureValues" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
 										<ResponsiveScale tickmarksBetweenLabels="2"/>
 									</Slider>
 								</FlexBox>
