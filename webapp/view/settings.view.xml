@@ -46,7 +46,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<Slider id="sliderMoveChartCarousel" change="onSliderMoveChartCarousel" value="{settings>/show/chart/value}" min="{settings>/show/chart/min}" max="{settings>/show/chart/max}" enableTickmarks="true" class="slider" width="80%">
+												<Slider id="sliderMoveChartCarousel" change="onSliderMoveChartCarousel" value="{settings>/show/chart/value}" min="{settings>/show/chart/min}" max="{settings>/show/chart/max}" enableTickmarks="true" class="slider" width="100%">
 													<ResponsiveScale tickmarksBetweenLabels="10"/>
 												</Slider>
 											</HBox>
@@ -76,7 +76,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<Slider id="sliderIndoorTempChange" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="75%">
+												<Slider id="sliderIndoorTempChange" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
 													<ResponsiveScale tickmarksBetweenLabels="2"/>
 												</Slider>
 											</FlexBox>
@@ -88,7 +88,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<Slider id="sliderOutdoorTempChange" change="onSliderChangeTemperatureOutdoorColor" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="70%">
+												<Slider id="sliderOutdoorTempChange" change="onSliderChangeTemperatureOutdoorColor" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">
 													<ResponsiveScale tickmarksBetweenLabels="2"/>
 												</Slider>
 
