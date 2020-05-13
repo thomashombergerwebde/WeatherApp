@@ -977,23 +977,6 @@ sap.ui.define(
 
 		},
 
-		onSliderChangeTemperatureIndoorColor: function (oEvent) {
-			this.getView().byId("indoorTemperature").setValueColor(this.formatter.temperatureValueColor(parseFloat(this.getView().byId("indoorTemperature").getValue()), "Indoor", this.getView().getModel("settings")));
-		},
-
-		onSliderChangeTemperatureOutdoorColor: function (oEvent) {
-			this.getView().byId("outdoorTemperature").setValueColor(this.formatter.temperatureValueColor(parseFloat(this.getView().byId("outdoorTemperature").getValue()), "Outdoor", this.getView().getModel("settings")));
-		},
-
-		onSliderChangeHumidityIndoorColor: function (oEvent) {
-			this.getView().byId("indoorHumidity").setValueColor(this.formatter.humidityValueColor(parseFloat(this.getView().byId("indoorHumidity").getPercentage()), "Indoor", this.getView().getModel("settings")));
-		},
-
-		onSliderChangeHumidityOutdoorColor: function (oEvent) {
-			this.getView().byId("outdoorHumidity").setValueColor(this.formatter.humidityValueColor(parseFloat(this.getView().byId("outdoorHumidity").getPercentage()), "Outdoor", this.getView().getModel("settings")));
-		},
-
-
 		//----------------------------------------------------------------------------------------//
 		//Theme selector
 		//----------------------------------------------------------------------------------------//
