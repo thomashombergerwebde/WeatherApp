@@ -15,9 +15,9 @@
 				</uxap:ObjectPageDynamicHeaderTitle>
 			</uxap:headerTitle>
 			<uxap:sections>
-				<uxap:ObjectPageSection title="">
+				<uxap:ObjectPageSection>
 					<uxap:subSections>
-						<uxap:ObjectPageSubSection title="{i18n>picturesCharts}" mode="Expanded" id="Section2">
+						<uxap:ObjectPageSubSection title="{i18n>picturesCharts}" mode="Expanded" id="Section1">
 							<uxap:blocks>
 								<f:SimpleForm id="SimpleForm1"
 											  editable="true"
@@ -46,7 +46,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<Slider id="sliderMoveChartCarousel" change="onSliderMoveChartCarousel" value="{settings>/show/chart/value}" min="{settings>/show/chart/min}" max="{settings>/show/chart/max}" enableTickmarks="true" class="slider" width="100%">
+												<Slider id="sliderMoveChartCarousel" change="onSliderMoveChartCarousel" value="{settings>/show/chart/value}" min="{settings>/show/chart/min}" max="{settings>/show/chart/max}" enableTickmarks="true" class="slider" width="80%">
 													<ResponsiveScale tickmarksBetweenLabels="10"/>
 												</Slider>
 											</HBox>
@@ -57,9 +57,9 @@
 						</uxap:ObjectPageSubSection>
 					</uxap:subSections>
 				</uxap:ObjectPageSection>
-				<uxap:ObjectPageSection title="my section 3">
+				<uxap:ObjectPageSection>
 					<uxap:subSections>
-						<uxap:ObjectPageSubSection title="{i18n>temperatureColor}" mode="Expanded" id="Section3">
+						<uxap:ObjectPageSubSection title="{i18n>temperatureColor}" mode="Expanded" id="Section2">
 							<uxap:blocks>
 								<f:SimpleForm id="SimpleForm2"
 											  editable="true"
@@ -76,7 +76,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<Slider id="sliderIndoorTempChange" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="100%">
+												<Slider id="sliderIndoorTempChange" change="onSliderChangeTemperatureIndoorColor" value="{settings>/threshold/temperature/indoor/value}" min="{settings>/threshold/temperature/indoor/min}" max="{settings>/threshold/temperature/indoor/max}" enableTickmarks="true" class="slider" width="75%">
 													<ResponsiveScale tickmarksBetweenLabels="2"/>
 												</Slider>
 											</FlexBox>
@@ -88,7 +88,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<Slider id="sliderOutdoorTempChange" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="100%">
+												<Slider id="sliderOutdoorTempChange" change="onSliderChangeTemperatureOutdoorColor" value="{settings>/threshold/temperature/outdoor/value}" min="{settings>/threshold/temperature/outdoor/min}" max="{settings>/threshold/temperature/outdoor/max}" enableTickmarks="true" class="slider" width="70%">
 													<ResponsiveScale tickmarksBetweenLabels="2"/>
 												</Slider>
 
@@ -119,7 +119,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<RangeSlider  id="rangeSliderIndoorHumidityStatusChange" min="{settings>/threshold/humidity/indoor/min}" max="{settings>/threshold/humidity/indoor/max}" range="{settings>/threshold/humidity/indoor/range}" enableTickmarks="true" class="slider">
+												<RangeSlider  id="rangeSliderIndoorHumidityStatusChange" liveChange="onSliderChangeHumidityIndoorColor" min="{settings>/threshold/humidity/indoor/min}" max="{settings>/threshold/humidity/indoor/max}" range="{settings>/threshold/humidity/indoor/range}" enableTickmarks="true" class="slider">
 													<ResponsiveScale tickmarksBetweenLabels="10"/>
 												</RangeSlider>
 											</FlexBox>
@@ -131,7 +131,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<RangeSlider  id="rangeSliderOutdoorHumidityStatusChange" min="{settings>/threshold/humidity/outdoor/min}" max="{settings>/threshold/humidity/outdoor/max}" range="{settings>/threshold/humidity/outdoor/range}" enableTickmarks="true" class="slider">
+												<RangeSlider  id="rangeSliderOutdoorHumidityStatusChange" liveChange="onSliderChangeHumidityOutdoorColor" min="{settings>/threshold/humidity/outdoor/min}" max="{settings>/threshold/humidity/outdoor/max}" range="{settings>/threshold/humidity/outdoor/range}" enableTickmarks="true" class="slider">
 													<ResponsiveScale tickmarksBetweenLabels="10"/>
 												</RangeSlider>
 											</FlexBox>
