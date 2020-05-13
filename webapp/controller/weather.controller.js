@@ -536,29 +536,37 @@ sap.ui.define(
 			return signalQuality < 20;
 		},
 
-		setErrorMessage: function(path, value) {
+		setReadingDescription: function(path, value) {
 
-			var errorShow = false;
-			var errorIcon = "sap-icon://message-error";
-			var errorIconColor = sap.ui.core.IconColor.Negative;
-			var errorMessage = "";
+			var icon = "";
+			var iconColor = sap.ui.core.IconColor.Neutral;
+			var text = "";
 
-			if(this.isReadingOutdated(value.timestamp)){
-				errorShow = true;
-				errorIcon = "sap-icon://message-error";
-				errorIconColor = sap.ui.core.IconColor.Negative;
-				errorMessage = this.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
-			} else if(this.isSignalWeak(value.signalquality)) {
-				errorShow = true;
-				errorIcon = "sap-icon://message-warning";
-				errorIconColor = sap.ui.core.IconColor.Critical;
-				errorMessage = this.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
+			if(path.indexOf("Temperature") > -1){
+				icon = "sap-icon://temperature"
+			} else {
+				icon = "sap-icon://blur";
 			}
 
-			this.getView().getModel().setProperty(path + "ErrorShow", errorShow);
-			this.getView().getModel().setProperty(path + "ErrorIcon", errorIcon);
-			this.getView().getModel().setProperty(path + "ErrorIconColor", errorIconColor);
-			this.getView().getModel().setProperty(path + "ErrorMessage", errorMessage);
+			if(path.indexOf("Indoor") > -1) {
+				text = this.getView().getModel("i18n").getResourceBundle().getText("indoor");
+			} else {
+				text = this.getView().getModel("i18n").getResourceBundle().getText("outdoor");
+			}
+
+			if(this.isReadingOutdated(value.timestamp)){
+				icon = "sap-icon://message-error";
+				iconColor = sap.ui.core.IconColor.Negative;
+				text = this.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
+			} else if(this.isSignalWeak(value.signalquality)) {
+				icon = "sap-icon://message-warning";
+				iconColor = sap.ui.core.IconColor.Critical;
+				text = this.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
+			}
+
+			this.getView().getModel().setProperty(path + "Icon", icon);
+			this.getView().getModel().setProperty(path + "IconColor", iconColor);
+			this.getView().getModel().setProperty(path + "Text", text);
 		},
 
 		readCurrentData: function(id, skip, top, success) {
@@ -590,7 +598,7 @@ sap.ui.define(
 				that.getView().getModel().setProperty(path, odata.value[0]);
 
 				//check for error
-				that.setErrorMessage(path, odata.value[0]);
+				that.setReadingDescription(path, odata.value[0]);
 			});
 		},
 
@@ -609,7 +617,7 @@ sap.ui.define(
 				that.getView().getModel().setProperty(path, odata.value[0]);
 
 				//check for error
-				that.setErrorMessage(path, odata.value[0]);
+				that.setReadingDescription(path, odata.value[0]);
 			});
 		},
 
@@ -847,7 +855,7 @@ sap.ui.define(
 					}];
 
 			oModel.setProperty("/pages", pages);
-			oModel.setProperty("/quickViewWidth", "180px");
+			oModel.setProperty("/quickViewWidth", "200px");
 		},
 
 		pressIndoorTemperature: function (oEvent) {
@@ -921,6 +929,8 @@ sap.ui.define(
 		//----------------------------------------------------------------------------------------//
 		//Settings Dialog
 		//----------------------------------------------------------------------------------------//
+
+		/*
 		onOpenSettingsDialog: function (oEvent) {
 			if (!this._oSettingsDialog) {
 				this._oSettingsDialog = sap.ui.xmlfragment("homberger.weatherapp.view.fragment.SettingsDialog", this);
@@ -939,6 +949,7 @@ sap.ui.define(
 
 			this._oSettingsDialog.close();
 		},
+		*/
 
 		onSliderMovePictureCarousel: function (oEvent) {
 
