@@ -26,7 +26,7 @@
 											  singleContainerFullSize="true" >
 									<f:content>
 										<VBox height="110px">
-											<HBox>
+											<HBox alignItems="Start" justifyContent="Begin">
 												<core:Icon
 														src="sap-icon://picture"
 														class="iconSize">
@@ -34,11 +34,11 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<Slider id="sliderMovePictureCarousel" change="onSliderMovePictureCarousel" value="{settings>/show/picture/value}" min="{settings>/show/picture/min}" max="{settings>/show/picture/max}" enableTickmarks="true" class="slider" width="100%">
+												<Slider id="sliderMovePictureCarousel" change="onSliderMovePictureCarousel" value="{settings>/show/picture/value}" min="{settings>/show/picture/min}" max="{settings>/show/picture/max}" enableTickmarks="true" class="slider">
 													<ResponsiveScale tickmarksBetweenLabels="10"/>
 												</Slider>
 											</HBox>
-											<HBox>
+											<HBox alignItems="Start">
 												<core:Icon
 														src="sap-icon://line-chart"
 														class="iconSize">
@@ -46,7 +46,7 @@
 														<FlexItemData growFactor="1" />
 													</core:layoutData>
 												</core:Icon>
-												<Slider id="sliderMoveChartCarousel" change="onSliderMoveChartCarousel" value="{settings>/show/chart/value}" min="{settings>/show/chart/min}" max="{settings>/show/chart/max}" enableTickmarks="true" class="slider" width="100%">
+												<Slider id="sliderMoveChartCarousel" change="onSliderMoveChartCarousel" value="{settings>/show/chart/value}" min="{settings>/show/chart/min}" max="{settings>/show/chart/max}" enableTickmarks="true" class="slider">
 													<ResponsiveScale tickmarksBetweenLabels="10"/>
 												</Slider>
 											</HBox>
