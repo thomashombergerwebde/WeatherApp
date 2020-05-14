@@ -160,13 +160,13 @@
                                         formatter: '.formatter.getFormattedTimeString'
                                     }"
                                     value="{/readingIndoorTemperatureMin/value}"
-                                    color="{ parts:[{path: '/readingIndoorTemperatureMin/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    color="{ parts:[{path: '/readingIndoorTemperatureMin/value'}, {path: 'settings>/threshold/temperature/indoor/value'}], formatter: '.formatter.temperatureValueColor'}"
                                     displayValue="{/readingIndoorTemperatureMin/value}{i18n>temperatureDegree}"
                                 />
                                 <mc:ComparisonMicroChartData
                                     title="{i18n>average}"
                                     value="{/readingIndoorTemperatureAvg/value}"
-                                    color="{ parts:[{path: '/readingIndoorTemperatureAvg/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    color="{ parts:[{path: '/readingIndoorTemperatureAvg/value'}, {path: 'settings>/threshold/temperature/indoor/value'}], formatter: '.formatter.temperatureValueColor'}"
                                     displayValue="{/readingIndoorTemperatureAvg/value}{i18n>temperatureDegree}"
                                 />
                                 <mc:ComparisonMicroChartData
@@ -183,7 +183,7 @@
                                         formatter: '.formatter.getFormattedTimeString'
                                     }"
                                     value="{/readingIndoorTemperatureMax/value}"
-                                    color="{ parts:[{path: '/readingIndoorTemperatureMax/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    color="{ parts:[{path: '/readingIndoorTemperatureMax/value'}, {path: 'settings>/threshold/temperature/indoor/value'}], formatter: '.formatter.temperatureValueColor'}"
                                     displayValue="{/readingIndoorTemperatureMax/value}{i18n>temperatureDegree}"
                                 />
                             </mc:data>
@@ -217,13 +217,13 @@
                                         formatter: '.formatter.getFormattedTimeString'
                                     }"
                                     value="{/readingOutdoorTemperatureMin/value}"
-                                    color="{ parts:[{path: '/readingOutdoorTemperatureMin/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    color="{ parts:[{path: '/readingOutdoorTemperatureMin/value'}, {path: 'settings>/threshold/temperature/outdoor/value'}], formatter: '.formatter.temperatureValueColor'}"
                                     displayValue="{/readingOutdoorTemperatureMin/value}{i18n>temperatureDegree}"
                                 />
                                 <mc:ComparisonMicroChartData
                                     title="{i18n>average}"
                                     value="{/readingOutdoorTemperatureAvg/value}"
-                                    color="{ parts:[{path: '/readingOutdoorTemperatureAvg/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    color="{ parts:[{path: '/readingOutdoorTemperatureAvg/value'}, {path: 'settings>/threshold/temperature/outdoor/value'}], formatter: '.formatter.temperatureValueColor'}"
                                     displayValue="{/readingOutdoorTemperatureAvg/value}{i18n>temperatureDegree}"
                                 />
                                 <mc:ComparisonMicroChartData
@@ -240,7 +240,7 @@
                                         formatter: '.formatter.getFormattedTimeString'
                                      }"
                                     value="{/readingOutdoorTemperatureMax/value}"
-                                    color="{ parts:[{path: '/readingOutdoorTemperatureMax/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.temperatureValueColor'}"
+                                    color="{ parts:[{path: '/readingOutdoorTemperatureMax/value'}, {path: 'settings>/threshold/temperature/outdoor/value'}], formatter: '.formatter.temperatureValueColor'}"
                                     displayValue="{/readingOutdoorTemperatureMax/value}{i18n>temperatureDegree}"
                                 />
                             </mc:data>
@@ -280,13 +280,13 @@
                                         formatter: '.formatter.getFormattedTimeString'
                                     }"
                                     value="{/readingIndoorHumidityMin/value}"
-                                    color="{ parts:[{path: '/readingIndoorHumidityMin/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    color="{ parts:[{path: '/readingIndoorHumidityMin/value'}, {path: 'settings>/threshold/humidity/indoor/range/0'}, {path: 'settings>/threshold/humidity/indoor/range/1'}], formatter: '.formatter.humidityValueColor'}"
                                     displayValue="{/readingIndoorHumidityMin/value}{i18n>humidityPercent}"
                                 />
                                 <mc:ComparisonMicroChartData
                                     title="{i18n>average}"
                                     value="{/readingIndoorHumidityAvg/value}"
-                                    color="{ parts:[{path: '/readingIndoorHumidityAvg/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    color="{ parts:[{path: '/readingIndoorHumidityAvg/value'}, {path: 'settings>/threshold/humidity/indoor/range/0'}, {path: 'settings>/threshold/humidity/indoor/range/1'}], formatter: '.formatter.humidityValueColor'}"
                                     displayValue="{/readingIndoorHumidityAvg/value}{i18n>humidityPercent}"
                                 />
                                 <mc:ComparisonMicroChartData
@@ -303,7 +303,7 @@
                                         formatter: '.formatter.getFormattedTimeString'
                                     }"
                                     value="{/readingIndoorHumidityMax/value}"
-                                    color="{ parts:[{path: '/readingIndoorHumidityMax/value'}, {path: '/Position/Indoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    color="{ parts:[{path: '/readingIndoorHumidityMax/value'}, {path: 'settings>/threshold/humidity/indoor/range/0'}, {path: 'settings>/threshold/humidity/indoor/range/1'}], formatter: '.formatter.humidityValueColor'}"
                                     displayValue="{/readingIndoorHumidityMax/value}{i18n>humidityPercent}"
                                 />
                             </mc:data>
@@ -336,13 +336,13 @@
                                         formatter: '.formatter.getFormattedTimeString'
                                      }"
                                     value="{/readingOutdoorHumidityMin/value}"
-                                    color="{ parts:[{path: '/readingOutdoorHumidityMin/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    color="{ parts:[{path: '/readingOutdoorHumidityMin/value'}, {path: 'settings>/threshold/humidity/outdoor/range/0'}, {path: 'settings>/threshold/humidity/outdoor/range/1'}], formatter: '.formatter.humidityValueColor'}"
                                     displayValue="{/readingOutdoorHumidityMin/value}{i18n>humidityPercent}"
                                 />
                                 <mc:ComparisonMicroChartData
                                     title="{i18n>average}"
                                     value="{/readingOutdoorHumidityAvg/value}"
-                                    color="{ parts:[{path: '/readingOutdoorHumidityAvg/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    color="{ parts:[{path: '/readingOutdoorHumidityAvg/value'}, {path: 'settings>/threshold/humidity/outdoor/range/0'}, {path: 'settings>/threshold/humidity/outdoor/range/1'}], formatter: '.formatter.humidityValueColor'}"
                                     displayValue="{/readingOutdoorHumidityAvg/value}{i18n>humidityPercent}"
                                 />
                                 <mc:ComparisonMicroChartData
@@ -359,7 +359,7 @@
                                         formatter: '.formatter.getFormattedTimeString'
                                      }"
                                     value="{/readingOutdoorHumidityMax/value}"
-                                    color="{ parts:[{path: '/readingOutdoorHumidityMax/value'}, {path: '/Position/Outdoor'}], formatter: '.formatter.humidityValueColor'}"
+                                    color="{ parts:[{path: '/readingOutdoorHumidityMax/value'}, {path: 'settings>/threshold/humidity/outdoor/range/0'}, {path: 'settings>/threshold/humidity/outdoor/range/1'}], formatter: '.formatter.humidityValueColor'}"
                                     displayValue="{/readingOutdoorHumidityMax/value}{i18n>humidityPercent}"
                                 />
                             </mc:data>
