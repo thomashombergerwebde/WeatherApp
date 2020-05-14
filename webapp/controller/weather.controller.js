@@ -41,7 +41,7 @@ sap.ui.define(
 
 				var that = this;
 				var car = this.getView().byId("carousel");
-
+				car.rerender();
 				if(car.getPages().length > 0){
 					var currentImage = this.getView().getModel("images").getProperty("/currentImage") ;
 					var index = car.getPages().findIndex(function(page){
@@ -959,7 +959,6 @@ sap.ui.define(
 
 			this._oSettingsDialog.close();
 		},
-		*/
 
 		onSliderMovePictureCarousel: function (oEvent) {
 
@@ -986,6 +985,7 @@ sap.ui.define(
 			}, this.getView().getModel("settings").getProperty("/show/chart/value") * 1000);
 
 		},
+		*/
 
 		//----------------------------------------------------------------------------------------//
 		//Theme selector
@@ -1033,8 +1033,13 @@ sap.ui.define(
 			}
 		},
 
+		//----------------------------------------------------------------------------------------//
+		//Navigation to settings page
+		//----------------------------------------------------------------------------------------//
 		onNavToSettings: function(){
 			if(this.oRouter){
+				clearInterval(this.movePictureCarousel);
+				clearInterval(this.moveChartCarousel);
 				//Update JSON model
 				this.oRouter.navTo("settings",  {
 					source: "weather"
