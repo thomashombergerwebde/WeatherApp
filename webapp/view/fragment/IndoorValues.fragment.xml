@@ -19,7 +19,7 @@
     <VBox class="sapUiTinyMargin">
         <HBox>
             <core:Icon id="indoorHumidityIcon" visible="{/readingIndoorHumidityVisible}" src="{/readingIndoorHumidityIcon}" color="{/readingIndoorHumidityIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
-            <Text id="indoorHumidityText" visible="{/readingIndoorHumidityVisible}" text="{/readingIndoorHumidityText}" class="sizeSmall sapUiTinyMarginEnd"/>
+            <Text id="indoorHumidityText" text="{/readingIndoorHumidityText}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <HBox class="sapUiLargeMarginBegin">
             <mc:RadialMicroChart

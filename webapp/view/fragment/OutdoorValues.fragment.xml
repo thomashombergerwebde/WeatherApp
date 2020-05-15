@@ -2,7 +2,7 @@
     <!-- Outdoor temperature -->
     <VBox class="sapUiTinyMargin sapUiMediumMarginEnd">
         <HBox>
-            <core:Icon id="outdoorTemperatureIcon" src="{/readingOutdoorTemperatureIcon}" color="{/readingOutdoorTemperatureIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
+            <core:Icon id="outdoorTemperatureIcon" visible="{/readingOutdoorTemperatureVisible}" src="{/readingOutdoorTemperatureIcon}" color="{/readingOutdoorTemperatureIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text id="outdoorTemperatureText" text="{/readingOutdoorTemperatureText}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <NumericContent
@@ -18,7 +18,7 @@
     <!-- Outdoor humidity -->
     <VBox class="sapUiTinyMargin">
         <HBox>
-            <core:Icon id="outdoorHumidityIcon" src="{/readingOutdoorHumidityIcon}" color="{/readingOutdoorHumidityIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
+            <core:Icon id="outdoorHumidityIcon" visible="{/readingOutdoorHumidityVisible}" src="{/readingOutdoorHumidityIcon}" color="{/readingOutdoorHumidityIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text id="outdoorHumidityText" text="{/readingOutdoorHumidityText}"  class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <HBox class="sapUiLargeMarginBegin">
