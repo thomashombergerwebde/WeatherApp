@@ -575,8 +575,8 @@ sap.ui.define(
 				path: "",
 				icon: "sap-icon://hint",
 				iconColor: sap.ui.core.IconColor.Neutral,
-				visible: true,
-				text: "INITIAL",
+				visible: false,
+				text: " ",
 				time: 500
 			}
 
@@ -588,9 +588,9 @@ sap.ui.define(
 					path: path,
 					icon: "sap-icon://message-error",
 					iconColor: sap.ui.core.IconColor.Negative,
-					visible: false,
+					visible: true,
 					text: this.getView().getModel("i18n").getResourceBundle().getText("valueOutdated"),
-					time: 1500
+					time: 1200
 				};
 				emptyMessage.path = path;
 				aMessages.push(message);
@@ -609,7 +609,7 @@ sap.ui.define(
 					iconColor: sap.ui.core.IconColor.Critical,
 					visible: true,
 					text: this.getView().getModel("i18n").getResourceBundle().getText("weakSignal"),
-					time: 1500
+					time: 1200
 				}
 				emptyMessage.path = path;
 				aMessages.push(message);
@@ -639,10 +639,7 @@ sap.ui.define(
 			message.time = 0;
 			aMessages.push(message);
 
-			if(path === "/readingIndoorHumidity") {
-				this.showErrorMessage(aMessages, this.getView().getModel());
-			}
-
+			this.showErrorMessage(aMessages, this.getView().getModel());
 		},
 
 		readCurrentData: function(id, skip, top, success) {
