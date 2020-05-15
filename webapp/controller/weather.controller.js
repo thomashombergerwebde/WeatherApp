@@ -537,6 +537,28 @@ sap.ui.define(
 		//Sensor update
 		//----------------------------------------------------------------------------------------//
 
+		showErrorMessage: function(aMessages, oModel){
+
+			/*
+			if(aMessages.length === 0){
+				return;
+			}
+			*/
+
+			oModel.setProperty(aMessages[0].path + "Icon", aMessages[0].icon);
+			oModel.setProperty(aMessages[0].path + "IconColor", aMessages[0].iconColor);
+			oModel.setProperty(aMessages[0].path + "Text", aMessages[0].text);
+			oModel.setProperty(aMessages[0].path + "Visible", aMessages[0].visible);
+
+			var time = aMessages[0].time;
+			aMessages.shift();
+			if(aMessages.length > 0) {
+				console.log(JSON.stringify(aMessages[0]));
+				console.log("Remaining messages: " + aMessages.length + " " + aMessages[0].text);
+				window.setTimeout(this.showErrorMessage.bind(this), time, aMessages, oModel);
+			}
+		},
+
 		isReadingOutdated: function (timestampReading) {
 			var timestampDiff = new Date() - timestampReading;
 			return timestampDiff > 1800000;  //30 mins are outdated
@@ -548,35 +570,79 @@ sap.ui.define(
 
 		setReadingDescription: function(path, value) {
 
-			var icon = "";
-			var iconColor = sap.ui.core.IconColor.Neutral;
-			var text = "";
-
-			if(path.indexOf("Temperature") > -1){
-				icon = "sap-icon://temperature"
-			} else {
-				icon = "sap-icon://blur";
+			var message;
+			var emptyMessage = {
+				path: "",
+				icon: "sap-icon://hint",
+				iconColor: sap.ui.core.IconColor.Neutral,
+				visible: true,
+				text: "INITIAL",
+				time: 500
 			}
+
+			var aMessages = [];
+
+			//Error message for outdated reading
+			if(this.isReadingOutdated(value.timestamp)){
+				message = {
+					path: path,
+					icon: "sap-icon://message-error",
+					iconColor: sap.ui.core.IconColor.Negative,
+					visible: false,
+					text: this.getView().getModel("i18n").getResourceBundle().getText("valueOutdated"),
+					time: 1500
+				};
+				emptyMessage.path = path;
+				aMessages.push(message);
+				aMessages.push(emptyMessage);
+				aMessages.push(message);
+				aMessages.push(emptyMessage);
+				aMessages.push(message);
+				aMessages.push(emptyMessage);
+			}
+
+			//Error message for weak signal
+			if(this.isSignalWeak(value.signalquality)) {
+				message = {
+					path: path,
+					icon: "sap-icon://message-warning",
+					iconColor: sap.ui.core.IconColor.Critical,
+					visible: true,
+					text: this.getView().getModel("i18n").getResourceBundle().getText("weakSignal"),
+					time: 1500
+				}
+				emptyMessage.path = path;
+				aMessages.push(message);
+				aMessages.push(emptyMessage);
+				aMessages.push(message);
+				aMessages.push(emptyMessage);
+				aMessages.push(message);
+				aMessages.push(emptyMessage);
+			}
+
+			//Standard text - no error message
+			message = {};
+			message.path = path;
+			if(path.indexOf("Temperature") > -1){
+				message.icon = "sap-icon://temperature";
+			} else {
+				message.icon = "sap-icon://blur";
+			}
+			message.iconColor = sap.ui.core.IconColor.Neutral;
+			message.visible = true;
 
 			if(path.indexOf("Indoor") > -1) {
-				text = this.getView().getModel("i18n").getResourceBundle().getText("indoor");
+				message.text = this.getView().getModel("i18n").getResourceBundle().getText("indoor");
 			} else {
-				text = this.getView().getModel("i18n").getResourceBundle().getText("outdoor");
+				message.text = this.getView().getModel("i18n").getResourceBundle().getText("outdoor");
+			}
+			message.time = 0;
+			aMessages.push(message);
+
+			if(path === "/readingIndoorHumidity") {
+				this.showErrorMessage(aMessages, this.getView().getModel());
 			}
 
-			if(this.isReadingOutdated(value.timestamp)){
-				icon = "sap-icon://message-error";
-				iconColor = sap.ui.core.IconColor.Negative;
-				text = this.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
-			} else if(this.isSignalWeak(value.signalquality)) {
-				icon = "sap-icon://message-warning";
-				iconColor = sap.ui.core.IconColor.Critical;
-				text = this.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
-			}
-
-			this.getView().getModel().setProperty(path + "Icon", icon);
-			this.getView().getModel().setProperty(path + "IconColor", iconColor);
-			this.getView().getModel().setProperty(path + "Text", text);
 		},
 
 		readCurrentData: function(id, skip, top, success) {
