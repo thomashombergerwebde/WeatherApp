@@ -3,7 +3,7 @@
     <VBox class="sapUiTinyMargin sapUiMediumMarginEnd">
         <HBox>
             <core:Icon id="indoorTemperatureIcon" visible="{/readingIndoorTemperatureVisible}" src="{/readingIndoorTemperatureIcon}" color="{/readingIndoorTemperatureIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
-            <Text id="indoorTemperatureText" visible="{/readingIndoorTemperatureVisible}" text="{/readingIndoorTemperatureText}" class="sizeSmall sapUiTinyMarginEnd"/>
+            <Text id="indoorTemperatureText" text="{/readingIndoorTemperatureText}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <NumericContent
                 id="indoorTemperature"
