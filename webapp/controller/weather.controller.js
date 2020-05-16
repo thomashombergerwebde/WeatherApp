@@ -20,6 +20,7 @@ sap.ui.define(
 		sOdataServer: "",
 		sPictureServer: "",
 		sPictureRootFolder: "",
+		aReadingMessages: [],
 
 		onInit: function(){
 
@@ -32,6 +33,13 @@ sap.ui.define(
 			this.sOdataServer = sOdataServer;
 			this.sPictureServer = sPictureServer;
 			this.sPictureRootFolder = sPictureRootFolder;
+
+
+			this.aReadingMessages.push(this.setDefaultReadingDescription("/readingIndoorTemperature"));
+			this.aReadingMessages.push(this.setDefaultReadingDescription("/readingIndoorHumidity"));
+			this.aReadingMessages.push(this.setDefaultReadingDescription("/readingOutdoorTemperature"));
+			this.aReadingMessages.push(this.setDefaultReadingDescription("/readingOutdoorHumidity"));
+			this.showErrorMessage();
 
 			//Create the views based on the url/hash
 			this.oRouter = this.getOwnerComponent().getRouter();
@@ -537,25 +545,24 @@ sap.ui.define(
 		//Sensor update
 		//----------------------------------------------------------------------------------------//
 
-		showErrorMessage: function(aMessages, oModel){
+		showErrorMessage: function(){
 
-			/*
-			if(aMessages.length === 0){
+			if(this.aReadingMessages.length === 0){
 				return;
 			}
-			*/
 
-			oModel.setProperty(aMessages[0].path + "Icon", aMessages[0].icon);
-			oModel.setProperty(aMessages[0].path + "IconColor", aMessages[0].iconColor);
-			oModel.setProperty(aMessages[0].path + "Text", aMessages[0].text);
-			oModel.setProperty(aMessages[0].path + "Visible", aMessages[0].visible);
+			var oModel = this.getOwnerComponent().getModel();
+			oModel.setProperty(this.aReadingMessages[0].path + "Icon", this.aReadingMessages[0].icon);
+			oModel.setProperty(this.aReadingMessages[0].path + "IconColor", this.aReadingMessages[0].iconColor);
+			oModel.setProperty(this.aReadingMessages[0].path + "Text", this.aReadingMessages[0].text);
+			oModel.setProperty(this.aReadingMessages[0].path + "Visible", this.aReadingMessages[0].visible);
 
-			var time = aMessages[0].time;
-			aMessages.shift();
-			if(aMessages.length > 0) {
-				console.log(JSON.stringify(aMessages[0]));
-				console.log("Remaining messages: " + aMessages.length + " " + aMessages[0].text);
-				window.setTimeout(this.showErrorMessage.bind(this), time, aMessages, oModel);
+			var time = this.aReadingMessages[0].time;
+			this.aReadingMessages.shift();
+			if(this.aReadingMessages.length > 0) {
+				console.log(JSON.stringify(this.aReadingMessages[0]));
+				console.log("Remaining messages: " + this.aReadingMessages.length + " " + this.aReadingMessages[0].text);
+				window.setTimeout(this.showErrorMessage.bind(this), time);
 			}
 		},
 
@@ -568,7 +575,31 @@ sap.ui.define(
 			return signalQuality < 20;
 		},
 
+		setDefaultReadingDescription: function(path) {
+
+			var message = {};
+			message.path = path;
+			if(path.indexOf("Temperature") > -1){
+				message.icon = "sap-icon://temperature";
+			} else {
+				message.icon = "sap-icon://blur";
+			}
+			message.iconColor = sap.ui.core.IconColor.Neutral;
+			message.visible = true;
+
+			if(path.indexOf("Indoor") > -1) {
+				message.text = this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("indoor");
+			} else {
+				message.text = this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("outdoor");
+			}
+			message.time = 1000;
+			return message;
+		},
+
 		setReadingDescription: function(path, value) {
+
+			//If message queue is empty, (re-) start it
+			var bStartShowErrorMessages = this.aReadingMessages.length === 0 ? true : false;
 
 			var message;
 			var emptyMessage = {
@@ -579,8 +610,6 @@ sap.ui.define(
 				text: " ",
 				time: 500
 			}
-
-			var aMessages = [];
 
 			//Error message for outdated reading
 			if(this.isReadingOutdated(value.timestamp)){
@@ -593,12 +622,12 @@ sap.ui.define(
 					time: 1200
 				};
 				emptyMessage.path = path;
-				aMessages.push(message);
-				aMessages.push(emptyMessage);
-				aMessages.push(message);
-				aMessages.push(emptyMessage);
-				aMessages.push(message);
-				aMessages.push(emptyMessage);
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
 			}
 
 			//Error message for weak signal
@@ -612,34 +641,22 @@ sap.ui.define(
 					time: 1200
 				}
 				emptyMessage.path = path;
-				aMessages.push(message);
-				aMessages.push(emptyMessage);
-				aMessages.push(message);
-				aMessages.push(emptyMessage);
-				aMessages.push(message);
-				aMessages.push(emptyMessage);
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
 			}
 
 			//Standard text - no error message
-			message = {};
-			message.path = path;
-			if(path.indexOf("Temperature") > -1){
-				message.icon = "sap-icon://temperature";
-			} else {
-				message.icon = "sap-icon://blur";
-			}
-			message.iconColor = sap.ui.core.IconColor.Neutral;
-			message.visible = true;
+			message = this.setDefaultReadingDescription(path);
+			this.aReadingMessages.push(message);
 
-			if(path.indexOf("Indoor") > -1) {
-				message.text = this.getView().getModel("i18n").getResourceBundle().getText("indoor");
-			} else {
-				message.text = this.getView().getModel("i18n").getResourceBundle().getText("outdoor");
+			if(bStartShowErrorMessages) {
+				this.showErrorMessage();
 			}
-			message.time = 0;
-			aMessages.push(message);
 
-			this.showErrorMessage(aMessages, this.getView().getModel());
 		},
 
 		readCurrentData: function(id, skip, top, success) {
