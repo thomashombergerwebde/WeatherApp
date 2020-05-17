@@ -2,7 +2,7 @@
     <!-- Indoor temperature -->
     <VBox class="sapUiTinyMargin sapUiMediumMarginEnd">
         <HBox>
-            <core:Icon id="indoorTemperatureIcon" src="{/readingIndoorTemperatureIcon}" color="{/readingIndoorTemperatureIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
+            <core:Icon id="indoorTemperatureIcon" visible="{/readingIndoorTemperatureVisible}" src="{/readingIndoorTemperatureIcon}" color="{/readingIndoorTemperatureIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text id="indoorTemperatureText" text="{/readingIndoorTemperatureText}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <NumericContent
@@ -18,7 +18,7 @@
     <!-- Indoor humidity -->
     <VBox class="sapUiTinyMargin">
         <HBox>
-            <core:Icon id="indoorHumidityIcon" src="{/readingIndoorHumidityIcon}" color="{/readingIndoorHumidityIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
+            <core:Icon id="indoorHumidityIcon" visible="{/readingIndoorHumidityVisible}" src="{/readingIndoorHumidityIcon}" color="{/readingIndoorHumidityIconColor}" class="sapUiTinyMarginEnd sizeSmall"/>
             <Text id="indoorHumidityText" text="{/readingIndoorHumidityText}" class="sizeSmall sapUiTinyMarginEnd"/>
         </HBox>
         <HBox class="sapUiLargeMarginBegin">

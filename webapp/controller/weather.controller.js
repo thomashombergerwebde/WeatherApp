@@ -20,6 +20,7 @@ sap.ui.define(
 		sOdataServer: "",
 		sPictureServer: "",
 		sPictureRootFolder: "",
+		aReadingMessages: [],
 
 		onInit: function(){
 
@@ -32,6 +33,13 @@ sap.ui.define(
 			this.sOdataServer = sOdataServer;
 			this.sPictureServer = sPictureServer;
 			this.sPictureRootFolder = sPictureRootFolder;
+
+
+			this.aReadingMessages.push(this.setDefaultReadingDescription("/readingIndoorTemperature"));
+			this.aReadingMessages.push(this.setDefaultReadingDescription("/readingIndoorHumidity"));
+			this.aReadingMessages.push(this.setDefaultReadingDescription("/readingOutdoorTemperature"));
+			this.aReadingMessages.push(this.setDefaultReadingDescription("/readingOutdoorHumidity"));
+			this.showErrorMessage();
 
 			//Create the views based on the url/hash
 			this.oRouter = this.getOwnerComponent().getRouter();
@@ -97,6 +105,12 @@ sap.ui.define(
 				defaultSettings.threshold.humidity.outdoor.range[0] = settings.threshold.humidity.outdoor.range[0];
 				defaultSettings.threshold.humidity.outdoor.range[1] = settings.threshold.humidity.outdoor.range[1];
 
+				defaultSettings.threshold.signalquality.min = settings.threshold.signalquality.min ? settings.threshold.signalquality.min :defaultSettings.threshold.signalquality.min;
+				defaultSettings.threshold.signalquality.max = settings.threshold.signalquality.max ? settings.threshold.signalquality.max : defaultSettings.threshold.signalquality.max;
+				defaultSettings.threshold.signalquality.value = settings.threshold.signalquality.value;
+				defaultSettings.threshold.age.min = settings.threshold.age.min;
+				defaultSettings.threshold.age.max = settings.threshold.age.max;
+				defaultSettings.threshold.age.value = settings.threshold.age.value;
 			}
 
 			var oModelImages = this.getOwnerComponent().getModel("images");
@@ -537,46 +551,118 @@ sap.ui.define(
 		//Sensor update
 		//----------------------------------------------------------------------------------------//
 
+		showErrorMessage: function(){
+
+			if(this.aReadingMessages.length === 0){
+				return;
+			}
+
+			var oModel = this.getOwnerComponent().getModel();
+			oModel.setProperty(this.aReadingMessages[0].path + "Icon", this.aReadingMessages[0].icon);
+			oModel.setProperty(this.aReadingMessages[0].path + "IconColor", this.aReadingMessages[0].iconColor);
+			oModel.setProperty(this.aReadingMessages[0].path + "Text", this.aReadingMessages[0].text);
+			oModel.setProperty(this.aReadingMessages[0].path + "Visible", this.aReadingMessages[0].visible);
+
+			var time = this.aReadingMessages[0].time;
+			this.aReadingMessages.shift();
+			if(this.aReadingMessages.length > 0) {
+				console.log(JSON.stringify(this.aReadingMessages[0]));
+				console.log("Remaining messages: " + this.aReadingMessages.length + " " + this.aReadingMessages[0].text);
+				window.setTimeout(this.showErrorMessage.bind(this), time);
+			}
+		},
+
 		isReadingOutdated: function (timestampReading) {
 			var timestampDiff = new Date() - timestampReading;
-			return timestampDiff > 1800000;  //30 mins are outdated
+			return timestampDiff > this.getView().getModel("settings").getProperty("/threshold/age/value") * 60000;
 		},
 
 		isSignalWeak: function (signalQuality) {
-			return signalQuality < 20;
+			return signalQuality < this.getView().getModel("settings").getProperty("/threshold/signalquality/value");
+		},
+
+		setDefaultReadingDescription: function(path) {
+
+			var message = {};
+			message.path = path;
+			if(path.indexOf("Temperature") > -1){
+				message.icon = "sap-icon://temperature";
+			} else {
+				message.icon = "sap-icon://blur";
+			}
+			message.iconColor = sap.ui.core.IconColor.Neutral;
+			message.visible = true;
+
+			if(path.indexOf("Indoor") > -1) {
+				message.text = this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("indoor");
+			} else {
+				message.text = this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("outdoor");
+			}
+			message.time = 1000;
+			return message;
 		},
 
 		setReadingDescription: function(path, value) {
 
-			var icon = "";
-			var iconColor = sap.ui.core.IconColor.Neutral;
-			var text = "";
+			//If message queue is empty, (re-) start it
+			var bStartShowErrorMessages = this.aReadingMessages.length === 0 ? true : false;
 
-			if(path.indexOf("Temperature") > -1){
-				icon = "sap-icon://temperature"
-			} else {
-				icon = "sap-icon://blur";
+			var message;
+			var emptyMessage = {
+				path: "",
+				icon: "sap-icon://hint",
+				iconColor: sap.ui.core.IconColor.Neutral,
+				visible: false,
+				text: " ",
+				time: 500
 			}
 
-			if(path.indexOf("Indoor") > -1) {
-				text = this.getView().getModel("i18n").getResourceBundle().getText("indoor");
-			} else {
-				text = this.getView().getModel("i18n").getResourceBundle().getText("outdoor");
-			}
-
+			//Error message for outdated reading
 			if(this.isReadingOutdated(value.timestamp)){
-				icon = "sap-icon://message-error";
-				iconColor = sap.ui.core.IconColor.Negative;
-				text = this.getView().getModel("i18n").getResourceBundle().getText("valueOutdated");
-			} else if(this.isSignalWeak(value.signalquality)) {
-				icon = "sap-icon://message-warning";
-				iconColor = sap.ui.core.IconColor.Critical;
-				text = this.getView().getModel("i18n").getResourceBundle().getText("weakSignal");
+				message = {
+					path: path,
+					icon: "sap-icon://message-error",
+					iconColor: sap.ui.core.IconColor.Negative,
+					visible: true,
+					text: this.getView().getModel("i18n").getResourceBundle().getText("valueOutdated"),
+					time: 1200
+				};
+				emptyMessage.path = path;
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
 			}
 
-			this.getView().getModel().setProperty(path + "Icon", icon);
-			this.getView().getModel().setProperty(path + "IconColor", iconColor);
-			this.getView().getModel().setProperty(path + "Text", text);
+			//Error message for weak signal
+			if(this.isSignalWeak(value.signalquality)) {
+				message = {
+					path: path,
+					icon: "sap-icon://message-warning",
+					iconColor: sap.ui.core.IconColor.Critical,
+					visible: true,
+					text: this.getView().getModel("i18n").getResourceBundle().getText("weakSignal"),
+					time: 1200
+				}
+				emptyMessage.path = path;
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
+				this.aReadingMessages.push(message);
+				this.aReadingMessages.push(emptyMessage);
+			}
+
+			//Standard text - no error message
+			message = this.setDefaultReadingDescription(path);
+			this.aReadingMessages.push(message);
+
+			if(bStartShowErrorMessages) {
+				this.showErrorMessage();
+			}
+
 		},
 
 		readCurrentData: function(id, skip, top, success) {

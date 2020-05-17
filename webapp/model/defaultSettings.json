@@ -31,6 +31,16 @@
 				"max": 		75,
 				"range": 	[50,70]
 			}
+		},
+		"signalquality": {
+			"min": 		0,
+			"max": 		40,
+			"value": 	15
+		},
+		"age": {
+			"min": 		10,
+			"max": 		60,
+			"value": 	30
 		}
 	},
 	"show": {
