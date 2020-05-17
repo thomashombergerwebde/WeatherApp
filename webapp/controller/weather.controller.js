@@ -105,8 +105,12 @@ sap.ui.define(
 				defaultSettings.threshold.humidity.outdoor.range[0] = settings.threshold.humidity.outdoor.range[0];
 				defaultSettings.threshold.humidity.outdoor.range[1] = settings.threshold.humidity.outdoor.range[1];
 
-				defaultSettings.threshold.signalquality = settings.threshold.signalquality;
-				defaultSettings.threshold.age = settings.threshold.age;
+				defaultSettings.threshold.signalquality.min = settings.threshold.signalquality.min;
+				defaultSettings.threshold.signalquality.max = settings.threshold.signalquality.max;
+				defaultSettings.threshold.signalquality.value = settings.threshold.signalquality.value;
+				defaultSettings.threshold.age.min = settings.threshold.age.min;
+				defaultSettings.threshold.age.max = settings.threshold.age.max;
+				defaultSettings.threshold.age.value = settings.threshold.age.value;
 			}
 
 			var oModelImages = this.getOwnerComponent().getModel("images");
@@ -570,11 +574,11 @@ sap.ui.define(
 
 		isReadingOutdated: function (timestampReading) {
 			var timestampDiff = new Date() - timestampReading;
-			return timestampDiff > this.getView().getModel("settings").getProperty("/threshold/age");
+			return timestampDiff > this.getView().getModel("settings").getProperty("/threshold/age/value") * 60000;
 		},
 
 		isSignalWeak: function (signalQuality) {
-			return signalQuality < this.getView().getModel("settings").getProperty("/threshold/signalquality");
+			return signalQuality < this.getView().getModel("settings").getProperty("/threshold/signalquality/value");
 		},
 
 		setDefaultReadingDescription: function(path) {
