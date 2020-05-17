@@ -41,7 +41,8 @@
 			"min": 		10,
 			"max": 		60,
 			"value": 	30
-		},
+		}
+	},
 	"show": {
 		"picture":{
 			"min":		10,
