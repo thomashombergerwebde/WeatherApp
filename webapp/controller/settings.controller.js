@@ -87,6 +87,22 @@ sap.ui.define(
 			oSettings.threshold.humidity.outdoor.range[1] = oEvent.getParameter("range")[1];
 			settings = JSON.stringify(oSettings);
 			localStorage.setItem("settings", settings);
+		},
+
+		onSliderMoveErrorMessageSignalQuality: function (oEvent) {
+			var settings = localStorage.getItem("settings");
+			var oSettings = JSON.parse(settings);
+			oSettings.threshold.signalquality.value = oEvent.getParameter("value");
+			settings = JSON.stringify(oSettings);
+			localStorage.setItem("settings", settings);
+		},
+
+		onSliderMoveErrorMessageAge: function (oEvent) {
+			var settings = localStorage.getItem("settings");
+			var oSettings = JSON.parse(settings);
+			oSettings.threshold.age.value = oEvent.getParameter("value");
+			settings = JSON.stringify(oSettings);
+			localStorage.setItem("settings", settings);
 		}
 	});
 });
