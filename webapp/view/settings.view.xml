@@ -161,9 +161,9 @@
 															<FlexItemData growFactor="1" />
 														</core:layoutData>
 													</core:Icon>
-													<RangeSlider  id="rangeSliderThresholdSignalQuality" liveChange="onSliderChangeHumidityIndoorColor" min="{settings>/threshold/humidity/indoor/min}" max="{settings>/threshold/humidity/indoor/max}" range="{settings>/threshold/humidity/indoor/range}" enableTickmarks="true" class="slider">
-														<ResponsiveScale tickmarksBetweenLabels="10"/>
-													</RangeSlider>
+													<Slider id="sliderThresholdSignalQuality" change="onSliderMoveErrorMessageSignalQuality" value="{settings>/threshold/signalquality/value}" min="{settings>/threshold/signalquality/min}" max="{settings>/threshold/signalquality/max}" enableTickmarks="true" class="slider">
+														<ResponsiveScale tickmarksBetweenLabels="5"/>
+													</Slider>
 												</FlexBox>
 											</VBox>
 										</f:content>
@@ -183,9 +183,9 @@
 															<FlexItemData growFactor="1" />
 														</core:layoutData>
 													</core:Icon>
-													<RangeSlider  id="rangeSliderThresholdAge" liveChange="onSliderChangeHumidityOutdoorColor" min="{settings>/threshold/humidity/outdoor/min}" max="{settings>/threshold/humidity/outdoor/max}" range="{settings>/threshold/humidity/outdoor/range}" enableTickmarks="true" class="slider">
+													<Slider id="sliderThresholdAge" change="onSliderMoveErrorMessageAge" value="{settings>/threshold/age/value}" min="{settings>/threshold/age/min}" max="{settings>/threshold/age/max}" enableTickmarks="true" class="slider">
 														<ResponsiveScale tickmarksBetweenLabels="10"/>
-													</RangeSlider>
+													</Slider>
 												</FlexBox>
 											</VBox>
 										</f:content>
