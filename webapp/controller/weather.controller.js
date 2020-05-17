@@ -105,6 +105,8 @@ sap.ui.define(
 				defaultSettings.threshold.humidity.outdoor.range[0] = settings.threshold.humidity.outdoor.range[0];
 				defaultSettings.threshold.humidity.outdoor.range[1] = settings.threshold.humidity.outdoor.range[1];
 
+				defaultSettings.threshold.signalquality = settings.threshold.signalquality;
+				defaultSettings.threshold.age = settings.threshold.age;
 			}
 
 			var oModelImages = this.getOwnerComponent().getModel("images");
@@ -568,11 +570,11 @@ sap.ui.define(
 
 		isReadingOutdated: function (timestampReading) {
 			var timestampDiff = new Date() - timestampReading;
-			return timestampDiff > 1800000;  //30 mins are outdated
+			return timestampDiff > this.getView().getModel("settings").getProperty("/threshold/age");
 		},
 
 		isSignalWeak: function (signalQuality) {
-			return signalQuality < 20;
+			return signalQuality < this.getView().getModel("settings").getProperty("/threshold/signalquality");
 		},
 
 		setDefaultReadingDescription: function(path) {
