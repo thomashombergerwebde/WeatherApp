@@ -141,6 +141,60 @@
 						</uxap:ObjectPageSubSection>
 					</uxap:subSections>
 				</uxap:ObjectPageSection>
+				<uxap:ObjectPageSection titleUppercase="false">
+					<uxap:subSections>
+						<uxap:ObjectPageSubSection id="ErrorMessageSettings" title="{i18n>errorMessages}" showTitle="true" titleUppercase="false" mode="Expanded">
+							<uxap:blocks>
+								<VBox>
+									<f:SimpleForm id="SimpleForm4"
+												  editable="true"
+												  layout="ResponsiveGridLayout"
+												  title="{i18n>settingsErrorMessageSignalQuality}"
+												  singleContainerFullSize="true">
+										<f:content>
+											<VBox height="110px">
+												<FlexBox alignItems="Center" justifyContent="Start">
+													<core:Icon
+															src="sap-icon://filter-analytics"
+															class="iconSize sapUiSmallMarginEnd">
+														<core:layoutData>
+															<FlexItemData growFactor="1" />
+														</core:layoutData>
+													</core:Icon>
+													<RangeSlider  id="rangeSliderThresholdSignalQuality" liveChange="onSliderChangeHumidityIndoorColor" min="{settings>/threshold/humidity/indoor/min}" max="{settings>/threshold/humidity/indoor/max}" range="{settings>/threshold/humidity/indoor/range}" enableTickmarks="true" class="slider">
+														<ResponsiveScale tickmarksBetweenLabels="10"/>
+													</RangeSlider>
+												</FlexBox>
+											</VBox>
+										</f:content>
+									</f:SimpleForm>
+									<f:SimpleForm id="SimpleForm5"
+												  editable="true"
+												  layout="ResponsiveGridLayout"
+												  title="{i18n>settingsErrorMessageAge}"
+												  singleContainerFullSize="true">
+										<f:content>
+											<VBox height="110px">
+												<FlexBox alignItems="Center" justifyContent="Start">
+													<core:Icon
+															src="sap-icon://past"
+															class="iconSize sapUiSmallMarginEnd">
+														<core:layoutData>
+															<FlexItemData growFactor="1" />
+														</core:layoutData>
+													</core:Icon>
+													<RangeSlider  id="rangeSliderThresholdAge" liveChange="onSliderChangeHumidityOutdoorColor" min="{settings>/threshold/humidity/outdoor/min}" max="{settings>/threshold/humidity/outdoor/max}" range="{settings>/threshold/humidity/outdoor/range}" enableTickmarks="true" class="slider">
+														<ResponsiveScale tickmarksBetweenLabels="10"/>
+													</RangeSlider>
+												</FlexBox>
+											</VBox>
+										</f:content>
+									</f:SimpleForm>
+								</VBox>
+							</uxap:blocks>
+						</uxap:ObjectPageSubSection>
+					</uxap:subSections>
+				</uxap:ObjectPageSection>
 			</uxap:sections>
 			<uxap:footer>
 				<OverflowToolbar>
