@@ -31,7 +31,9 @@
 				"max": 		75,
 				"range": 	[50,70]
 			}
-		}
+		},
+		"signalquality": 	15,
+		"age": 				1800000
 	},
 	"show": {
 		"picture":{
