@@ -105,8 +105,8 @@ sap.ui.define(
 				defaultSettings.threshold.humidity.outdoor.range[0] = settings.threshold.humidity.outdoor.range[0];
 				defaultSettings.threshold.humidity.outdoor.range[1] = settings.threshold.humidity.outdoor.range[1];
 
-				defaultSettings.threshold.signalquality.min = settings.threshold.signalquality.min;
-				defaultSettings.threshold.signalquality.max = settings.threshold.signalquality.max;
+				defaultSettings.threshold.signalquality.min = settings.threshold.signalquality.min ? settings.threshold.signalquality.min :defaultSettings.threshold.signalquality.min;
+				defaultSettings.threshold.signalquality.max = settings.threshold.signalquality.max ? settings.threshold.signalquality.max : defaultSettings.threshold.signalquality.max;
 				defaultSettings.threshold.signalquality.value = settings.threshold.signalquality.value;
 				defaultSettings.threshold.age.min = settings.threshold.age.min;
 				defaultSettings.threshold.age.max = settings.threshold.age.max;
